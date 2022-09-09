@@ -75,24 +75,21 @@ export const getBreadInfoList = () => {
 export const getVegetableInfoList = async () => {
   const CATEGORY_FULL_URL = `${BASE_URL}${INGREDIENTS_URL}`;
 
-  const vegetable = await axios(CATEGORY_FULL_URL)
-    .then((res) => {
-      const htmlData = res.data;
-      const $ = cheerio.load(htmlData);
+  const vegetable = await axios(CATEGORY_FULL_URL).then((res) => {
+    const htmlData = res.data;
+    const $ = cheerio.load(htmlData);
 
-      return $(".pd_list_wrapper .vegetable", htmlData).map(
-        (index, element) => {
-          const title = $(element).children(".eng").text();
-          const calories = $(element).children(".cal").text();
-          return {
-            title,
-            calories,
-          };
-        }
-      );
-    })
-    .catch((err) => console.error(err));
-  return vegetable;
+    return $(".pd_list_wrapper .vegetable", htmlData).map((index, element) => {
+      const title = $(element).children(".eng").text();
+      const calories = $(element).children(".cal").text();
+      return {
+        title,
+        calories,
+      };
+    });
+  });
+
+  return vegetable.toArray();
 };
 
 export const axiosFunc = () => {};
