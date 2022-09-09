@@ -12,9 +12,8 @@ export const getSandwichInfoList = () => {
       const sandwichInfo: infoType[] = [];
 
       $(".pd_list_wrapper li", htmlData).each((index, element) => {
-        const title = $(element).children(".tit").text();
+        const title = $(element).children(".eng").text();
         const calories = $(element).children(".cal").text();
-        // class name으로 구분할 것
         if (calories !== "") {
           sandwichInfo.push({
             title,
@@ -28,24 +27,24 @@ export const getSandwichInfoList = () => {
     .catch((err) => console.error(err));
 };
 
-export const getIngredientCategoryList = () => {
-  const CATEGORY_FULL_URL = `${BASE_URL}${INGREDIENTS_URL}`;
-  axios(CATEGORY_FULL_URL)
-    .then((res) => {
-      const htmlData = res.data;
-      const $ = cheerio.load(htmlData);
-      const ingredientsCategoryList: string[] = [];
+// export const getIngredientCategoryList = () => {
+//   const CATEGORY_FULL_URL = `${BASE_URL}${INGREDIENTS_URL}`;
+//   axios(CATEGORY_FULL_URL)
+//     .then((res) => {
+//       const htmlData = res.data;
+//       const $ = cheerio.load(htmlData);
+//       const ingredientsCategoryList: string[] = [];
 
-      $(".pd_tab li", htmlData).each((index, element) => {
-        const categoryTitle = $(element).text();
-        if (categoryTitle !== "All")
-          ingredientsCategoryList.push(categoryTitle);
-      });
-      console.log(ingredientsCategoryList);
-      return ingredientsCategoryList;
-    })
-    .catch((err) => console.error(err));
-};
+//       $(".pd_tab li", htmlData).each((index, element) => {
+//         const categoryTitle = $(element).text();
+//         if (categoryTitle !== "All")
+//           ingredientsCategoryList.push(categoryTitle);
+//       });
+//       console.log(ingredientsCategoryList);
+//       return ingredientsCategoryList;
+//     })
+//     .catch((err) => console.error(err));
+// };
 
 export const getBreadInfoList = () => {
   const CATEGORY_FULL_URL = `${BASE_URL}${INGREDIENTS_URL}`;
@@ -57,7 +56,7 @@ export const getBreadInfoList = () => {
 
       // attribs: {class: 'active'}
       $(".pd_list_wrapper .bread", htmlData).each((index, element) => {
-        const title = $(element).children(".tit").text();
+        const title = $(element).children(".eng").text();
         const calories = $(element).children(".cal").text();
 
         if (calories !== "") {
@@ -72,3 +71,28 @@ export const getBreadInfoList = () => {
     })
     .catch((err) => console.error(err));
 };
+
+export const getVegetableInfoList = async () => {
+  const CATEGORY_FULL_URL = `${BASE_URL}${INGREDIENTS_URL}`;
+
+  const vegetable = await axios(CATEGORY_FULL_URL)
+    .then((res) => {
+      const htmlData = res.data;
+      const $ = cheerio.load(htmlData);
+
+      return $(".pd_list_wrapper .vegetable", htmlData).map(
+        (index, element) => {
+          const title = $(element).children(".eng").text();
+          const calories = $(element).children(".cal").text();
+          return {
+            title,
+            calories,
+          };
+        }
+      );
+    })
+    .catch((err) => console.error(err));
+  return vegetable;
+};
+
+export const axiosFunc = () => {};
