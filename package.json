@@ -2,7 +2,6 @@
   "name": "subway-kcalculator",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://www.subway.co.kr",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
