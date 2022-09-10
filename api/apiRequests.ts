@@ -1,7 +1,5 @@
 import axios from "axios";
 import cheerio from "cheerio";
-import { info } from "console";
-import { infoType } from "../types/sandwich";
 import { BASE_URL, SANDWICH_URL, INGREDIENTS_URL } from "./APIURL";
 
 const categories = ["bread", "vegetable", "cheese", "sauce"];
