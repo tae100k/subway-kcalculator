@@ -1,13 +1,11 @@
 import axios from "axios";
 import cheerio from "cheerio";
-import { info } from "console";
-import { infoType } from "../types/sandwich";
-import { BASE_URL, SANDWICH_URL, INGREDIENTS_URL } from "./APIURL";
+import { SANDWICH_URL, INGREDIENTS_URL } from "./APIURL";
 
 const categories = ["bread", "vegetable", "cheese", "sauce"];
 
 export const getSandwichInfoList = async () => {
-  const SANDWICH_FULL_URL = `${BASE_URL}${SANDWICH_URL}`;
+  const SANDWICH_FULL_URL = `${SANDWICH_URL}`;
   const infoList = await axios(SANDWICH_FULL_URL).then((res) => {
     const htmlData = res.data;
     const $ = cheerio.load(htmlData);
@@ -26,22 +24,22 @@ export const getSandwichInfoList = async () => {
 };
 
 export const getBreadInfoList = () => {
-  const CATEGORY_FULL_URL = `${BASE_URL}${INGREDIENTS_URL}`;
+  const CATEGORY_FULL_URL = `${INGREDIENTS_URL}`;
   return getInfo(CATEGORY_FULL_URL, categories[0]);
 };
 
 export const getVegetableInfoList = async () => {
-  const CATEGORY_FULL_URL = `${BASE_URL}${INGREDIENTS_URL}`;
+  const CATEGORY_FULL_URL = `${INGREDIENTS_URL}`;
   return getInfo(CATEGORY_FULL_URL, categories[1]);
 };
 
 export const getCheeseInfoList = async () => {
-  const CATEGORY_FULL_URL = `${BASE_URL}${INGREDIENTS_URL}`;
+  const CATEGORY_FULL_URL = `${INGREDIENTS_URL}`;
   return getInfo(CATEGORY_FULL_URL, categories[2]);
 };
 
 export const getSauceInfoList = async () => {
-  const CATEGORY_FULL_URL = `${BASE_URL}${INGREDIENTS_URL}`;
+  const CATEGORY_FULL_URL = `${INGREDIENTS_URL}`;
   return getInfo(CATEGORY_FULL_URL, categories[3]);
 };
 
