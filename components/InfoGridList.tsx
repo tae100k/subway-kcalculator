@@ -49,7 +49,7 @@ const InfoGridList: React.FC<InfoGridListProps> = ({ title, handleItems }) => {
     <Box display="flex" flexDirection="column" gap={4} mb={10}>
       <Text textStyle="heading1">{title}</Text>
       <Box>
-        <SimpleGrid columns={3} spacing={10}>
+        <SimpleGrid columns={3} spacing={2}>
           {gridItems.map((items) => {
             return (
               <InfoGridItem

@@ -6,7 +6,7 @@ import InfoGridList from "./InfoGridList";
 
 const HomeScreen = () => {
   const [addedItems, setAddedItems] = useState<infoType[]>([]);
-
+  // TODO: 다중선택이 되어야 하는 종류가 있고, 단일 선택이 되어야 하는 종류가 있는데 이를 구분해야함
   const handleAddItems = (items: infoType) => {
     if (addedItems.some((addedItem) => addedItem.title === items.title)) {
       const newItemList = addedItems.filter(
