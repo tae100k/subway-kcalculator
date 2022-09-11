@@ -27,4 +27,19 @@ export const theme = extendTheme({
       10: "#FFFF6A",
     },
   },
+  textStyles: {
+    heading1: {
+      fontFamily: "Epilogue",
+      fontWeight: "600",
+      fontSize: "30px",
+      lineHeight: "38px",
+      letterSpacing: "-0.03em",
+      color: "Green.20",
+    },
+  },
+  fonts: {
+    londrina: `'Epilogue', cursive`,
+    noto: `'Noto Sans', sans-serif`,
+    roboto: `'Roboto', sans-serif`,
+  },
 });
