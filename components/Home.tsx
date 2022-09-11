@@ -7,8 +7,16 @@ import InfoGridList from "./InfoGridList";
 const HomeScreen = () => {
   const [addedItems, setAddedItems] = useState<infoType[]>([]);
 
-  const addItems = (items: infoType) => {
-    setAddedItems([...addedItems, items]);
+  const handleAddItems = (items: infoType) => {
+    if (addedItems.some((addedItem) => addedItem.title === items.title)) {
+      const newItemList = addedItems.filter(
+        (addedItem) => addedItem.title !== items.title
+      );
+      setAddedItems(newItemList);
+    } else {
+      const newItemList = [...addedItems, items];
+      setAddedItems(newItemList);
+    }
   };
 
   return (
@@ -19,7 +27,7 @@ const HomeScreen = () => {
             <InfoGridList
               key={category}
               title={category}
-              handleItems={addItems}
+              handleItems={handleAddItems}
             />
           );
         })}
