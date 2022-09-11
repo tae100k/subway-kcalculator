@@ -1,5 +1,7 @@
-import { Center, Text } from "@chakra-ui/react";
-import React from "react";
+import { Box, Text, Center } from "@chakra-ui/react";
+import Image from "next/image";
+import React, { useState } from "react";
+import { IngredientIcon } from "../public/assets/icons";
 import { infoType } from "../types/sandwich";
 
 interface InfoGridItemProps {
@@ -8,14 +10,40 @@ interface InfoGridItemProps {
 }
 
 const InfoGridItem: React.FC<InfoGridItemProps> = ({ gridItems, onClick }) => {
+  const [isSelected, setIsSelected] = useState(false);
+
   const handleClick = () => {
     onClick(gridItems);
+    setIsSelected(!isSelected);
   };
 
   return (
-    <Center border="1px" onClick={handleClick}>
-      <Text textStyle="label1">{gridItems.title}</Text>
-    </Center>
+    <Box
+      display="flex"
+      alignItems="center"
+      flexDirection="column"
+      onClick={handleClick}
+      pt={3.5}
+      px={2}
+      pb={2}
+    >
+      {/* TODO: image위에 마진 살짝 두기 */}
+      <Image
+        src={IngredientIcon}
+        width={50}
+        height={50}
+        alt="ingredient icon"
+      />
+      <Box display="flex" flexGrow="1" alignItems="center">
+        <Text
+          align="center"
+          textStyle="label1"
+          color={isSelected ? "Green.10" : "Gray.50"}
+        >
+          {gridItems.title}
+        </Text>
+      </Box>
+    </Box>
   );
 };
 
