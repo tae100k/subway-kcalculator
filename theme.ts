@@ -44,8 +44,6 @@ export const theme = extendTheme({
     },
   },
   fonts: {
-    londrina: `'Epilogue', cursive`,
-    noto: `'Noto Sans', sans-serif`,
-    roboto: `'Roboto', sans-serif`,
+    Epilogue: `Epilogue`,
   },
 });

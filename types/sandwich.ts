@@ -3,7 +3,7 @@ export interface infoType {
   calories: string;
 }
 
-export const GridCategoryList = [
+export const GridCategoryTitleList = [
   "Sandwich",
   "Size",
   "Bread",

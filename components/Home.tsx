@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { GridCategoryList, infoType } from "../types/sandwich";
+import { GridCategoryTitleList, infoType } from "../types/sandwich";
 import AddedListPopup from "./AddedListPopup";
 import InfoGridList from "./InfoGridList";
 
@@ -14,7 +14,7 @@ const HomeScreen = () => {
   return (
     <>
       <Box p={4} pb={"158px"}>
-        {GridCategoryList.map((category) => {
+        {GridCategoryTitleList.map((category) => {
           return (
             <InfoGridList
               key={category}
