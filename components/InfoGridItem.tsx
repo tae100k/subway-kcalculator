@@ -1,7 +1,7 @@
 import { Box, Text, Center } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useState } from "react";
-import { Layer } from "../public/assets/icons";
+import { IngredientIcon } from "../public/assets/icons";
 import { infoType } from "../types/sandwich";
 
 interface InfoGridItemProps {
@@ -23,12 +23,17 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({ gridItems, onClick }) => {
       alignItems="center"
       flexDirection="column"
       onClick={handleClick}
-      pt={"14px"}
-      px={"8px"}
-      pb={"8px"}
+      pt={3.5}
+      px={2}
+      pb={2}
     >
       {/* TODO: image위에 마진 살짝 두기 */}
-      <Image src={Layer} width={50} height={50} alt="ingredient icon" />
+      <Image
+        src={IngredientIcon}
+        width={50}
+        height={50}
+        alt="ingredient icon"
+      />
       <Box display="flex" flexGrow="1" alignItems="center">
         <Text
           align="center"
