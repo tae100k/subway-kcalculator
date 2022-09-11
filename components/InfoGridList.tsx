@@ -6,15 +6,16 @@ import {
   getSandwichInfoList,
   getSauceInfoList,
   getVegetableInfoList,
-} from "../../api/apiRequests";
-import { infoType } from "../../types/sandwich";
+} from "../api/apiRequests";
+import { infoType } from "../types/sandwich";
 import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {
   title: string;
+  handleItems: (items: infoType) => void;
 }
 
-const InfoGridList: React.FC<InfoGridListProps> = ({ title }) => {
+const InfoGridList: React.FC<InfoGridListProps> = ({ title, handleItems }) => {
   const [gridItems, setGridItems] = useState<infoType[]>([]);
 
   const divideItemFunc = async (category: string) => {
@@ -50,7 +51,13 @@ const InfoGridList: React.FC<InfoGridListProps> = ({ title }) => {
       <Box>
         <SimpleGrid columns={3} spacing={10}>
           {gridItems.map((items) => {
-            return <InfoGridItem gridItems={items} key={items.title} />;
+            return (
+              <InfoGridItem
+                gridItems={items}
+                key={items.title}
+                onClick={handleItems}
+              />
+            );
           })}
         </SimpleGrid>
       </Box>

@@ -36,6 +36,12 @@ export const theme = extendTheme({
       letterSpacing: "-0.03em",
       color: "Green.20",
     },
+    label1: {
+      fontFamily: "Epilogue",
+      fontWeight: 600,
+      letterSpacing: "-0.03em",
+      color: "Gray.50",
+    },
   },
   fonts: {
     londrina: `'Epilogue', cursive`,
