@@ -1,4 +1,4 @@
-import { Container, Flex, Text } from "@chakra-ui/react";
+import { Container, Divider, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { infoType } from "../types/sandwich";
 import AddedListAccordion from "./AddedListAccordion";
@@ -30,7 +30,9 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({ addedItems }) => {
         bottom={0}
       >
         <AddedListAccordion addedItems={addedItems} />
-        <Text textStyle="body1">Total</Text>
+        <Text textStyle="body1" mt={4}>
+          Total
+        </Text>
         <Flex
           flexDirection="row"
           justifyContent="space-between"

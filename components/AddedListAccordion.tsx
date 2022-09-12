@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Flex,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
@@ -24,13 +25,17 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
           <AccordionButton display="flex" justifyContent="center">
             <AccordionIcon />
           </AccordionButton>
-          <AccordionPanel pb={4}>
+          <AccordionPanel
+            pb={8}
+            borderBottom="2px"
+            borderBottomColor="Grayscale.10"
+          >
             {addedItems.map((item) => {
               return (
-                <Box key={item.title}>
-                  <Text>{item.title}</Text>
-                  <Text>{item.calories}</Text>
-                </Box>
+                <Flex key={item.title} gap={"5px"}>
+                  <Text textStyle="body1">+{item.calories} </Text>
+                  <Text textStyle="body1">{item.title}</Text>
+                </Flex>
               );
             })}
           </AccordionPanel>
