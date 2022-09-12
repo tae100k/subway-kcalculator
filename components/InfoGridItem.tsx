@@ -6,15 +6,17 @@ import { infoType } from "../types/sandwich";
 
 interface InfoGridItemProps {
   gridItems: infoType;
+  isSelected: boolean;
   onClick: (items: infoType) => void;
 }
 
-const InfoGridItem: React.FC<InfoGridItemProps> = ({ gridItems, onClick }) => {
-  const [isSelected, setIsSelected] = useState(false);
-
+const InfoGridItem: React.FC<InfoGridItemProps> = ({
+  gridItems,
+  isSelected,
+  onClick,
+}) => {
   const handleClick = () => {
     onClick(gridItems);
-    setIsSelected(!isSelected);
   };
 
   return (

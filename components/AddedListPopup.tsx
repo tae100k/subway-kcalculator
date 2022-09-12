@@ -5,9 +5,13 @@ import AddedListAccordion from "./AddedListAccordion";
 
 interface AddedListPopupProps {
   addedItems: infoType[];
+  resetAddedItems: () => void;
 }
 
-const AddedListPopup: React.FC<AddedListPopupProps> = ({ addedItems }) => {
+const AddedListPopup: React.FC<AddedListPopupProps> = ({
+  addedItems,
+  resetAddedItems,
+}) => {
   const [currentTotalNumber, setCurrentTotalNumber] = useState<number>(1000);
 
   useEffect(() => {
@@ -44,7 +48,9 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({ addedItems }) => {
             </Text>
             <Text textStyle="body1">Kcal</Text>
           </Flex>
-          <Text textStyle="body1">Reset</Text>
+          <Text textStyle="body1" onClick={resetAddedItems}>
+            Reset
+          </Text>
         </Flex>
       </Container>
     </div>

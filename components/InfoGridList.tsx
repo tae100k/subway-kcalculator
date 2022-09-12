@@ -13,10 +13,15 @@ import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {
   title: string;
+  addedItems: infoType[];
   handleItems: (items: infoType) => void;
 }
 
-const InfoGridList: React.FC<InfoGridListProps> = ({ title, handleItems }) => {
+const InfoGridList: React.FC<InfoGridListProps> = ({
+  title,
+  addedItems,
+  handleItems,
+}) => {
   const [gridItems, setGridItems] = useState<infoType[]>([]);
 
   const divideItemFunc = async (category: string) => {
@@ -49,6 +54,12 @@ const InfoGridList: React.FC<InfoGridListProps> = ({ title, handleItems }) => {
     handleInfo();
   }, []);
 
+  const checkIsSelected = (items: infoType) => {
+    return Boolean(
+      addedItems.find((addedItem) => addedItem.title === items.title)
+    );
+  };
+
   return (
     <Box display="flex" flexDirection="column" gap={4} mb={10}>
       <Text textStyle="heading1">{title}</Text>
@@ -57,8 +68,9 @@ const InfoGridList: React.FC<InfoGridListProps> = ({ title, handleItems }) => {
           {gridItems.map((items) => {
             return (
               <InfoGridItem
-                gridItems={items}
                 key={items.title}
+                gridItems={items}
+                isSelected={checkIsSelected(items)}
                 onClick={handleItems}
               />
             );
