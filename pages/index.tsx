@@ -1,9 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 import HomeScreen from "../components/Home";
+import SplashScreen from "../components/SplashScreen";
 import TitleHeader from "../components/TitleHeader";
 
 const Home: NextPage = () => {
+  const [api, setApi] = useState(false);
+  setTimeout(() => {
+    setApi(true);
+  }, 2000);
   return (
     <>
       <Head>
@@ -12,7 +18,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <TitleHeader />
-      <HomeScreen />
+      {api ? <HomeScreen /> : <SplashScreen />}
     </>
   );
 };
