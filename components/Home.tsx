@@ -19,12 +19,17 @@ const HomeScreen = () => {
     }
   };
 
+  const resetAddedItems = () => {
+    setAddedItems([]);
+  };
+
   return (
     <>
       <Box p={4} pb={"206px"}>
         {GridCategoryTitleList.map((category) => {
           return (
             <InfoGridList
+              addedItems={addedItems}
               key={category}
               title={category}
               handleItems={handleAddItems}
@@ -32,7 +37,10 @@ const HomeScreen = () => {
           );
         })}
       </Box>
-      <AddedListPopup addedItems={addedItems} />
+      <AddedListPopup
+        addedItems={addedItems}
+        resetAddedItems={resetAddedItems}
+      />
     </>
   );
 };
