@@ -5,21 +5,17 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Center,
 } from "@chakra-ui/react";
 import React from "react";
 const AddedListAccordion = () => {
   return (
     <div>
       <Accordion allowToggle>
-        <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box flex="1" textAlign="left">
-                Section 2 title
-              </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
+        <AccordionItem border="none">
+          <AccordionButton display="flex" justifyContent="center">
+            <AccordionIcon />
+          </AccordionButton>
           <AccordionPanel pb={4}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

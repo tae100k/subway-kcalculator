@@ -1,8 +1,10 @@
 import {
+  Box,
   Drawer,
   DrawerBody,
   DrawerContent,
   DrawerHeader,
+  Flex,
   Text,
 } from "@chakra-ui/react";
 import React from "react";
@@ -16,14 +18,22 @@ interface AddedListPopupProps {
 const AddedListPopup: React.FC<AddedListPopupProps> = ({ addedItems }) => {
   return (
     <div>
-      <Drawer placement="bottom" isOpen={true} onClose={() => {}}>
-        <DrawerContent>
+      <Drawer
+        placement="bottom"
+        isOpen={true}
+        onClose={() => {}}
+        blockScrollOnMount={false}
+      >
+        <DrawerContent bg="Green.10" p={6}>
           <AddedListAccordion />
-          <DrawerBody>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-          </DrawerBody>
+          <Text>Total</Text>
+          <Flex flexDirection="row" justifyContent="space-between">
+            <Flex flexDirection="row">
+              <Text>000</Text>
+              <Text>Kcal</Text>
+            </Flex>
+            <Text>Reset</Text>
+          </Flex>
         </DrawerContent>
       </Drawer>
       {addedItems.map((item) => {
