@@ -21,7 +21,7 @@ const HomeScreen = () => {
 
   return (
     <>
-      <Box p={4} pb={"158px"}>
+      <Box p={4} pb={"206px"}>
         {GridCategoryTitleList.map((category) => {
           return (
             <InfoGridList
