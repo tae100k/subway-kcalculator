@@ -45,15 +45,6 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({ addedItems }) => {
           <Text textStyle="body1">Reset</Text>
         </Flex>
       </Container>
-
-      {addedItems.map((item) => {
-        return (
-          <div key={item.title}>
-            <Text>{item.title}</Text>
-            <Text>{item.calories}</Text>
-          </div>
-        );
-      })}
     </div>
   );
 };
