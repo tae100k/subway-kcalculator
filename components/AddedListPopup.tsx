@@ -1,5 +1,5 @@
 import { Container, Flex, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { infoType } from "../types/sandwich";
 import AddedListAccordion from "./AddedListAccordion";
 
@@ -8,6 +8,16 @@ interface AddedListPopupProps {
 }
 
 const AddedListPopup: React.FC<AddedListPopupProps> = ({ addedItems }) => {
+  const [currentTotalNumber, setCurrentTotalNumber] = useState<number>(1000);
+
+  useEffect(() => {
+    const itemCaloryList = addedItems.map((item) => {
+      return Number(item.calories.split(" ")[0]);
+    });
+    const itemCaloryTotal = itemCaloryList.reduce((a, b) => a + b, 0);
+    setCurrentTotalNumber(Number(itemCaloryTotal.toFixed(1)));
+  }, [addedItems]);
+
   return (
     <div>
       <Container
@@ -20,13 +30,19 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({ addedItems }) => {
         bottom={0}
       >
         <AddedListAccordion addedItems={addedItems} />
-        <Text>Total</Text>
-        <Flex flexDirection="row" justifyContent="space-between">
-          <Flex flexDirection="row">
-            <Text>000</Text>
-            <Text>Kcal</Text>
+        <Text textStyle="body1">Total</Text>
+        <Flex
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="baseline"
+        >
+          <Flex flexDirection="row" alignItems="baseline" gap={3}>
+            <Text textStyle="display1">
+              {currentTotalNumber.toString().padStart(3, "0")}
+            </Text>
+            <Text textStyle="body1">Kcal</Text>
           </Flex>
-          <Text>Reset</Text>
+          <Text textStyle="body1">Reset</Text>
         </Flex>
       </Container>
 

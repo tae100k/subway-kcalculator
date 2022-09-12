@@ -42,6 +42,20 @@ export const theme = extendTheme({
       letterSpacing: "-0.03em",
       color: "Gray.50",
     },
+    body1: {
+      fontFamily: "Epilogue",
+      fontWeight: "700",
+      fontSize: "18px",
+      letterSpacing: "-0.03em",
+      color: "Grayscale.10",
+    },
+    display1: {
+      fontFamily: "Epilogue",
+      fontWeight: "800",
+      fontSize: "68px",
+      letterSpacing: "-0.03em",
+      color: "Grayscale.10",
+    },
   },
   // TODO: font가 안되는 걸 수정해야 함
   fonts: {
