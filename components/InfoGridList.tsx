@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   getBreadInfoList,
   getCheeseInfoList,
+  getExtraToppingInfoList,
   getSandwichInfoList,
   getSauceInfoList,
   getVegetableInfoList,
@@ -33,6 +34,9 @@ const InfoGridList: React.FC<InfoGridListProps> = ({ title, handleItems }) => {
     }
     if (category === "sauces") {
       return await getSauceInfoList();
+    }
+    if (category === "extras") {
+      return await getExtraToppingInfoList();
     }
   };
 
