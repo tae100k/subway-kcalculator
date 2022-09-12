@@ -5,10 +5,18 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
-  Center,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
-const AddedListAccordion = () => {
+import { infoType } from "../types/sandwich";
+
+interface AddedListAccordionProps {
+  addedItems: infoType[];
+}
+
+const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
+  addedItems,
+}) => {
   return (
     <div>
       <Accordion allowToggle>
@@ -17,10 +25,14 @@ const AddedListAccordion = () => {
             <AccordionIcon />
           </AccordionButton>
           <AccordionPanel pb={4}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            {addedItems.map((item) => {
+              return (
+                <Box key={item.title}>
+                  <Text>{item.title}</Text>
+                  <Text>{item.calories}</Text>
+                </Box>
+              );
+            })}
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
