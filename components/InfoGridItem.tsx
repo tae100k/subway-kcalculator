@@ -1,6 +1,5 @@
-import { Box, Text, Center } from "@chakra-ui/react";
-import Image from "next/image";
-import React, { useState } from "react";
+import { Box, Text } from "@chakra-ui/react";
+import React from "react";
 import { IngredientIcon } from "../public/assets/icons";
 import { infoType } from "../types/sandwich";
 
@@ -30,12 +29,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       pb={2}
     >
       {/* TODO: image위에 마진 살짝 두기 */}
-      <Image
-        src={IngredientIcon}
-        width={50}
-        height={50}
-        alt="ingredient icon"
-      />
+      <IngredientIcon />
       <Box display="flex" flexGrow="1" alignItems="center">
         <Text
           align="center"
