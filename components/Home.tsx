@@ -8,9 +8,9 @@ const HomeScreen = () => {
   const [addedItems, setAddedItems] = useState<infoType[]>([]);
   // TODO: 다중선택이 되어야 하는 종류가 있고, 단일 선택이 되어야 하는 종류가 있는데 이를 구분해야함
   const handleAddItems = (items: infoType) => {
-    if (addedItems.some((addedItem) => addedItem.title === items.title)) {
+    if (addedItems.some((addedItem) => addedItem.id === items.id)) {
       const newItemList = addedItems.filter(
-        (addedItem) => addedItem.title !== items.title
+        (addedItem) => addedItem.id !== items.id
       );
       setAddedItems(newItemList);
     } else {

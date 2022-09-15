@@ -55,9 +55,7 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
   }, []);
 
   const checkIsSelected = (items: infoType) => {
-    return Boolean(
-      addedItems.find((addedItem) => addedItem.title === items.title)
-    );
+    return Boolean(addedItems.find((addedItem) => addedItem.id === items.id));
   };
 
   return (
@@ -68,7 +66,7 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
           {gridItems.map((items) => {
             return (
               <InfoGridItem
-                key={items.title}
+                key={items.id}
                 gridItems={items}
                 isSelected={checkIsSelected(items)}
                 onClick={handleItems}

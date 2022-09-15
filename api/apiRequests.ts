@@ -1,6 +1,7 @@
 import axios from "axios";
 import cheerio from "cheerio";
 import { SANDWICH_URL, INGREDIENTS_URL } from "./APIURL";
+import { v4 as uuidv4 } from "uuid";
 
 const categories = ["bread", "vegetable", "cheese", "sauce"];
 
@@ -14,7 +15,9 @@ export const getSandwichInfoList = async () => {
       if (element.attribs.class === "ITEM_SANDWICH.TOPPING") return;
       const title = $(element).children(".eng").text();
       const calories = $(element).children(".cal").text();
+      const id = uuidv4();
       return {
+        id,
         title,
         calories,
       };
@@ -33,7 +36,9 @@ export const getExtraToppingInfoList = async () => {
       if (element.attribs.class !== "ITEM_SANDWICH.TOPPING") return;
       const title = $(element).children(".eng").text();
       const calories = $(element).children(".cal").text();
+      const id = uuidv4();
       return {
+        id,
         title,
         calories,
       };
@@ -71,7 +76,9 @@ export const getInfo = async (URL: string, category: string) => {
       (index, element) => {
         const title = $(element).children(".eng").text();
         const calories = $(element).children(".cal").text();
+        const id = uuidv4();
         return {
+          id,
           title,
           calories,
         };
