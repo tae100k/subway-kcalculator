@@ -8,7 +8,7 @@ import {
   getSauceInfoList,
   getVegetableInfoList,
 } from "../../../api/apiRequests";
-import { infoType } from "../../../types/sandwich";
+import { breadList, infoType } from "../../../types/sandwich";
 import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {
@@ -28,13 +28,16 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
     if (category === "sandwich") {
       return await getSandwichInfoList();
     }
+    if (category === "size") {
+      return breadList;
+    }
     if (category === "bread") {
       return await getBreadInfoList();
     }
     if (category === "veggies") {
       return await getVegetableInfoList();
     }
-    if (category === "cheese") {
+    if (category === "cheese" || category === "extra cheese") {
       return await getCheeseInfoList();
     }
     if (category === "sauces") {
