@@ -29,3 +29,15 @@ export const breadList: infoType[] = [
     id: uuidv4(),
   },
 ];
+
+export const LETTUCE_CALORIES = "202";
+export const TOMATO_CALORIES = "7.7";
+export const CUCUMBER_CALORIES = "1.5";
+export const BELL_PEPPER_CALORIES = "1.4";
+export const ONION_CALORIES = "2.8";
+export const DEFAULT_CALORIES =
+  LETTUCE_CALORIES +
+  TOMATO_CALORIES +
+  CUCUMBER_CALORIES +
+  BELL_PEPPER_CALORIES +
+  ONION_CALORIES;
