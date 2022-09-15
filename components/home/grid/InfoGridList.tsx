@@ -63,7 +63,12 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
 
   return (
     <Box display="flex" flexDirection="column" gap={4} mb={10}>
-      <Text textStyle="heading1">{title}</Text>
+      <Text
+        textStyle={title === "Extra cheese" ? "body1" : "heading1"}
+        color="Green.20"
+      >
+        {title}
+      </Text>
       <Box>
         <SimpleGrid columns={3} spacing={2}>
           {gridItems.map((items) => {
