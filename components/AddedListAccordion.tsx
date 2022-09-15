@@ -32,7 +32,7 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
           >
             {addedItems.map((item) => {
               return (
-                <Flex key={item.title} gap={"5px"}>
+                <Flex key={item.id} gap={"5px"}>
                   <Text textStyle="body1">+</Text>
                   <Text textStyle="body1">{item.calories} </Text>
                   <Text textStyle="body1">{item.title}</Text>

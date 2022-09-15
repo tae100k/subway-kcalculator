@@ -1,4 +1,5 @@
 export interface infoType {
+  id: string;
   title: string;
   calories: string;
 }
