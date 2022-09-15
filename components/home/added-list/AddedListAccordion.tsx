@@ -9,7 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { infoType } from "../types/sandwich";
+import { infoType } from "../../../types/sandwich";
 
 interface AddedListAccordionProps {
   addedItems: infoType[];

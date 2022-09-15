@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
-import HomeScreen from "../components/Home";
-import SplashScreen from "../components/SplashScreen";
+import HomeScreen from "../components/home/Home";
+import SplashScreen from "../components/splash/SplashScreen";
 import TitleHeader from "../components/TitleHeader";
 
 const Home: NextPage = () => {

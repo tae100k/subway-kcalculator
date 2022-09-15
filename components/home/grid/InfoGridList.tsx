@@ -7,8 +7,8 @@ import {
   getSandwichInfoList,
   getSauceInfoList,
   getVegetableInfoList,
-} from "../api/apiRequests";
-import { infoType } from "../types/sandwich";
+} from "../../../api/apiRequests";
+import { breadList, infoType } from "../../../types/sandwich";
 import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {
@@ -28,13 +28,16 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
     if (category === "sandwich") {
       return await getSandwichInfoList();
     }
+    if (category === "size") {
+      return breadList;
+    }
     if (category === "bread") {
       return await getBreadInfoList();
     }
     if (category === "veggies") {
       return await getVegetableInfoList();
     }
-    if (category === "cheese") {
+    if (category === "cheese" || category === "extra cheese") {
       return await getCheeseInfoList();
     }
     if (category === "sauces") {
@@ -60,7 +63,12 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
 
   return (
     <Box display="flex" flexDirection="column" gap={4} mb={10}>
-      <Text textStyle="heading1">{title}</Text>
+      <Text
+        textStyle={title === "Extra cheese" ? "body1" : "heading1"}
+        color="Green.20"
+      >
+        {title}
+      </Text>
       <Box>
         <SimpleGrid columns={3} spacing={2}>
           {gridItems.map((items) => {
