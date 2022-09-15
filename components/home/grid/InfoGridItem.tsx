@@ -1,7 +1,7 @@
 import { Box, Text } from "@chakra-ui/react";
 import React from "react";
-import { IngredientIcon } from "../public/assets/icons";
-import { infoType } from "../types/sandwich";
+import { IngredientIcon } from "../../../public/assets/icons";
+import { infoType } from "../../../types/sandwich";
 
 interface InfoGridItemProps {
   gridItems: infoType;

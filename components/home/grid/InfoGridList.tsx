@@ -7,8 +7,8 @@ import {
   getSandwichInfoList,
   getSauceInfoList,
   getVegetableInfoList,
-} from "../api/apiRequests";
-import { infoType } from "../types/sandwich";
+} from "../../../api/apiRequests";
+import { infoType } from "../../../types/sandwich";
 import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {

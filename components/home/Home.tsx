@@ -1,8 +1,8 @@
 import { Box } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { GridCategoryTitleList, infoType } from "../types/sandwich";
-import AddedListPopup from "./AddedListPopup";
-import InfoGridList from "./InfoGridList";
+import { GridCategoryTitleList, infoType } from "../../types/sandwich";
+import AddedListPopup from "./added-list/AddedListPopup";
+import InfoGridList from "./grid/InfoGridList";
 
 const HomeScreen = () => {
   const [addedItems, setAddedItems] = useState<infoType[]>([]);
