@@ -43,7 +43,7 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
           justifyContent="space-between"
           alignItems="baseline"
         >
-          <Flex flexDirection="row" alignItems="baseline" gap={3} pb={"8px"}>
+          <Flex flexDirection="row" alignItems="baseline" gap={3}>
             <Text textStyle="display1">
               {currentTotalNumber.toString().padStart(3, "0")}
             </Text>

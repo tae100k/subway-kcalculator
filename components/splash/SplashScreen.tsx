@@ -12,7 +12,7 @@ const SplashScreen = () => {
   ];
   return (
     <Flex
-      h="100%"
+      h={"calc(100% - (56px))"}
       pt={"32px"}
       pb={"16px"}
       px={"16px"}
