@@ -23,7 +23,7 @@ const Home: NextPage = () => {
         right={0}
         bottom={0}
         top={0}
-        bg="Black"
+        bg="Grayscale.20"
         display="flex"
         justifyContent="center"
       >
