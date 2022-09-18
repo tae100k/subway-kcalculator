@@ -26,7 +26,7 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
     <div>
       <Container
         bg="Green.10"
-        p={6}
+        p={0}
         position="fixed"
         w="100%"
         left={0}
@@ -34,10 +34,11 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
         bottom={0}
       >
         <AddedListAccordion addedItems={addedItems} />
-        <Text textStyle="body1" mt={4}>
+        <Text textStyle="body1" mt={4} px={"16px"}>
           Total
         </Text>
         <Flex
+          px={"16px"}
           flexDirection="row"
           justifyContent="space-between"
           alignItems="baseline"
