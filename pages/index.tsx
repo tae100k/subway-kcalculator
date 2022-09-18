@@ -26,8 +26,6 @@ const Home: NextPage = () => {
         bg="Black"
         display="flex"
         justifyContent="center"
-        h="full"
-        w="full"
       >
         <Box id="maxW box" bg="white" h="full" w="100%" maxW={"516px"}>
           <TitleHeader />
