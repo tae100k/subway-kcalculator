@@ -35,7 +35,11 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       pb={2}
     >
       {/* TODO: image위에 마진 살짝 두기 */}
-      <Icon as={handleSVG(category, gridItems.title)} w={"50px"} h={"50px"} />
+      <Icon
+        as={handleSVG(category, gridItems.title)}
+        h={"50px"}
+        w={gridItems.title === "30cm" ? "100px" : "50px"}
+      />
       <Box display="flex" flexGrow="1" alignItems="center">
         <Text
           align="center"
