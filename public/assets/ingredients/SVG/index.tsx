@@ -1,24 +1,24 @@
-import FlatBread from "../SVG/bread/Flat Bread.svg";
-import HeartyItalian from "../SVG/bread/Hearty Italian.svg";
-import HoneyOat from "../SVG/bread/Honey Oat.svg";
-import ParmesanOregano from "../SVG/bread/Parmesan Oregano.svg";
-import Wheat from "../SVG/bread/Wheat.svg";
-import White from "../SVG/bread/White.svg";
+import { handleBread } from "./bread";
 
-export const CustomSVG = {
-  Sandwich: {},
-  Size: {},
-  Bread: {
-    "flat bread": FlatBread,
-    "hearty italian": HeartyItalian,
-    "honey oat": HoneyOat,
-    "parmesan oregano": ParmesanOregano,
-    wheat: Wheat,
-    white: White,
-  },
-  Veggies: {},
-  Cheese: {},
-  Sauces: {},
-  Extras: {},
-  "Extra Cheese": {},
+export const handleSVGCategory = (category: string, title: string) => {
+  switch (category) {
+    case "Sandwich":
+      return handleBread(title);
+    case "Size":
+      return handleBread(title);
+    case "Bread":
+      return handleBread(title);
+    case "Veggies":
+      return handleBread(title);
+    case "Cheese":
+      return handleBread(title);
+    case "Sauces":
+      return handleBread(title);
+    case "Extras":
+      return handleBread(title);
+    case "Extra Cheese":
+      return handleBread(title);
+    default:
+      return handleBread(title);
+  }
 };

@@ -1,19 +1,25 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Icon, Text } from "@chakra-ui/react";
 import React from "react";
 import { IngredientIcon } from "../../../public/assets/icons";
+import { handleSVGCategory } from "../../../public/assets/ingredients/SVG";
 import { infoType } from "../../../types/sandwich";
 
 interface InfoGridItemProps {
+  category: string;
   gridItems: infoType;
   isSelected: boolean;
   onClick: (items: infoType) => void;
 }
 
 const InfoGridItem: React.FC<InfoGridItemProps> = ({
+  category,
   gridItems,
   isSelected,
   onClick,
 }) => {
+  const handleSVG = (category: string, title: string) => {
+    return handleSVGCategory(category, title);
+  };
   const handleClick = () => {
     onClick(gridItems);
   };
@@ -29,7 +35,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       pb={2}
     >
       {/* TODO: image위에 마진 살짝 두기 */}
-      <IngredientIcon />
+      <Icon as={handleSVG(category, gridItems.title)} w={"50px"} h={"50px"} />
       <Box display="flex" flexGrow="1" alignItems="center">
         <Text
           align="center"
