@@ -3,6 +3,13 @@ import cheerio from "cheerio";
 import { SANDWICH_URL, INGREDIENTS_URL } from "./APIURL";
 import { v4 as uuidv4 } from "uuid";
 
+export const WHEAT_BREAD_CALORIES = 192;
+export const LETTUCE_CALORIES = 2.9;
+export const TOMATO_CALORIES = 7.7;
+export const CUCUMBER_CALORIES = 1.5;
+export const BELL_PEPPERS_CALORIES = 1.4;
+export const ONION_CALORIES = 2.8;
+
 const categories = ["bread", "vegetable", "cheese", "sauce"];
 
 export const getSandwichInfoList = async () => {
@@ -14,7 +21,17 @@ export const getSandwichInfoList = async () => {
     return $(`.pd_list_wrapper li`, htmlData).map((index, element) => {
       if (element.attribs.class === "ITEM_SANDWICH.TOPPING") return;
       const title = $(element).children(".eng").text();
-      const calories = $(element).children(".cal").text();
+      const originalCalories = $(element).children(".cal").text().split(" ")[0];
+      const calories = (
+        Number(originalCalories) -
+        WHEAT_BREAD_CALORIES -
+        LETTUCE_CALORIES -
+        TOMATO_CALORIES -
+        CUCUMBER_CALORIES -
+        BELL_PEPPERS_CALORIES -
+        ONION_CALORIES
+      ).toString();
+      console.log("originalCalories", originalCalories);
       const id = uuidv4();
       return {
         id,
