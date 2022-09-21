@@ -75,6 +75,7 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
             return (
               <InfoGridItem
                 key={items.id}
+                category={title}
                 gridItems={items}
                 isSelected={checkIsSelected(items)}
                 onClick={handleItems}
