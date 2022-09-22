@@ -18,6 +18,13 @@ interface AddedListAccordionProps {
 const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
   addedItems,
 }) => {
+  const handleSpecialCalories = (item: infoType) => {
+    // 리팩토링 해야함.
+    if (item.title === "Flat Bread") {
+      return Number(item.calories.split(" ")[0]) / 2;
+    }
+    return Number(item.calories.split(" ")[0]);
+  };
   return (
     <Accordion allowToggle>
       <AccordionItem border="none">
@@ -45,7 +52,9 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
                 return (
                   <Flex key={item.id} gap={"5px"}>
                     <Text textStyle="body1">+</Text>
-                    <Text textStyle="body1">{item.calories} </Text>
+                    <Text textStyle="body1">
+                      {`${handleSpecialCalories(item)}`}
+                    </Text>
                     <Text textStyle="body1">{item.title}</Text>
                   </Flex>
                 );
