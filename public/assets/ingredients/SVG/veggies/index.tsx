@@ -6,6 +6,7 @@ import Peppers from "./Peppers.svg";
 import Pickles from "./Pickles.svg";
 import RedOnions from "./Red Onions.svg";
 import Tomatoes from "./Tomatoes.svg";
+import Avocado from "./Avocado.svg";
 
 export const handleVeggies = (title: string) => {
   switch (title) {
@@ -25,6 +26,8 @@ export const handleVeggies = (title: string) => {
       return RedOnions;
     case "Tomatoes":
       return Tomatoes;
+    case "Avocado":
+      return Avocado;
     default:
       return Tomatoes;
   }
