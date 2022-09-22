@@ -23,11 +23,10 @@ const Home: NextPage = () => {
         right={0}
         bottom={0}
         top={0}
-        bg="Grayscale.20"
         display="flex"
         justifyContent="center"
       >
-        <Box id="maxW box" bg="white" h="full" w="100%" maxW={"516px"}>
+        <Box id="maxW box" bg="Grayscale.10" h="full" w="100%" maxW={"516px"}>
           <TitleHeader />
           <Box>{api ? <HomeScreen /> : <SplashScreen />}</Box>
         </Box>
