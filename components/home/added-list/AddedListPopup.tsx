@@ -52,7 +52,11 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
             </Text>
             <Text textStyle="body1">Kcal</Text>
           </Flex>
-          <Text textStyle="body1" onClick={resetAddedItems}>
+          <Text
+            textStyle="body1"
+            onClick={resetAddedItems}
+            _hover={{ color: "Yellow.10" }}
+          >
             Reset
           </Text>
         </Flex>
