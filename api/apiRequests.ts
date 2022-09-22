@@ -30,8 +30,9 @@ export const getSandwichInfoList = async () => {
         CUCUMBER_CALORIES -
         BELL_PEPPERS_CALORIES -
         ONION_CALORIES
-      ).toString();
-      console.log("originalCalories", originalCalories);
+      )
+        .toFixed(1)
+        .toString();
       const id = uuidv4();
       return {
         id,

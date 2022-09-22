@@ -1,4 +1,4 @@
-import { Container, Divider, Flex, Text } from "@chakra-ui/react";
+import { Container, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { infoType } from "../../../types/sandwich";
 import AddedListAccordion from "./AddedListAccordion";
@@ -16,6 +16,9 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
 
   useEffect(() => {
     const itemCaloryList = addedItems.map((item) => {
+      if (item.title === "Flat Bread") {
+        return Number(item.calories.split(" ")[0]) / 2;
+      }
       return Number(item.calories.split(" ")[0]);
     });
     const itemCaloryTotal = itemCaloryList.reduce((a, b) => a + b, 0);
