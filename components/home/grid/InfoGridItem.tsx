@@ -10,7 +10,6 @@ interface InfoGridItemProps {
   isSelected: boolean;
   onClick: (items: infoType) => void;
 }
-
 const InfoGridItem: React.FC<InfoGridItemProps> = ({
   category,
   gridItems,
@@ -23,9 +22,14 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
   const handleClick = () => {
     onClick(gridItems);
   };
+  const handleTouch = (e: React.TouchEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    handleClick();
+  };
 
   return (
     <Box
+      onTouchEnd={handleTouch}
       display="flex"
       alignItems="center"
       flexDirection="column"
