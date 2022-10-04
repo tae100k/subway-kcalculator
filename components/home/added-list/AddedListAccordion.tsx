@@ -31,12 +31,11 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
         {({ isExpanded }) => (
           <>
             <AccordionButton
-              p={0}
-              border="1px pink"
+              py={"4px"}
               color="white"
               display="flex"
               justifyContent="center"
-              bg={isExpanded ? "Green.20" : "Green.10"}
+              bg={"Green.20"}
               _hover={{ bg: isExpanded ? "Green.20" : "Green.10" }}
             >
               {isExpanded ? <ArrowDown /> : <ArrowUp />}
