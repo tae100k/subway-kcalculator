@@ -17,6 +17,8 @@ import SubwayClub from "./Subway Club.svg";
 import Tuna from "./Tuna.svg";
 import VeggieDelite from "./Veggie Delite.svg";
 import Default from ".././cheese/American Cheese.svg";
+import TurkeyBaconAvocado from "./Turkey Bacon Avocado.svg";
+import Turkey from "./Turkey.svg";
 
 export const handleSandwich = (title: string) => {
   switch (title) {
@@ -56,6 +58,11 @@ export const handleSandwich = (title: string) => {
       return Tuna;
     case "Veggie Delite":
       return VeggieDelite;
+    case "Turkey Bacon Avocado":
+      return TurkeyBaconAvocado;
+    case "Turkey":
+      return Turkey;
+
     default:
       return Default;
   }
