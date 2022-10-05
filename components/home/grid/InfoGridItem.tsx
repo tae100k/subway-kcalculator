@@ -1,4 +1,4 @@
-import { Box, Icon, Text } from "@chakra-ui/react";
+import { Box, GridItem, Icon, Text } from "@chakra-ui/react";
 import React from "react";
 import { handleSVGCategory } from "../../../public/assets/ingredients/SVG";
 import { infoType } from "../../../types/sandwich";
@@ -28,7 +28,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
   };
 
   return (
-    <Box
+    <GridItem
       onTouchEnd={handleTouch}
       display="flex"
       alignItems="center"
@@ -60,7 +60,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
           {gridItems.title}
         </Text>
       </Box>
-    </Box>
+    </GridItem>
   );
 };
 

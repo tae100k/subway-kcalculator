@@ -1,4 +1,4 @@
-import { Text, Box, SimpleGrid } from "@chakra-ui/react";
+import { Text, Box, SimpleGrid, Grid } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import {
   getBreadInfoList,
@@ -69,7 +69,10 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
         {title}
       </Text>
       <Box>
-        <SimpleGrid columns={3} spacing={2}>
+        <Grid
+          templateColumns={title === "Size" ? `1fr 2fr` : `repeat(3, 1fr)`}
+          gap={2}
+        >
           {gridItems.map((items) => {
             return (
               <InfoGridItem
@@ -81,7 +84,7 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
               />
             );
           })}
-        </SimpleGrid>
+        </Grid>
       </Box>
     </Box>
   );
