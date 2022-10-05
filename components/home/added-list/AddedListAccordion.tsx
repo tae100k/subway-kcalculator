@@ -54,7 +54,7 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
                 </Flex>
               )}
               {addedItems.map((item) => {
-                if (item.title !== "30cm")
+                if (item.title !== "30cm" && item.title !== "15cm")
                   return (
                     <Flex key={item.id} gap={"5px"}>
                       <Text textStyle="body1">+</Text>

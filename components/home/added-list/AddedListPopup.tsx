@@ -1,5 +1,6 @@
 import { Container, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { isDoubled } from "../../../service/size.service";
 import { infoType } from "../../../types/sandwich";
 import AddedListAccordion from "./AddedListAccordion";
 
@@ -22,7 +23,11 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
       return Number(item.calories.split(" ")[0]);
     });
     const itemCaloryTotal = itemCaloryList.reduce((a, b) => a + b, 0);
-    setCurrentTotalNumber(Number(itemCaloryTotal.toFixed(1)));
+    {
+      isDoubled(addedItems)
+        ? setCurrentTotalNumber(Number((itemCaloryTotal * 2).toFixed(1)))
+        : setCurrentTotalNumber(Number(itemCaloryTotal.toFixed(1)));
+    }
   }, [addedItems]);
 
   return (
