@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { ArrowDown, ArrowUp } from "../../../public/assets/icons";
+import { isDoubled } from "../../../service/size.service";
 import { infoType } from "../../../types/sandwich";
 
 interface AddedListAccordionProps {
@@ -47,17 +48,28 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
               borderBottom="2px"
               borderBottomColor="Grayscale.10"
             >
+              {isDoubled(addedItems) && (
+                <Flex>
+                  <Text textStyle="body1">(</Text>
+                </Flex>
+              )}
               {addedItems.map((item) => {
-                return (
-                  <Flex key={item.id} gap={"5px"}>
-                    <Text textStyle="body1">+</Text>
-                    <Text textStyle="body1">
-                      {`${handleSpecialCalories(item)}`}
-                    </Text>
-                    <Text textStyle="body1">{item.title}</Text>
-                  </Flex>
-                );
+                if (item.title !== "30cm" && item.title !== "15cm")
+                  return (
+                    <Flex key={item.id} gap={"5px"}>
+                      <Text textStyle="body1">+</Text>
+                      <Text textStyle="body1">
+                        {`${handleSpecialCalories(item)}`}
+                      </Text>
+                      <Text textStyle="body1">{item.title}</Text>
+                    </Flex>
+                  );
               })}
+              {isDoubled(addedItems) && (
+                <Flex>
+                  <Text textStyle="body1">) x 2 Size</Text>
+                </Flex>
+              )}
             </AccordionPanel>
           </>
         )}
