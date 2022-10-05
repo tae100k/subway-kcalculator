@@ -24,7 +24,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
   };
   const handleTouch = (e: React.TouchEvent<HTMLDivElement>) => {
     e.preventDefault();
-    handleClick();
+    onClick();
   };
 
   return (
