@@ -23,7 +23,6 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
   handleItems,
 }) => {
   const [gridItems, setGridItems] = useState<infoType[]>([]);
-
   const divideItemFunc = async (category: string) => {
     if (category === "sandwich") {
       return await getSandwichInfoList();
@@ -78,7 +77,7 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
                 category={title}
                 gridItems={items}
                 isSelected={checkIsSelected(items)}
-                onClick={handleItems}
+                handleClick={handleItems}
               />
             );
           })}

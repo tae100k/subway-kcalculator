@@ -48,7 +48,6 @@ export const handleSauces = (title: string) => {
     case "Yellow Mustard":
       return YellowMustard;
     default:
-      console.log(title);
       return Salt;
   }
 };

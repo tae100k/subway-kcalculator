@@ -7,20 +7,21 @@ interface InfoGridItemProps {
   category: string;
   gridItems: infoType;
   isSelected: boolean;
-  onClick: (items: infoType) => void;
+  handleClick: (items: infoType) => void;
 }
 
 const InfoGridItem: React.FC<InfoGridItemProps> = ({
   category,
   gridItems,
   isSelected,
-  onClick,
+  handleClick,
 }) => {
   const handleSVG = (category: string, title: string) => {
     return handleSVGCategory(category, title);
   };
-  const handleClick = () => {
-    onClick(gridItems);
+
+  const onClick = () => {
+    handleClick(gridItems);
   };
 
   return (
@@ -28,7 +29,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       display="flex"
       alignItems="center"
       flexDirection="column"
-      onClick={handleClick}
+      onClick={onClick}
       pt={3.5}
       px={2}
       pb={2}
