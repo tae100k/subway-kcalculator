@@ -9,7 +9,6 @@ export const handleSize = (title: string) => {
       return thirty;
 
     default:
-      console.log(title);
       return thirty;
   }
 };
