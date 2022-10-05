@@ -1,6 +1,5 @@
 import { Box, Icon, Text } from "@chakra-ui/react";
 import React from "react";
-import { IngredientIcon } from "../../../public/assets/icons";
 import { handleSVGCategory } from "../../../public/assets/ingredients/SVG";
 import { infoType } from "../../../types/sandwich";
 
