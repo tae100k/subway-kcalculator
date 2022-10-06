@@ -52,32 +52,82 @@ export const ExtrasList: infoType[] = [
     id: uuidv4(),
   },
   {
-    title: "Avocado",
+    title: "BLT",
     calories: "0",
     id: uuidv4(),
   },
   {
-    title: "Bacon",
+    title: "Chicken Slice",
     calories: "0",
     id: uuidv4(),
   },
   {
-    title: "Avocado",
+    title: "Mushroom",
     calories: "0",
     id: uuidv4(),
   },
   {
-    title: "Bacon",
+    title: "Tuna",
     calories: "0",
     id: uuidv4(),
   },
   {
-    title: "Avocado",
+    title: "BMT",
     calories: "0",
     id: uuidv4(),
   },
   {
-    title: "Bacon",
+    title: "Chicken Bacon",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Chicken Teriyaki",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Club(Chicken)",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Ham",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "KBBQ",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "SteakNCheese",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Roasted Chicken",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Rotisserie Chicken",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Shrimp",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Spicy Italian",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Pulled Pork",
     calories: "0",
     id: uuidv4(),
   },
