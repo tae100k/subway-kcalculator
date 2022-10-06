@@ -7,3 +7,13 @@ export const isDoubled = (addedItems: infoType[]) => {
 export const filterToppings = (items: infoType[]) => {
   return items.filter(({ title }) => title !== "Meat" && title !== "Cheese");
 };
+
+export const filterSandwich = (items: infoType[]) => {
+  return items.filter(
+    ({ title }) =>
+      title !== "Egg Mayo" &&
+      title !== "Turkey" &&
+      title !== "Turkey Bacon Avocado" &&
+      title !== "Veggie Delite"
+  );
+};

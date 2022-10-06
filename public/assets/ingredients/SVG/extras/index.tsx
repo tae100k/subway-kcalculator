@@ -26,23 +26,23 @@ export const handleExtras = (title: string) => {
       return Avocado;
     case "Bacon":
       return Bacon;
-    case "BLT":
+    case "B.L.T.":
       return BLT;
-    case "BMT":
+    case "Italian B.M.T.™":
       return BMT;
-    case "Chicken Bacon":
+    case "Chicken Bacon Avocado":
       return ChickenBacon;
     case "Chicken Slice":
       return ChickenSlice;
     case "Chicken Teriyaki":
       return ChickenTeriyaki;
-    case "Club(Chicken)":
+    case "Subway Club™":
       return ClubChicken;
     case "Egg Mayo":
       return EggMayo;
     case "Ham":
       return Ham;
-    case "KBBQ":
+    case "K-BBQ":
       return KBBQ;
     case "Mushroom":
       return Mushroom;
@@ -50,21 +50,22 @@ export const handleExtras = (title: string) => {
       return Omelet;
     case "Pepperoni":
       return Pepperoni;
-    case "Pulled Pork":
+    case "Pulled Pork Barbecue":
       return PulledPork;
     case "Roasted Chicken":
       return RoastedChicken;
-    case "Rotisserie Chicken":
+    case "Rotisserie Barbecue Chicken":
       return RotisserieChicken;
     case "Shrimp":
       return Shrimp;
     case "Spicy Italian":
       return SpicyItalian;
-    case "SteakNCheese":
+    case "Steak & Cheese":
       return SteakNCheese;
     case "Tuna":
       return Tuna;
     default:
+      console.log(title);
       return Tuna;
   }
 };

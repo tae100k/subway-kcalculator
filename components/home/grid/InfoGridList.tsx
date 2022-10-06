@@ -8,7 +8,10 @@ import {
   getSauceInfoList,
   getVegetableInfoList,
 } from "../../../api/apiRequests";
-import { filterToppings } from "../../../service/exception.service";
+import {
+  filterSandwich,
+  filterToppings,
+} from "../../../service/exception.service";
 import { SizeList, infoType } from "../../../types/sandwich";
 import InfoGridItem from "./InfoGridItem";
 
@@ -46,7 +49,10 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
     if (category === "extras") {
       const toppingArray = await getExtraToppingInfoList();
       const sandwichArray = await getSandwichInfoList();
-      return [...filterToppings(toppingArray), ...sandwichArray];
+      return [
+        ...filterToppings(toppingArray),
+        ...filterSandwich(sandwichArray),
+      ];
     }
   };
 
