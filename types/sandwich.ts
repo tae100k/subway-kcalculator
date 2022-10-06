@@ -17,7 +17,7 @@ export const GridCategoryTitleList = [
   "Extras",
 ];
 
-export const breadList: infoType[] = [
+export const SizeList: infoType[] = [
   {
     title: "15cm",
     calories: "0",
@@ -25,6 +25,59 @@ export const breadList: infoType[] = [
   },
   {
     title: "30cm",
+    calories: "0",
+    id: uuidv4(),
+  },
+];
+
+export const ExtrasList: infoType[] = [
+  {
+    title: "Avocado",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Bacon",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Pepperoni",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Omelet",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Avocado",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Bacon",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Avocado",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Bacon",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Avocado",
+    calories: "0",
+    id: uuidv4(),
+  },
+  {
+    title: "Bacon",
     calories: "0",
     id: uuidv4(),
   },
