@@ -1,6 +1,6 @@
 import { Container, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { isDoubled } from "../../../service/size.service";
+import { isDoubled } from "../../../service/exception.service";
 import { infoType } from "../../../types/sandwich";
 import AddedListAccordion from "./AddedListAccordion";
 

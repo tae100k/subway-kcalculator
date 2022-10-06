@@ -62,6 +62,7 @@ export const getExtraToppingInfoList = async () => {
       };
     });
   });
+
   return infoList.toArray();
 };
 

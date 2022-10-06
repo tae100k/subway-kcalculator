@@ -8,7 +8,11 @@ import {
   getSauceInfoList,
   getVegetableInfoList,
 } from "../../../api/apiRequests";
-import { breadList, infoType } from "../../../types/sandwich";
+import {
+  filterSandwich,
+  filterToppings,
+} from "../../../service/exception.service";
+import { SizeList, infoType } from "../../../types/sandwich";
 import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {
@@ -28,7 +32,7 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
       return await getSandwichInfoList();
     }
     if (category === "size") {
-      return breadList;
+      return SizeList;
     }
     if (category === "bread") {
       return await getBreadInfoList();
@@ -43,7 +47,12 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
       return await getSauceInfoList();
     }
     if (category === "extras") {
-      return await getExtraToppingInfoList();
+      const toppingArray = await getExtraToppingInfoList();
+      const sandwichArray = await getSandwichInfoList();
+      return [
+        ...filterToppings(toppingArray),
+        ...filterSandwich(sandwichArray),
+      ];
     }
   };
 

@@ -17,7 +17,7 @@ export const GridCategoryTitleList = [
   "Extras",
 ];
 
-export const breadList: infoType[] = [
+export const SizeList: infoType[] = [
   {
     title: "15cm",
     calories: "0",
