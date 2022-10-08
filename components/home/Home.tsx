@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { GridCategoryTitleList, infoType } from "../../types/sandwich";
 import AddedListPopup from "./added-list/AddedListPopup";
 import InfoGridList from "./grid/InfoGridList";
@@ -24,7 +24,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   extras,
 }) => {
   const [addedItems, setAddedItems] = useState<infoType[]>([]);
-
+  const [index, setIndex] = useState<number>(1);
   // TODO: 다중선택이 되어야 하는 종류가 있고, 단일 선택이 되어야 하는 종류가 있는데 이를 구분해야함
   const handleAddItems = (items: infoType) => {
     if (addedItems.some((addedItem) => addedItem.id === items.id)) {
@@ -36,6 +36,12 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       const newItemList = [...addedItems, items];
       setAddedItems(newItemList);
     }
+    if (index === 0) handleIndex(1);
+    if (index === 1) handleIndex(0);
+  };
+
+  const handleIndex = (newIndex: number) => {
+    setIndex(newIndex);
   };
 
   const resetAddedItems = () => {
@@ -82,6 +88,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
         })}
       </Box>
       <AddedListPopup
+        index={index}
         addedItems={addedItems}
         resetAddedItems={resetAddedItems}
       />

@@ -1,7 +1,6 @@
 import {
   Accordion,
   AccordionButton,
-  AccordionIcon,
   AccordionItem,
   AccordionPanel,
   Flex,
@@ -14,10 +13,12 @@ import { infoType } from "../../../types/sandwich";
 
 interface AddedListAccordionProps {
   addedItems: infoType[];
+  index: number;
 }
 
 const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
   addedItems,
+  index,
 }) => {
   const handleSpecialCalories = (item: infoType) => {
     // 리팩토링 해야함.
@@ -26,8 +27,9 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
     }
     return Number(item.calories.split(" ")[0]);
   };
+
   return (
-    <Accordion allowToggle>
+    <Accordion allowMultiple index={index}>
       <AccordionItem border="none">
         {({ isExpanded }) => (
           <>
