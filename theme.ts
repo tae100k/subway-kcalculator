@@ -59,7 +59,7 @@ export const theme = extendTheme({
   },
   // TODO: font가 안되는 걸 수정해야 함
   fonts: {
-    heading: `Epilogue`,
-    body: `Epilogue`,
+    heading: `'Epilogue', sans-serif`,
+    body: `'Epilogue', sans-serif`,
   },
 });
