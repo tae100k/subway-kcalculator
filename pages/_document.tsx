@@ -20,33 +20,15 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="shortcut icon" href="/favicon.svg" />
-          <link
-            rel="preload"
-            href="/assets/video/burn-success.mp4"
-            as="video"
-            type="video/mp4"
-          />
-          <link
-            rel="preload"
-            href="/assets/video/burn-error.mp4"
-            as="video"
-            type="video/mp4"
-          />
-          <link
-            rel="preload"
-            href="/assets/video/burn-waiting.mp4"
-            as="video"
-            type="video/mp4"
-          />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
             href="https://fonts.gstatic.com"
             crossOrigin=""
           />
+          <link rel="shortcut icon" href="/favicon.svg" />
           <link
-            href="https://https://fonts.googleapis.com/css?family=Epilogue"
+            href="https://fonts.googleapis.com/css2?family=Epilogue:wght@100;300;400;600;700;800&&display=swap"
             rel="stylesheet"
           />
         </Head>
