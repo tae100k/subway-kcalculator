@@ -17,54 +17,17 @@ import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {
   title: string;
+  gridItems: infoType[];
   addedItems: infoType[];
   handleItems: (items: infoType) => void;
 }
 
 const InfoGridList: React.FC<InfoGridListProps> = ({
   title,
+  gridItems,
   addedItems,
   handleItems,
 }) => {
-  const [gridItems, setGridItems] = useState<infoType[]>([]);
-  const divideItemFunc = async (category: string) => {
-    if (category === "sandwich") {
-      return await getSandwichInfoList();
-    }
-    if (category === "size") {
-      return SizeList;
-    }
-    if (category === "bread") {
-      return await getBreadInfoList();
-    }
-    if (category === "veggies") {
-      return await getVegetableInfoList();
-    }
-    if (category === "cheese" || category === "extra cheese") {
-      return await getCheeseInfoList();
-    }
-    if (category === "sauces") {
-      return await getSauceInfoList();
-    }
-    if (category === "extras") {
-      const toppingArray = await getExtraToppingInfoList();
-      const sandwichArray = await getSandwichInfoList();
-      return [
-        ...filterToppings(toppingArray),
-        ...filterSandwich(sandwichArray),
-      ];
-    }
-  };
-
-  const handleInfo = async () => {
-    const items = await divideItemFunc(title.toLowerCase());
-    items && setGridItems(items);
-  };
-
-  useEffect(() => {
-    handleInfo();
-  }, []);
-
   const checkIsSelected = (items: infoType) => {
     return Boolean(addedItems.find((addedItem) => addedItem.id === items.id));
   };
