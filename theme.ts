@@ -29,7 +29,7 @@ export const theme = extendTheme({
   },
   textStyles: {
     heading1: {
-      fontFamily: "Epilogue",
+      fontFamily: "epilogue",
       fontWeight: "600",
       fontSize: "30px",
       lineHeight: "38px",
@@ -37,20 +37,20 @@ export const theme = extendTheme({
       color: "Green.20",
     },
     label1: {
-      fontFamily: "Epilogue",
+      fontFamily: "epilogue",
       fontWeight: 600,
       letterSpacing: "-0.03em",
       color: "Gray.50",
     },
     body1: {
-      fontFamily: "Epilogue",
+      fontFamily: "epilogue",
       fontWeight: "700",
       fontSize: "18px",
       letterSpacing: "-0.03em",
       color: "Grayscale.10",
     },
     display1: {
-      fontFamily: "Epilogue",
+      fontFamily: "epilogue",
       fontWeight: "800",
       fontSize: "68px",
       letterSpacing: "-0.03em",
@@ -59,7 +59,6 @@ export const theme = extendTheme({
   },
   // TODO: font가 안되는 걸 수정해야 함
   fonts: {
-    heading: `'Epilogue'`,
-    body: `'Epilogue'`,
+    epilogue: `'Epilogue', cursive`,
   },
 });
