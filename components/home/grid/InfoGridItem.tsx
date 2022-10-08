@@ -19,20 +19,20 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
     return handleSVGCategory(category, title);
   };
 
-  const onClick = (e: any) => {
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (e.cancelable) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
+  const onClick = () => {
     handleClick(gridItems);
-  };
-  const onTouchStart = (e: any) => {
-    onClick(e);
-  };
-  const onTouchEnd = (e: any) => {
-    e.preventDefault();
   };
 
   return (
     <GridItem
       onTouchEnd={onTouchEnd}
-      onTouchStart={onTouchStart}
       display="flex"
       alignItems="center"
       flexDirection="column"
