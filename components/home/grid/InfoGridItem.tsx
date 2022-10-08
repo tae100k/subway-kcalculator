@@ -19,17 +19,14 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
     return handleSVGCategory(category, title);
   };
 
-  const onClick = () => {
-    handleClick(gridItems);
-  };
-  const handleTouch = (e: React.TouchEvent<HTMLDivElement>) => {
+  const onClick = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
-    onClick();
+    handleClick(gridItems);
   };
 
   return (
     <GridItem
-      onTouchEnd={handleTouch}
+      // onTouchEnd={onTouchEnd}
       display="flex"
       alignItems="center"
       flexDirection="column"
