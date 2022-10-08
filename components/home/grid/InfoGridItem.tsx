@@ -32,6 +32,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
 
   return (
     <GridItem
+      gap="12px"
       onTouchEnd={onTouchEnd}
       display="flex"
       alignItems="center"
