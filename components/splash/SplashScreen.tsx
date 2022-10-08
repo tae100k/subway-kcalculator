@@ -1,5 +1,7 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
+import Image from "next/image";
 import React from "react";
+import { LandingTitlePng } from "../../public/assets/icons";
 
 const SplashScreen = () => {
   const splashScreenTitle = [
@@ -20,7 +22,7 @@ const SplashScreen = () => {
       justifyContent="space-between"
     >
       <Box>
-        {splashScreenTitle.map((text) => {
+        {/* {splashScreenTitle.map((text) => {
           return (
             <Box
               textStyle="display1"
@@ -31,7 +33,8 @@ const SplashScreen = () => {
               {text}
             </Box>
           );
-        })}
+        })} */}
+        <Image src={LandingTitlePng} />
       </Box>
 
       <Text textStyle="label1" color="Green.10">
