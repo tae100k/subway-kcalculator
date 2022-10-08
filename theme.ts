@@ -38,7 +38,7 @@ export const theme = extendTheme({
     },
     label1: {
       fontFamily: "epilogue",
-      fontWeight: 600,
+      fontWeight: "600",
       letterSpacing: "-0.03em",
       color: "Gray.50",
     },
