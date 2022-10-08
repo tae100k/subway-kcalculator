@@ -8,11 +8,13 @@ interface AddedListPopupProps {
   addedItems: infoType[];
   index: number;
   resetAddedItems: () => void;
+  handleIndex: (newIndex: number) => void;
 }
 
 const AddedListPopup: React.FC<AddedListPopupProps> = ({
   addedItems,
   index,
+  handleIndex,
   resetAddedItems,
 }) => {
   const [currentTotalNumber, setCurrentTotalNumber] = useState<number>(1000);
@@ -43,7 +45,11 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
         right={0}
         bottom={0}
       >
-        <AddedListAccordion index={index} addedItems={addedItems} />
+        <AddedListAccordion
+          index={index}
+          addedItems={addedItems}
+          handleIndex={handleIndex}
+        />
         <Text textStyle="body1" mt={4} px={"16px"}>
           Total
         </Text>

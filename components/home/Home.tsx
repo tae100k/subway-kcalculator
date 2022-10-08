@@ -24,6 +24,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   extras,
 }) => {
   const [addedItems, setAddedItems] = useState<infoType[]>([]);
+  const [isFirstPopup, setIsFirstPopup] = useState(true);
   const [index, setIndex] = useState<number>(1);
   // TODO: 다중선택이 되어야 하는 종류가 있고, 단일 선택이 되어야 하는 종류가 있는데 이를 구분해야함
   const handleAddItems = (items: infoType) => {
@@ -36,8 +37,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       const newItemList = [...addedItems, items];
       setAddedItems(newItemList);
     }
-    if (index === 0) handleIndex(1);
-    if (index === 1) handleIndex(0);
+    if (isFirstPopup) handleIndex(0);
+    if (isFirstPopup === true) setIsFirstPopup(() => false);
   };
 
   const handleIndex = (newIndex: number) => {
@@ -89,6 +90,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       </Box>
       <AddedListPopup
         index={index}
+        handleIndex={handleIndex}
         addedItems={addedItems}
         resetAddedItems={resetAddedItems}
       />

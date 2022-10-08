@@ -6,7 +6,7 @@ import {
   Flex,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { ArrowDown, ArrowUp } from "../../../public/assets/icons";
 import { isDoubled } from "../../../service/exception.service";
 import { infoType } from "../../../types/sandwich";
@@ -14,11 +14,13 @@ import { infoType } from "../../../types/sandwich";
 interface AddedListAccordionProps {
   addedItems: infoType[];
   index: number;
+  handleIndex: (newIndex: number) => void;
 }
 
 const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
   addedItems,
   index,
+  handleIndex,
 }) => {
   const handleSpecialCalories = (item: infoType) => {
     // 리팩토링 해야함.
@@ -27,9 +29,13 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
     }
     return Number(item.calories.split(" ")[0]);
   };
+  const handleChange = () => {
+    if (index === 0) handleIndex(1);
+    if (index === 1) handleIndex(0);
+  };
 
   return (
-    <Accordion allowMultiple index={index}>
+    <Accordion allowMultiple index={index} onClick={handleChange}>
       <AccordionItem border="none">
         {({ isExpanded }) => (
           <>
