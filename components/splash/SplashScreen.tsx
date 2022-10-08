@@ -1,17 +1,17 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
-import { LandingTitlePng } from "../../public/assets/icons";
+import { SplashText } from "../../public/assets/icons";
 
 const SplashScreen = () => {
-  const splashScreenTitle = [
-    "Calculate",
-    "the",
-    "Calories",
-    "In your",
-    "own",
-    "Sub",
-  ];
+  // const splashScreenTitle = [
+  //   "Calculate",
+  //   "the",
+  //   "Calories",
+  //   "In your",
+  //   "own",
+  //   "Sub",
+  // ];
   return (
     <Flex
       h="calc(100vh - (56px))"
@@ -34,7 +34,7 @@ const SplashScreen = () => {
             </Box>
           );
         })} */}
-        <Image src={LandingTitlePng} />
+        <SplashText />
       </Box>
 
       <Text textStyle="label1" color="Green.10">
