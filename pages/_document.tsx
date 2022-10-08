@@ -28,7 +28,7 @@ class MyDocument extends Document {
           />
           <link rel="shortcut icon" href="/favicon.svg" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Epilogue:wght@100;300;400;900&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Epilogue&display=swap"
             rel="stylesheet"
           />
         </Head>
