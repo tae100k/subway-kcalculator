@@ -13,7 +13,6 @@ import {
 import HomeScreen from "../components/home/Home";
 import SplashScreen from "../components/splash/SplashScreen";
 import TitleHeader from "../components/TitleHeader";
-import { Favicon } from "../public/assets/icons";
 import { filterSandwich, filterToppings } from "../service/exception.service";
 import { GridCategoryTitleList, infoType, SizeList } from "../types/sandwich";
 
