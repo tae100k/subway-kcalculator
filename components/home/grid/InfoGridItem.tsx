@@ -26,7 +26,6 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
 
   return (
     <GridItem
-      // onTouchEnd={onTouchEnd}
       display="flex"
       alignItems="center"
       flexDirection="column"
