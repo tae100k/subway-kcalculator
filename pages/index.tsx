@@ -1,16 +1,81 @@
 import { Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  getBreadInfoList,
+  getCheeseInfoList,
+  getExtraToppingInfoList,
+  getSandwichInfoList,
+  getSauceInfoList,
+  getVegetableInfoList,
+} from "../api/apiRequests";
 import HomeScreen from "../components/home/Home";
 import SplashScreen from "../components/splash/SplashScreen";
 import TitleHeader from "../components/TitleHeader";
+import { filterSandwich, filterToppings } from "../service/exception.service";
+import { GridCategoryTitleList, infoType, SizeList } from "../types/sandwich";
 
 const Home: NextPage = () => {
   const [api, setApi] = useState(false);
   setTimeout(() => {
     setApi(true);
   }, 2000);
+
+  const [sandwich, setSandwich] = useState<infoType[]>([]);
+  const [size, setSize] = useState<infoType[]>([]);
+  const [bread, setBread] = useState<infoType[]>([]);
+  const [veggies, setVeggies] = useState<infoType[]>([]);
+  const [cheese, setCheese] = useState<infoType[]>([]);
+  const [sauces, setSauces] = useState<infoType[]>([]);
+  const [extras, setExtras] = useState<infoType[]>([]);
+
+  const divideItemFunc = async (category: string) => {
+    if (category === "sandwich") {
+      const res = await getSandwichInfoList();
+      setSandwich(res);
+    }
+    if (category === "size") {
+      const res = SizeList;
+      setSize(res);
+    }
+    if (category === "bread") {
+      const res = await getBreadInfoList();
+      setBread(res);
+    }
+    if (category === "veggies") {
+      const res = await getVegetableInfoList();
+      setVeggies(res);
+    }
+    if (category === "cheese" || category === "extra cheese") {
+      const res = await getCheeseInfoList();
+      setCheese(res);
+    }
+    if (category === "sauces") {
+      const res = await getSauceInfoList();
+      setSauces(res);
+    }
+    if (category === "extras") {
+      const toppingArray = await getExtraToppingInfoList();
+      const sandwichArray = await getSandwichInfoList();
+      const res = [
+        ...filterToppings(toppingArray),
+        ...filterSandwich(sandwichArray),
+      ];
+      setExtras(res);
+    }
+  };
+
+  const handleInfo = async () => {
+    GridCategoryTitleList.map(async (title) => {
+      await divideItemFunc(title.toLowerCase());
+    });
+  };
+
+  useEffect(() => {
+    handleInfo();
+  }, []);
+
   return (
     <>
       <Head>
@@ -29,7 +94,21 @@ const Home: NextPage = () => {
       >
         <Box id="maxW box" bg="Grayscale.10" h="full" w="100%" maxW={"516px"}>
           <TitleHeader />
-          <Box>{api ? <HomeScreen /> : <SplashScreen />}</Box>
+          <Box>
+            {api ? (
+              <HomeScreen
+                sandwich={sandwich}
+                size={size}
+                bread={bread}
+                veggies={veggies}
+                cheese={cheese}
+                sauces={sauces}
+                extras={extras}
+              />
+            ) : (
+              <SplashScreen />
+            )}
+          </Box>
         </Box>
       </Box>
     </>

@@ -65,7 +65,6 @@ export const handleExtras = (title: string) => {
     case "Tuna":
       return Tuna;
     default:
-      console.log(title);
       return Tuna;
   }
 };
