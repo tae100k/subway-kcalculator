@@ -57,7 +57,6 @@ export const theme = extendTheme({
       color: "Grayscale.10",
     },
   },
-  // TODO: font가 안되는 걸 수정해야 함
   fonts: {
     epilogue: `'Epilogue', cursive`,
   },
