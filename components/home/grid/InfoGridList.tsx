@@ -1,18 +1,6 @@
-import { Text, Box, SimpleGrid, Grid } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import {
-  getBreadInfoList,
-  getCheeseInfoList,
-  getExtraToppingInfoList,
-  getSandwichInfoList,
-  getSauceInfoList,
-  getVegetableInfoList,
-} from "../../../api/apiRequests";
-import {
-  filterSandwich,
-  filterToppings,
-} from "../../../service/exception.service";
-import { SizeList, infoType } from "../../../types/sandwich";
+import { Box, Grid, Text } from "@chakra-ui/react";
+import React from "react";
+import { infoType } from "../../../types/sandwich";
 import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {
