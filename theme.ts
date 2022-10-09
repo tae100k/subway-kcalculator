@@ -28,7 +28,7 @@ export const theme = extendTheme({
     },
   },
   textStyles: {
-    heading1: {
+    title: {
       fontFamily: "epilogue",
       fontWeight: "600",
       fontSize: "30px",
@@ -36,23 +36,27 @@ export const theme = extendTheme({
       letterSpacing: "-0.03em",
       color: "Green.20",
     },
-    label1: {
+    label: {
       fontFamily: "epilogue",
       fontWeight: "600",
       letterSpacing: "-0.03em",
       color: "Gray.50",
+      lineHeight: "14px",
+      fontSize: "12px",
     },
-    body1: {
+    body: {
       fontFamily: "epilogue",
       fontWeight: "700",
       fontSize: "18px",
+      lineHeight: "28px",
       letterSpacing: "-0.03em",
       color: "Grayscale.10",
     },
-    display1: {
+    display: {
       fontFamily: "epilogue",
       fontWeight: "800",
       fontSize: "68px",
+      lineHeight: "68px",
       letterSpacing: "-0.03em",
       color: "Grayscale.10",
     },

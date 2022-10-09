@@ -50,7 +50,7 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
           addedItems={addedItems}
           handleIndex={handleIndex}
         />
-        <Text textStyle="body1" mt={4} px={"16px"}>
+        <Text textStyle="body" mt={4} px={"16px"}>
           Total
         </Text>
         <Flex
@@ -60,13 +60,13 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
           alignItems="baseline"
         >
           <Flex flexDirection="row" alignItems="baseline" gap={3} pb={"8px"}>
-            <Text textStyle="display1">
+            <Text textStyle="display">
               {currentTotalNumber.toString().padStart(3, "0")}
             </Text>
-            <Text textStyle="body1">Kcal</Text>
+            <Text textStyle="body">Kcal</Text>
           </Flex>
           <Text
-            textStyle="body1"
+            textStyle="body"
             onClick={resetAddedItems}
             _hover={{ color: "Yellow.10" }}
           >

@@ -23,7 +23,7 @@ const SplashScreen = () => {
         {/* {splashScreenTitle.map((text) => {
           return (
             <Box
-              textStyle="display1"
+              textStyle="display"
               color="Green.10"
               key={text}
               lineHeight={"68px"}
@@ -35,7 +35,7 @@ const SplashScreen = () => {
         <SplashText />
       </Box>
 
-      <Text textStyle="label1" color="Green.10">
+      <Text textStyle="label" color="Green.10">
         Team Zellybomb, 2022
       </Text>
     </Flex>

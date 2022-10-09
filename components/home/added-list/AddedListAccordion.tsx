@@ -58,24 +58,24 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
             >
               {isDoubled(addedItems) && (
                 <Flex>
-                  <Text textStyle="body1">(</Text>
+                  <Text textStyle="body">(</Text>
                 </Flex>
               )}
               {addedItems.map((item) => {
                 if (item.title !== "30cm" && item.title !== "15cm")
                   return (
                     <Flex key={item.id} gap={"5px"}>
-                      <Text textStyle="body1">+</Text>
-                      <Text textStyle="body1">
+                      <Text textStyle="body">+</Text>
+                      <Text textStyle="body">
                         {`${handleSpecialCalories(item)}`}
                       </Text>
-                      <Text textStyle="body1">{item.title}</Text>
+                      <Text textStyle="body">{item.title}</Text>
                     </Flex>
                   );
               })}
               {isDoubled(addedItems) && (
                 <Flex>
-                  <Text textStyle="body1">) x 2 Size</Text>
+                  <Text textStyle="body">) x 2 Size</Text>
                 </Flex>
               )}
             </AccordionPanel>
