@@ -23,7 +23,7 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
   return (
     <Box display="flex" flexDirection="column" gap={4} mb={10}>
       <Text
-        textStyle={title === "Extra cheese" ? "body1" : "heading1"}
+        textStyle={title === "Extra cheese" ? "body" : "title"}
         color="Green.20"
       >
         {title}

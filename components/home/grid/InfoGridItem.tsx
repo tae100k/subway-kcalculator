@@ -58,7 +58,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       <Box display="flex" flexGrow="1" alignItems="center">
         <Text
           align="center"
-          textStyle="label1"
+          textStyle="label"
           color={isSelected ? "Green.10" : "Gray.50"}
         >
           {gridItems.title}
