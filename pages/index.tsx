@@ -13,7 +13,11 @@ import {
 import HomeScreen from "../components/home/Home";
 import SplashScreen from "../components/splash/SplashScreen";
 import TitleHeader from "../components/TitleHeader";
-import { filterSandwich, filterToppings } from "../service/exception.service";
+import {
+  filterExtraSandwich,
+  filterDuplicatedItems,
+  filterToppings,
+} from "../service/exception.service";
 import { GridCategoryTitleList, infoType, SizeList } from "../types/sandwich";
 
 const Home: NextPage = () => {
@@ -60,7 +64,7 @@ const Home: NextPage = () => {
       const sandwichArray = await getSandwichInfoList();
       const res = [
         ...filterToppings(toppingArray),
-        ...filterSandwich(sandwichArray),
+        ...filterExtraSandwich(sandwichArray),
       ];
       setExtras(res);
     }
