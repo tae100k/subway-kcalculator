@@ -1,5 +1,5 @@
 import { CHICKEN_BACON } from "../api/apiRequests";
-import { infoType } from "../types/sandwich";
+import { infoType } from "../types/const";
 
 export const isDoubled = (addedItems: infoType[]) => {
   return addedItems.some((items) => items.title === "30cm");
@@ -32,3 +32,5 @@ export const filterDuplicatedItems = (items: infoType[]) => {
       title !== "Veggie Delite"
   );
 };
+
+export const singleSelect = () => {};

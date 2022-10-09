@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
-import { GridCategoryTitleList, infoType } from "../../types/sandwich";
+import { GridCategoryTitleList, infoType } from "../../types/const";
 import AddedListPopup from "./added-list/AddedListPopup";
 import InfoGridList from "./grid/InfoGridList";
 
@@ -23,20 +23,31 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   sauces,
   extras,
 }) => {
-  const [addedItems, setAddedItems] = useState<infoType[]>([]);
+  const [addedIngredients, setAddedIngredients] = useState<infoType[]>([]);
+  const [selectedSandwich, setSelectedSandwich] = useState<infoType | null>(
+    sandwich[0]
+  );
+  const [selectedSize, setSelectedSize] = useState<infoType | null>(size[0]);
+  const [selectedBread, setSelectedBread] = useState<infoType | null>(bread[0]);
   const [isFirstPopup, setIsFirstPopup] = useState(true);
   const [index, setIndex] = useState<number>(1);
   // TODO: 다중선택이 되어야 하는 종류가 있고, 단일 선택이 되어야 하는 종류가 있는데 이를 구분해야함
+  // const handleAddItems = (items: infoType) => {
+  //   if (addedIngredients.some((addedItem) => addedItem.id === items.id)) {
+  //     const newItemList = addedIngredients.filter(
+  //       (addedItem) => addedItem.id !== items.id
+  //     );
+  //     setAddedIngredients(newItemList);
+  //   } else {
+  //     const newItemList = [...addedIngredients, items];
+  //     setAddedIngredients(newItemList);
+  //   }
+  //   if (isFirstPopup) handleIndex(0);
+  //   if (isFirstPopup === true) setIsFirstPopup(() => false);
+  // };
   const handleAddItems = (items: infoType) => {
-    if (addedItems.some((addedItem) => addedItem.id === items.id)) {
-      const newItemList = addedItems.filter(
-        (addedItem) => addedItem.id !== items.id
-      );
-      setAddedItems(newItemList);
-    } else {
-      const newItemList = [...addedItems, items];
-      setAddedItems(newItemList);
-    }
+    // singleSelect(items);
+    // multiSelect(items);
     if (isFirstPopup) handleIndex(0);
     if (isFirstPopup === true) setIsFirstPopup(() => false);
   };
@@ -46,7 +57,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   };
 
   const resetAddedItems = () => {
-    setAddedItems([]);
+    setAddedIngredients([]);
   };
 
   const chooseItems = (category: string) => {
@@ -81,7 +92,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             <InfoGridList
               gridItems={chooseItems(category.toLocaleLowerCase()) ?? []}
               key={category}
-              addedItems={addedItems}
+              addedItems={addedIngredients}
               title={category}
               handleItems={handleAddItems}
             />
@@ -91,7 +102,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       <AddedListPopup
         index={index}
         handleIndex={handleIndex}
-        addedItems={addedItems}
+        addedItems={addedIngredients}
         resetAddedItems={resetAddedItems}
       />
     </>

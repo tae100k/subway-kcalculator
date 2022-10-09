@@ -4,6 +4,7 @@ export interface infoType {
   id: string;
   title: string;
   calories: string;
+  category: string;
 }
 
 export const GridCategoryTitleList = [
@@ -22,11 +23,13 @@ export const SizeList: infoType[] = [
     title: "15cm",
     calories: "0",
     id: uuidv4(),
+    category: "size",
   },
   {
     title: "30cm",
     calories: "0",
     id: uuidv4(),
+    category: "size",
   },
 ];
 

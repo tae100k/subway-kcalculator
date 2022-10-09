@@ -13,7 +13,7 @@ export const CHICKEN_BACON = 90.2;
 
 const categories = ["bread", "vegetable", "cheese", "sauce"];
 
-export const getSandwichInfoList = async () => {
+export const getSandwichInfoList = async (category: string) => {
   const SANDWICH_FULL_URL = `${SANDWICH_URL}`;
   const infoList = await axios(SANDWICH_FULL_URL).then((res) => {
     const htmlData = res.data;
@@ -39,13 +39,14 @@ export const getSandwichInfoList = async () => {
         id,
         title,
         calories,
+        category,
       };
     });
   });
   return infoList.toArray();
 };
 
-export const getExtraToppingInfoList = async () => {
+export const getExtraToppingInfoList = async (category: string) => {
   const SANDWICH_FULL_URL = `${SANDWICH_URL}`;
   const infoList = await axios(SANDWICH_FULL_URL).then((res) => {
     const htmlData = res.data;
@@ -60,6 +61,7 @@ export const getExtraToppingInfoList = async () => {
         id,
         title,
         calories,
+        category,
       };
     });
   });
@@ -67,43 +69,27 @@ export const getExtraToppingInfoList = async () => {
   return infoList.toArray();
 };
 
-export const getBreadInfoList = () => {
+export const getInfoList = (category: string) => {
   const CATEGORY_FULL_URL = `${INGREDIENTS_URL}`;
-  return getInfo(CATEGORY_FULL_URL, categories[0]);
-};
-
-export const getVegetableInfoList = async () => {
-  const CATEGORY_FULL_URL = `${INGREDIENTS_URL}`;
-  return getInfo(CATEGORY_FULL_URL, categories[1]);
-};
-
-export const getCheeseInfoList = async () => {
-  const CATEGORY_FULL_URL = `${INGREDIENTS_URL}`;
-  return getInfo(CATEGORY_FULL_URL, categories[2]);
-};
-
-export const getSauceInfoList = async () => {
-  const CATEGORY_FULL_URL = `${INGREDIENTS_URL}`;
-  return getInfo(CATEGORY_FULL_URL, categories[3]);
+  return getInfo(CATEGORY_FULL_URL, category);
 };
 
 export const getInfo = async (URL: string, category: string) => {
   const infoList = await axios(URL).then((res) => {
     const htmlData = res.data;
     const $ = cheerio.load(htmlData);
-
-    return $(`.pd_list_wrapper .${category}`, htmlData).map(
-      (index, element) => {
-        const title = $(element).children(".eng").text();
-        const calories = $(element).children(".cal").text();
-        const id = uuidv4();
-        return {
-          id,
-          title,
-          calories,
-        };
-      }
-    );
+    const query = category === "extra cheese" ? "cheese" : category;
+    return $(`.pd_list_wrapper .${query}`, htmlData).map((index, element) => {
+      const title = $(element).children(".eng").text();
+      const calories = $(element).children(".cal").text();
+      const id = uuidv4();
+      return {
+        id,
+        title,
+        calories,
+        category,
+      };
+    });
   });
 
   return infoList.toArray();

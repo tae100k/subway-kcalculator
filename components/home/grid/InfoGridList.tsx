@@ -1,6 +1,6 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
 import React from "react";
-import { infoType } from "../../../types/sandwich";
+import { infoType } from "../../../types/const";
 import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {

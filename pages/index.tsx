@@ -3,12 +3,9 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import {
-  getBreadInfoList,
-  getCheeseInfoList,
   getExtraToppingInfoList,
+  getInfoList,
   getSandwichInfoList,
-  getSauceInfoList,
-  getVegetableInfoList,
 } from "../api/apiRequests";
 import HomeScreen from "../components/home/Home";
 import SplashScreen from "../components/splash/SplashScreen";
@@ -18,7 +15,7 @@ import {
   filterDuplicatedItems,
   filterToppings,
 } from "../service/exception.service";
-import { GridCategoryTitleList, infoType, SizeList } from "../types/sandwich";
+import { GridCategoryTitleList, infoType, SizeList } from "../types/const";
 
 const Home: NextPage = () => {
   const [api, setApi] = useState(false);
@@ -36,7 +33,7 @@ const Home: NextPage = () => {
 
   const divideItemFunc = async (category: string) => {
     if (category === "sandwich") {
-      const res = await getSandwichInfoList();
+      const res = await getSandwichInfoList(category);
       setSandwich(res);
     }
     if (category === "size") {
@@ -44,24 +41,24 @@ const Home: NextPage = () => {
       setSize(res);
     }
     if (category === "bread") {
-      const res = await getBreadInfoList();
+      const res = await getInfoList(category);
       setBread(res);
     }
     if (category === "veggies") {
-      const res = await getVegetableInfoList();
+      const res = await getInfoList("vegetable");
       setVeggies(res);
     }
     if (category === "cheese" || category === "extra cheese") {
-      const res = await getCheeseInfoList();
+      const res = await getInfoList(category);
       setCheese(res);
     }
     if (category === "sauces") {
-      const res = await getSauceInfoList();
+      const res = await getInfoList("sauce");
       setSauces(res);
     }
     if (category === "extras") {
-      const toppingArray = await getExtraToppingInfoList();
-      const sandwichArray = await getSandwichInfoList();
+      const toppingArray = await getExtraToppingInfoList("extras");
+      const sandwichArray = await getSandwichInfoList("sandwich");
       const res = [
         ...filterToppings(toppingArray),
         ...filterExtraSandwich(sandwichArray),

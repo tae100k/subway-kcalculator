@@ -1,7 +1,7 @@
 import { Box, GridItem, Icon, Text } from "@chakra-ui/react";
 import React from "react";
 import { handleSVGCategory } from "../../../public/assets/ingredients/SVG";
-import { infoType } from "../../../types/sandwich";
+import { infoType } from "../../../types/const";
 
 interface InfoGridItemProps {
   category: string;
