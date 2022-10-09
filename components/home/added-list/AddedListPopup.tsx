@@ -2,6 +2,7 @@ import { Container, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { isDoubled } from "../../../service/exception.service";
 import { infoType } from "../../../types/sandwich";
+import { scrollToTop } from "../../../utils/scroll";
 import AddedListAccordion from "./AddedListAccordion";
 
 interface AddedListPopupProps {
@@ -33,6 +34,11 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
         : setCurrentTotalNumber(Number(itemCaloryTotal.toFixed(1)));
     }
   }, [addedItems]);
+
+  const onClick = () => {
+    scrollToTop();
+    resetAddedItems();
+  };
 
   return (
     <div>
@@ -67,7 +73,7 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
           </Flex>
           <Text
             textStyle="body1"
-            onClick={resetAddedItems}
+            onClick={onClick}
             _hover={{ color: "Yellow.10" }}
           >
             Reset
