@@ -30,7 +30,7 @@ export const handleExtras = (title: string) => {
       return BLT;
     case "Italian B.M.T.™":
       return BMT;
-    case "Chicken Bacon Avocado":
+    case "Chicken Bacon":
       return ChickenBacon;
     case "Chicken Slice":
       return ChickenSlice;

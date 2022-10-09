@@ -9,6 +9,7 @@ export const TOMATO_CALORIES = 7.7;
 export const CUCUMBER_CALORIES = 1.5;
 export const BELL_PEPPERS_CALORIES = 1.4;
 export const ONION_CALORIES = 2.8;
+export const CHICKEN_BACON = 90.2;
 
 const categories = ["bread", "vegetable", "cheese", "sauce"];
 
