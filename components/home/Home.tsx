@@ -10,6 +10,7 @@ interface HomeScreenProps {
   bread: infoType[];
   veggies: infoType[];
   cheese: infoType[];
+  extraCheese: infoType[];
   sauces: infoType[];
   extras: infoType[];
 }
@@ -20,6 +21,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   bread,
   veggies,
   cheese,
+  extraCheese,
   sauces,
   extras,
 }) => {
@@ -47,9 +49,24 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   // };
   const handleAddItems = (items: infoType) => {
     // singleSelect(items);
-    // multiSelect(items);
+    multiSelect(items);
     if (isFirstPopup) handleIndex(0);
     if (isFirstPopup === true) setIsFirstPopup(() => false);
+  };
+
+  // service 로직으로 이동해야 함.
+  const singleSelect = () => {};
+
+  const multiSelect = (items: infoType) => {
+    if (addedIngredients.some((addedItem) => addedItem.id === items.id)) {
+      const newItemList = addedIngredients.filter(
+        (addedItem) => addedItem.id !== items.id
+      );
+      setAddedIngredients(newItemList);
+    } else {
+      const newItemList = [...addedIngredients, items];
+      setAddedIngredients(newItemList);
+    }
   };
 
   const handleIndex = (newIndex: number) => {
@@ -73,8 +90,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     if (category === "veggies") {
       return veggies;
     }
-    if (category === "cheese" || category === "extra cheese") {
+    if (category === "cheese") {
       return cheese;
+    }
+    if (category === "extra cheese") {
+      return extraCheese;
     }
     if (category === "sauces") {
       return sauces;

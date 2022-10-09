@@ -28,6 +28,7 @@ const Home: NextPage = () => {
   const [bread, setBread] = useState<infoType[]>([]);
   const [veggies, setVeggies] = useState<infoType[]>([]);
   const [cheese, setCheese] = useState<infoType[]>([]);
+  const [extraCheese, setExtraCheese] = useState<infoType[]>([]);
   const [sauces, setSauces] = useState<infoType[]>([]);
   const [extras, setExtras] = useState<infoType[]>([]);
 
@@ -48,9 +49,13 @@ const Home: NextPage = () => {
       const res = await getInfoList("vegetable");
       setVeggies(res);
     }
-    if (category === "cheese" || category === "extra cheese") {
+    if (category === "cheese") {
       const res = await getInfoList(category);
       setCheese(res);
+    }
+    if (category === "extra cheese") {
+      const res = await getInfoList(category);
+      setExtraCheese(res);
     }
     if (category === "sauces") {
       const res = await getInfoList("sauce");
@@ -102,6 +107,7 @@ const Home: NextPage = () => {
                 bread={bread}
                 veggies={veggies}
                 cheese={cheese}
+                extraCheese={extraCheese}
                 sauces={sauces}
                 extras={extras}
               />
