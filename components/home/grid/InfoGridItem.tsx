@@ -1,7 +1,8 @@
 import { Box, GridItem, Icon, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { handleSVGCategory } from "../../../public/assets/ingredients/SVG";
 import { infoType } from "../../../types/sandwich";
+import { isBrowser, isMobile } from "react-device-detect";
 
 interface InfoGridItemProps {
   category: string;
@@ -44,10 +45,14 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       bg={isSelected ? "White" : "initial"}
       borderRadius={"20px"}
       _hover={{
-        bg: "White",
+        bg: isBrowser ? "White" : "initial",
         boxShadow: "0px 4px 16px -10px rgba(0, 0, 0, 0.08)",
       }}
-      boxShadow={isSelected ? "0px 4px 16px -10px rgba(0, 0, 0, 0.08)" : "none"}
+      boxShadow={
+        isSelected && isBrowser
+          ? "0px 4px 16px -10px rgba(0, 0, 0, 0.08)"
+          : "none"
+      }
     >
       {/* TODO: image위에 마진 살짝 두기 */}
       <Icon
