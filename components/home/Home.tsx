@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { isMultiSelect, isSingleSelect } from "../../service/selection.service";
 import { GridCategoryTitleList, infoType } from "../../types/const";
 import AddedListPopup from "./added-list/AddedListPopup";
 import InfoGridList from "./grid/InfoGridList";
@@ -25,23 +26,50 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   sauces,
   extras,
 }) => {
+  const [addedWholeItems, setAddedWholeItems] = useState<infoType[]>([]);
   const [addedIngredients, setAddedIngredients] = useState<infoType[]>([]);
   const [selectedSandwich, setSelectedSandwich] = useState<infoType | null>(
-    sandwich[0]
+    null
   );
-  const [selectedSize, setSelectedSize] = useState<infoType | null>(size[0]);
-  const [selectedBread, setSelectedBread] = useState<infoType | null>(bread[0]);
+  const [selectedSize, setSelectedSize] = useState<infoType | null>(null);
+  const [selectedBread, setSelectedBread] = useState<infoType | null>(null);
   const [isFirstPopup, setIsFirstPopup] = useState(true);
   const [index, setIndex] = useState<number>(1);
+
   const handleAddItems = (items: infoType) => {
-    // singleSelect(items);
-    multiSelect(items);
+    if (isSingleSelect(items)) {
+      singleSelect(items);
+    }
+    if (isMultiSelect(items)) {
+      multiSelect(items);
+    }
     if (isFirstPopup) handleIndex(0);
     if (isFirstPopup === true) setIsFirstPopup(() => false);
+    const newWholeItems = [...addedIngredients];
+    if (selectedBread !== null) {
+      newWholeItems.push(selectedBread);
+    }
+    if (selectedSandwich !== null) {
+      newWholeItems.push(selectedSandwich);
+    }
+    if (selectedSize !== null) {
+      newWholeItems.push(selectedSize);
+    }
+    setAddedWholeItems(newWholeItems);
   };
 
   // service 로직으로 이동해야 함.
-  const singleSelect = (items: infoType) => {};
+  const singleSelect = (items: infoType) => {
+    if (items.category === "bread") {
+      setSelectedBread(items);
+    }
+    if (items.category === "size") {
+      setSelectedSize(items);
+    }
+    if (items.category === "sandwich") {
+      setSelectedSandwich(items);
+    }
+  };
 
   const multiSelect = (items: infoType) => {
     if (addedIngredients.some((addedItem) => addedItem.id === items.id)) {
@@ -60,7 +88,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   };
 
   const resetAddedItems = () => {
+    setAddedWholeItems([]);
     setAddedIngredients([]);
+    setSelectedSandwich(null);
+    setSelectedSize(null);
+    setSelectedBread(null);
   };
 
   const chooseItems = (category: string) => {
@@ -98,7 +130,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             <InfoGridList
               gridItems={chooseItems(category.toLocaleLowerCase()) ?? []}
               key={category}
-              addedItems={addedIngredients}
+              addedItems={addedWholeItems}
               title={category}
               handleItems={handleAddItems}
             />
@@ -108,7 +140,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       <AddedListPopup
         index={index}
         handleIndex={handleIndex}
-        addedItems={addedIngredients}
+        addedItems={addedWholeItems}
         resetAddedItems={resetAddedItems}
       />
     </>
