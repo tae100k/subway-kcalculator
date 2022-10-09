@@ -33,20 +33,6 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const [selectedBread, setSelectedBread] = useState<infoType | null>(bread[0]);
   const [isFirstPopup, setIsFirstPopup] = useState(true);
   const [index, setIndex] = useState<number>(1);
-  // TODO: 다중선택이 되어야 하는 종류가 있고, 단일 선택이 되어야 하는 종류가 있는데 이를 구분해야함
-  // const handleAddItems = (items: infoType) => {
-  //   if (addedIngredients.some((addedItem) => addedItem.id === items.id)) {
-  //     const newItemList = addedIngredients.filter(
-  //       (addedItem) => addedItem.id !== items.id
-  //     );
-  //     setAddedIngredients(newItemList);
-  //   } else {
-  //     const newItemList = [...addedIngredients, items];
-  //     setAddedIngredients(newItemList);
-  //   }
-  //   if (isFirstPopup) handleIndex(0);
-  //   if (isFirstPopup === true) setIsFirstPopup(() => false);
-  // };
   const handleAddItems = (items: infoType) => {
     // singleSelect(items);
     multiSelect(items);
@@ -55,7 +41,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   };
 
   // service 로직으로 이동해야 함.
-  const singleSelect = () => {};
+  const singleSelect = (items: infoType) => {};
 
   const multiSelect = (items: infoType) => {
     if (addedIngredients.some((addedItem) => addedItem.id === items.id)) {

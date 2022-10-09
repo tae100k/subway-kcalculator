@@ -1,5 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
 
+// 결국 많은 variation들은 category에 따라 결정된다.
+// single/multi select
+// 글자
+// isSelected 등
+// 그래서 infoType에는 category가 있는 게 맞았다.
+// 일반화 : 도메일 로직에 종속될수록 코드가 구분할 수 있는 flag가 있어야 한다.
 export interface infoType {
   id: string;
   title: string;
