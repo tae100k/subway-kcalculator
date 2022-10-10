@@ -1,7 +1,7 @@
 import { Container, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { isDoubled } from "../../../service/exception.service";
-import { infoType } from "../../../types/sandwich";
+import { infoType } from "../../../types/const";
 import { scrollToTop } from "../../../utils/scroll";
 import AddedListAccordion from "./AddedListAccordion";
 

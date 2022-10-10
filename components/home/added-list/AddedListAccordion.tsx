@@ -6,10 +6,10 @@ import {
   Flex,
   Text,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React from "react";
 import { ArrowDown, ArrowUp } from "../../../public/assets/icons";
 import { isDoubled } from "../../../service/exception.service";
-import { infoType } from "../../../types/sandwich";
+import { infoType } from "../../../types/const";
 
 interface AddedListAccordionProps {
   addedItems: infoType[];

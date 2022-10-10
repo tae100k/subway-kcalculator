@@ -1,6 +1,6 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
-import React from "react";
-import { infoType } from "../../../types/sandwich";
+import React, { useEffect } from "react";
+import { infoType } from "../../../types/const";
 import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {
@@ -17,7 +17,12 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
   handleItems,
 }) => {
   const checkIsSelected = (items: infoType) => {
-    return Boolean(addedItems.find((addedItem) => addedItem.id === items.id));
+    return Boolean(
+      addedItems.find(
+        (addedItem) =>
+          addedItem.id === items.id && addedItem.category === items.category
+      )
+    );
   };
 
   return (

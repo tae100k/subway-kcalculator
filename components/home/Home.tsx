@@ -1,6 +1,11 @@
 import { Box } from "@chakra-ui/react";
-import { useState } from "react";
-import { GridCategoryTitleList, infoType } from "../../types/sandwich";
+import { useEffect, useState } from "react";
+import {
+  isMultiSelect,
+  isSingleSelect,
+  toggleSelect,
+} from "../../service/selection.service";
+import { GridCategoryTitleList, infoType } from "../../types/const";
 import AddedListPopup from "./added-list/AddedListPopup";
 import InfoGridList from "./grid/InfoGridList";
 
@@ -10,6 +15,7 @@ interface HomeScreenProps {
   bread: infoType[];
   veggies: infoType[];
   cheese: infoType[];
+  extraCheese: infoType[];
   sauces: infoType[];
   extras: infoType[];
 }
@@ -20,25 +26,76 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   bread,
   veggies,
   cheese,
+  extraCheese,
   sauces,
   extras,
 }) => {
-  const [addedItems, setAddedItems] = useState<infoType[]>([]);
+  const [selectedWholeItems, setSelectedWholeItems] = useState<infoType[]>([]);
+  const [selectedIngredients, setSelectedIngredients] = useState<infoType[]>(
+    []
+  );
+
+  const [selectedSandwich, setSelectedSandwich] = useState<infoType | null>(
+    null
+  );
+  const [selectedSize, setSelectedSize] = useState<infoType | null>(null);
+  const [selectedBread, setSelectedBread] = useState<infoType | null>(null);
+
   const [isFirstPopup, setIsFirstPopup] = useState(true);
   const [index, setIndex] = useState<number>(1);
-  // TODO: 다중선택이 되어야 하는 종류가 있고, 단일 선택이 되어야 하는 종류가 있는데 이를 구분해야함
+
   const handleAddItems = (items: infoType) => {
-    if (addedItems.some((addedItem) => addedItem.id === items.id)) {
-      const newItemList = addedItems.filter(
-        (addedItem) => addedItem.id !== items.id
-      );
-      setAddedItems(newItemList);
-    } else {
-      const newItemList = [...addedItems, items];
-      setAddedItems(newItemList);
+    if (isSingleSelect(items)) {
+      singleSelect(items);
     }
+    if (isMultiSelect(items)) {
+      multiSelect(items);
+    }
+    handlePopup();
+  };
+
+  useEffect(() => {
+    const newSelectedWholeItems: infoType[] = [...selectedIngredients];
+    if (selectedBread !== null) {
+      newSelectedWholeItems.push(selectedBread);
+    }
+    if (selectedSandwich !== null) {
+      newSelectedWholeItems.push(selectedSandwich);
+    }
+    if (selectedSize !== null) {
+      newSelectedWholeItems.push(selectedSize);
+    }
+    setSelectedWholeItems(newSelectedWholeItems);
+  }, [selectedBread, selectedIngredients, selectedSandwich, selectedSize]);
+
+  const handlePopup = () => {
     if (isFirstPopup) handleIndex(0);
     if (isFirstPopup === true) setIsFirstPopup(() => false);
+  };
+
+  // service 로직으로 이동해야 함.
+  const singleSelect = (items: infoType) => {
+    if (items.category === "bread") {
+      toggleSelect(items, selectedBread, setSelectedBread);
+    }
+    if (items.category === "size") {
+      toggleSelect(items, selectedSize, setSelectedSize);
+    }
+    if (items.category === "sandwich") {
+      toggleSelect(items, selectedSandwich, setSelectedSandwich);
+    }
+  };
+
+  const multiSelect = (items: infoType) => {
+    if (selectedIngredients.some((addedItem) => addedItem.id === items.id)) {
+      const newItemList = selectedIngredients.filter(
+        (addedItem) => addedItem.id !== items.id
+      );
+      setSelectedIngredients(newItemList);
+    } else {
+      const newItemList = [...selectedIngredients, items];
+      setSelectedIngredients(newItemList);
+    }
   };
 
   const handleIndex = (newIndex: number) => {
@@ -46,7 +103,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   };
 
   const resetAddedItems = () => {
-    setAddedItems([]);
+    setSelectedWholeItems([]);
+    setSelectedIngredients([]);
+    setSelectedSandwich(null);
+    setSelectedSize(null);
+    setSelectedBread(null);
   };
 
   const chooseItems = (category: string) => {
@@ -62,8 +123,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     if (category === "veggies") {
       return veggies;
     }
-    if (category === "cheese" || category === "extra cheese") {
+    if (category === "cheese") {
       return cheese;
+    }
+    if (category === "extra cheese") {
+      return extraCheese;
     }
     if (category === "sauces") {
       return sauces;
@@ -81,7 +145,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             <InfoGridList
               gridItems={chooseItems(category.toLocaleLowerCase()) ?? []}
               key={category}
-              addedItems={addedItems}
+              addedItems={selectedWholeItems}
               title={category}
               handleItems={handleAddItems}
             />
@@ -91,7 +155,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       <AddedListPopup
         index={index}
         handleIndex={handleIndex}
-        addedItems={addedItems}
+        addedItems={selectedWholeItems}
         resetAddedItems={resetAddedItems}
       />
     </>
