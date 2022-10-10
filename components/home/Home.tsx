@@ -41,29 +41,28 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   const [index, setIndex] = useState<number>(1);
 
   const handleAddItems = (items: infoType) => {
-    console.log(
-      "isSingleSelect",
-      isSingleSelect(items),
-      "isMultiSelect",
-      isMultiSelect(items)
-    );
     if (isSingleSelect(items)) {
-      console.log("items", items);
       singleSelect(items);
     }
     if (isMultiSelect(items)) {
       multiSelect(items);
     }
-
-    console.log("selectedBread", selectedBread);
-    console.log("selectedSandwich", selectedSandwich);
-    console.log("selectedSize", selectedSize);
     handlePopup();
-
-    const newWholeItems = [...selectedIngredients, items];
-
-    setSelectedWholeItems(newWholeItems);
   };
+
+  useEffect(() => {
+    const newSelectedWholeItems: infoType[] = [...selectedIngredients];
+    if (selectedBread !== null) {
+      newSelectedWholeItems.push(selectedBread);
+    }
+    if (selectedSandwich !== null) {
+      newSelectedWholeItems.push(selectedSandwich);
+    }
+    if (selectedSize !== null) {
+      newSelectedWholeItems.push(selectedSize);
+    }
+    setSelectedWholeItems(newSelectedWholeItems);
+  }, [selectedBread, selectedIngredients, selectedSandwich, selectedSize]);
 
   const handlePopup = () => {
     if (isFirstPopup) handleIndex(0);
@@ -88,11 +87,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       const newItemList = selectedIngredients.filter(
         (addedItem) => addedItem.id !== items.id
       );
-      console.log("Substracting-) newItemList in multiSelect", newItemList);
       setSelectedIngredients(newItemList);
     } else {
       const newItemList = [...selectedIngredients, items];
-      console.log("Adding+) newItemList in multiSelect", newItemList);
       setSelectedIngredients(newItemList);
     }
   };
