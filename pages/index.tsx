@@ -12,7 +12,6 @@ import SplashScreen from "../components/splash/SplashScreen";
 import TitleHeader from "../components/TitleHeader";
 import {
   filterExtraSandwich,
-  filterDuplicatedItems,
   filterToppings,
 } from "../service/exception.service";
 import { GridCategoryTitleList, infoType, SizeList } from "../types/const";
@@ -63,7 +62,7 @@ const Home: NextPage = () => {
     }
     if (category === "extras") {
       const toppingArray = await getExtraToppingInfoList("extras");
-      const sandwichArray = await getSandwichInfoList("sandwich");
+      const sandwichArray = await getSandwichInfoList("extras");
       const res = [
         ...filterToppings(toppingArray),
         ...filterExtraSandwich(sandwichArray),
