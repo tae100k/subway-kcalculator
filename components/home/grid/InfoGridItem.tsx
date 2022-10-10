@@ -43,13 +43,12 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       pb={2}
       bg={isSelected ? "White" : "initial"}
       borderRadius={"20px"}
-      _hover={{
-        bg: "White",
-        boxShadow: "0px 4px 16px -10px rgba(0, 0, 0, 0.08)",
-      }}
+      // _hover={{
+      //   bg: "White",
+      //   boxShadow: "0px 4px 16px -10px rgba(0, 0, 0, 0.08)",
+      // }}
       boxShadow={isSelected ? "0px 4px 16px -10px rgba(0, 0, 0, 0.08)" : "none"}
     >
-      {/* TODO: image위에 마진 살짝 두기 */}
       <Icon
         as={handleSVG(category, gridItems.title)}
         h={"50px"}
