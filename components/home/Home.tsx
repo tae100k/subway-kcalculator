@@ -26,60 +26,74 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   sauces,
   extras,
 }) => {
-  const [addedWholeItems, setAddedWholeItems] = useState<infoType[]>([]);
-  const [addedIngredients, setAddedIngredients] = useState<infoType[]>([]);
+  const [selectedWholeItems, setSelectedWholeItems] = useState<infoType[]>([]);
+  const [selectedIngredients, setSelectedIngredients] = useState<infoType[]>(
+    []
+  );
+
   const [selectedSandwich, setSelectedSandwich] = useState<infoType | null>(
     null
   );
   const [selectedSize, setSelectedSize] = useState<infoType | null>(null);
   const [selectedBread, setSelectedBread] = useState<infoType | null>(null);
+
   const [isFirstPopup, setIsFirstPopup] = useState(true);
   const [index, setIndex] = useState<number>(1);
 
   const handleAddItems = (items: infoType) => {
+    console.log(
+      "isSingleSelect",
+      isSingleSelect(items),
+      "isMultiSelect",
+      isMultiSelect(items)
+    );
     if (isSingleSelect(items)) {
+      console.log("items", items);
       singleSelect(items);
     }
     if (isMultiSelect(items)) {
       multiSelect(items);
     }
+
+    console.log("selectedBread", selectedBread);
+    console.log("selectedSandwich", selectedSandwich);
+    console.log("selectedSize", selectedSize);
+    handlePopup();
+
+    const newWholeItems = [...selectedIngredients, items];
+
+    setSelectedWholeItems(newWholeItems);
+  };
+
+  const handlePopup = () => {
     if (isFirstPopup) handleIndex(0);
     if (isFirstPopup === true) setIsFirstPopup(() => false);
-    const newWholeItems = [...addedIngredients];
-    if (selectedBread !== null) {
-      newWholeItems.push(selectedBread);
-    }
-    if (selectedSandwich !== null) {
-      newWholeItems.push(selectedSandwich);
-    }
-    if (selectedSize !== null) {
-      newWholeItems.push(selectedSize);
-    }
-    setAddedWholeItems(newWholeItems);
   };
 
   // service 로직으로 이동해야 함.
   const singleSelect = (items: infoType) => {
     if (items.category === "bread") {
-      setSelectedBread(items);
+      setSelectedBread(() => items);
     }
     if (items.category === "size") {
-      setSelectedSize(items);
+      setSelectedSize(() => items);
     }
     if (items.category === "sandwich") {
-      setSelectedSandwich(items);
+      setSelectedSandwich(() => items);
     }
   };
 
   const multiSelect = (items: infoType) => {
-    if (addedIngredients.some((addedItem) => addedItem.id === items.id)) {
-      const newItemList = addedIngredients.filter(
+    if (selectedIngredients.some((addedItem) => addedItem.id === items.id)) {
+      const newItemList = selectedIngredients.filter(
         (addedItem) => addedItem.id !== items.id
       );
-      setAddedIngredients(newItemList);
+      console.log("Substracting-) newItemList in multiSelect", newItemList);
+      setSelectedIngredients(newItemList);
     } else {
-      const newItemList = [...addedIngredients, items];
-      setAddedIngredients(newItemList);
+      const newItemList = [...selectedIngredients, items];
+      console.log("Adding+) newItemList in multiSelect", newItemList);
+      setSelectedIngredients(newItemList);
     }
   };
 
@@ -88,8 +102,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   };
 
   const resetAddedItems = () => {
-    setAddedWholeItems([]);
-    setAddedIngredients([]);
+    setSelectedWholeItems([]);
+    setSelectedIngredients([]);
     setSelectedSandwich(null);
     setSelectedSize(null);
     setSelectedBread(null);
@@ -130,7 +144,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
             <InfoGridList
               gridItems={chooseItems(category.toLocaleLowerCase()) ?? []}
               key={category}
-              addedItems={addedWholeItems}
+              addedItems={selectedWholeItems}
               title={category}
               handleItems={handleAddItems}
             />
@@ -140,7 +154,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
       <AddedListPopup
         index={index}
         handleIndex={handleIndex}
-        addedItems={addedWholeItems}
+        addedItems={selectedWholeItems}
         resetAddedItems={resetAddedItems}
       />
     </>
