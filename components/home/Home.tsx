@@ -72,13 +72,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
   // service 로직으로 이동해야 함.
   const singleSelect = (items: infoType) => {
     if (items.category === "bread") {
-      setSelectedBread(() => items);
+      toggleSelect(items, selectedBread, setSelectedBread);
     }
     if (items.category === "size") {
-      setSelectedSize(() => items);
+      toggleSelect(items, selectedSize, setSelectedSize);
     }
     if (items.category === "sandwich") {
-      setSelectedSandwich(() => items);
+      toggleSelect(items, selectedSandwich, setSelectedSandwich);
     }
   };
 
@@ -91,6 +91,18 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     } else {
       const newItemList = [...selectedIngredients, items];
       setSelectedIngredients(newItemList);
+    }
+  };
+
+  const toggleSelect = (
+    items: infoType,
+    selectedItem: null | infoType,
+    callback: any
+  ) => {
+    if (selectedItem === items) {
+      callback(null);
+    } else {
+      callback(items);
     }
   };
 
