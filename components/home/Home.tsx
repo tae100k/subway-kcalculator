@@ -1,6 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { isMultiSelect, isSingleSelect } from "../../service/selection.service";
+import { useEffect, useState } from "react";
+import {
+  isMultiSelect,
+  isSingleSelect,
+  toggleSelect,
+} from "../../service/selection.service";
 import { GridCategoryTitleList, infoType } from "../../types/const";
 import AddedListPopup from "./added-list/AddedListPopup";
 import InfoGridList from "./grid/InfoGridList";
@@ -91,18 +95,6 @@ const HomeScreen: React.FC<HomeScreenProps> = ({
     } else {
       const newItemList = [...selectedIngredients, items];
       setSelectedIngredients(newItemList);
-    }
-  };
-
-  const toggleSelect = (
-    items: infoType,
-    state: null | infoType,
-    setState: Dispatch<SetStateAction<infoType | null>>
-  ) => {
-    if (state === items) {
-      setState(null);
-    } else {
-      setState(items);
     }
   };
 
