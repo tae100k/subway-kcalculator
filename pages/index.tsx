@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   const [api, setApi] = useState(false);
   setTimeout(() => {
     setApi(true);
-  }, 2000);
+  }, 2500);
 
   const [sandwich, setSandwich] = useState<infoType[]>([]);
   const [size, setSize] = useState<infoType[]>([]);
