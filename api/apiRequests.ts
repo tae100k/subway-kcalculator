@@ -2,6 +2,7 @@ import axios from "axios";
 import cheerio from "cheerio";
 import { SANDWICH_URL, INGREDIENTS_URL } from "./APIURL";
 import { v4 as uuidv4 } from "uuid";
+import { getEmptyExtrasCalories } from "../service/exception.service";
 
 export const WHEAT_BREAD_CALORIES = 192;
 export const LETTUCE_CALORIES = 2.9;
@@ -9,7 +10,12 @@ export const TOMATO_CALORIES = 7.7;
 export const CUCUMBER_CALORIES = 1.5;
 export const BELL_PEPPERS_CALORIES = 1.4;
 export const ONION_CALORIES = 2.8;
-export const CHICKEN_BACON = 90.2;
+export const CHICKEN_BACON_CALORIES = 90.2;
+export const EGG_MAYO_CALORIES = "205";
+export const OMELET_CALORIES = "120";
+export const AVOCADO_CALORIES = "63";
+export const BACON_CALORIES = "85";
+export const PEPPERONI_CALORIES = "81";
 
 const categories = ["bread", "vegetable", "cheese", "sauce"];
 
@@ -55,7 +61,10 @@ export const getExtraToppingInfoList = async (category: string) => {
     return $(`.pd_list_wrapper li`, htmlData).map((index, element) => {
       if (element.attribs.class !== "ITEM_SANDWICH.TOPPING") return;
       const title = $(element).children(".eng").text();
-      const calories = $(element).children(".cal").text();
+      const calories =
+        $(element).children(".cal").text() === ""
+          ? getEmptyExtrasCalories(title)
+          : $(element).children(".cal").text();
       const id = uuidv4();
       return {
         id,
