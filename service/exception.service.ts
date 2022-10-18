@@ -1,4 +1,11 @@
-import { CHICKEN_BACON } from "../api/apiRequests";
+import {
+  AVOCADO_CALORIES,
+  BACON_CALORIES,
+  CHICKEN_BACON_CALORIES,
+  EGG_MAYO_CALORIES,
+  OMELET_CALORIES,
+  PEPPERONI_CALORIES,
+} from "../api/apiRequests";
 import { infoType } from "../types/const";
 
 export const isDoubled = (addedItems: infoType[]) => {
@@ -16,7 +23,7 @@ export const filterExtraSandwich = (items: infoType[]): infoType[] => {
       return {
         ...item,
         title: "Chicken Bacon",
-        calories: CHICKEN_BACON.toString(),
+        calories: CHICKEN_BACON_CALORIES.toString(),
       };
     }
     return item;
@@ -33,4 +40,20 @@ export const filterDuplicatedItems = (items: infoType[]) => {
   );
 };
 
-export const singleSelect = () => {};
+export const getEmptyExtrasCalories = (title: string): string => {
+  switch (title) {
+    case "Egg Mayo":
+      return EGG_MAYO_CALORIES;
+    case "Omelet":
+      return OMELET_CALORIES;
+    case "Avocado":
+      return AVOCADO_CALORIES;
+    case "Bacon":
+      return BACON_CALORIES;
+    case "Pepperoni":
+      return PEPPERONI_CALORIES;
+    default:
+      console.log("exception", title);
+      return "0";
+  }
+};
