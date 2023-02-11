@@ -73,6 +73,7 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
             <Text textStyle="body">Kcal</Text>
           </Flex>
           <Text
+            cursor="pointer"
             onClick={onReset}
             textStyle="body"
             _hover={{ color: "Yellow.10" }}
