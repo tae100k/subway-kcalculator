@@ -43,6 +43,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       pb={2}
       bg={isSelected ? "White" : "initial"}
       borderRadius={"20px"}
+      cursor="pointer"
       // _hover={{
       //   bg: "White",
       //   boxShadow: "0px 4px 16px -10px rgba(0, 0, 0, 0.08)",
