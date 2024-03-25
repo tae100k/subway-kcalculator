@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DEFAULT_SANDWICH_INFO_TYPE } from "../../pages";
-import { isSingleSelect, toggleSelect } from "../../service/selection.service";
+import { isSingleSelect } from "../../service/selection.service";
 import { GridCategoryTitleList, InfoType } from "../../types/const";
 import AddedListPopup from "./added-list/AddedListPopup";
 import InfoGridList from "./grid/InfoGridList";
@@ -24,8 +24,10 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
   };
 
   const handlePopup = () => {
-    if (isFirstPopup) handleIndex(0);
-    if (isFirstPopup === true) setIsFirstPopup(() => false);
+    if (isFirstPopup) {
+      handleIndex(0);
+      setIsFirstPopup(false);
+    }
   };
 
   const handleIndex = (newIndex: number) => {
@@ -50,6 +52,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
       <Box p={4} pb={"170px"}>
         {GridCategoryTitleList.map((category) => {
           const categoryKey = category.toLocaleLowerCase();
+
           return (
             <InfoGridList
               key={category}

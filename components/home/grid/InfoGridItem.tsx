@@ -9,6 +9,7 @@ interface InfoGridItemProps {
   isSelected: boolean;
   onClickItem: (items: InfoType) => void;
 }
+
 const InfoGridItem: React.FC<InfoGridItemProps> = ({
   category,
   item,
@@ -45,7 +46,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       <Icon
         as={handleSVG(category, item.title)}
         h={"50px"}
-        w={item.title === "30cm" ? "100px" : "50px"}
+        w={["30cm"].includes(item.title) ? "100px" : "50px"}
       />
       <Box display="flex" flexGrow="1" alignItems="center">
         <Text

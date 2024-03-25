@@ -22,7 +22,7 @@ export type DEFAULT_SANDWICH_INFO_TYPE = {
   veggies: InfoType[];
   size: InfoType[];
   cheese: InfoType[];
-  extraCheese: InfoType[];
+  extracheese: InfoType[];
   sauces: InfoType[];
   extras: InfoType[];
   [key: string]: InfoType[];
@@ -34,7 +34,7 @@ const DEFAULT_SANDWICH_INFO: DEFAULT_SANDWICH_INFO_TYPE = {
   veggies: [],
   size: [],
   cheese: [],
-  extraCheese: [],
+  extracheese: [],
   sauces: [],
   extras: [],
 };
@@ -68,9 +68,9 @@ const Home: NextPage = () => {
       const res = await getInfoList(category);
       setSandwichInfo((prev) => ({ ...prev, cheese: res }));
     }
-    if (category === "extra cheese") {
-      const res = await getInfoList(category);
-      setSandwichInfo((prev) => ({ ...prev, extraCheese: res }));
+    if (category === "extracheese") {
+      const res = await getInfoList("cheese");
+      setSandwichInfo((prev) => ({ ...prev, extracheese: res }));
     }
     if (category === "sauces") {
       const res = await getInfoList("sauce");
@@ -89,7 +89,7 @@ const Home: NextPage = () => {
 
   const handleInfo = async () => {
     GridCategoryTitleList.map(async (title) => {
-      await divideItemFunc(title.toLowerCase());
+      await divideItemFunc(title);
     });
   };
 

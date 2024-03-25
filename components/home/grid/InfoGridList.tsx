@@ -1,10 +1,10 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import { InfoType } from "../../../types/const";
+import React from "react";
+import { InfoType, SandwichCategory, titleMapper } from "../../../types/const";
 import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {
-  title: string;
+  title: SandwichCategory;
   gridItems: InfoType[];
   onClickItem: (items: InfoType) => void;
   checkIsSelected: (items: InfoType) => boolean;
@@ -19,14 +19,16 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
   return (
     <Box display="flex" flexDirection="column" gap={4} mb={10}>
       <Text
-        textStyle={["Extra cheese"].includes(title) ? "body" : "title"}
+        textStyle={["extracheese"].includes(title) ? "body" : "title"}
         color="Green.20"
       >
-        {title}
+        {titleMapper[title]}
       </Text>
       <Box>
         <Grid
-          templateColumns={title === "Size" ? `1fr 2fr` : `repeat(3, 1fr)`}
+          templateColumns={
+            title === SandwichCategory.Size ? `1fr 2fr` : `repeat(3, 1fr)`
+          }
           gap={2}
         >
           {gridItems.map((item) => {

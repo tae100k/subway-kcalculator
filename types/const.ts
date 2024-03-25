@@ -13,17 +13,6 @@ export interface InfoType {
   category: string;
 }
 
-export const GridCategoryTitleList = [
-  "Sandwich",
-  "Size",
-  "Bread",
-  "Cheese",
-  "Extra cheese",
-  "Veggies",
-  "Sauces",
-  "Extras",
-];
-
 export const SizeList: InfoType[] = [
   {
     title: "15cm",
@@ -51,3 +40,27 @@ export const DEFAULT_CALORIES =
   CUCUMBER_CALORIES +
   BELL_PEPPER_CALORIES +
   ONION_CALORIES;
+
+export enum SandwichCategory {
+  Sandwich = "sandwich",
+  Bread = "bread",
+  Size = "size",
+  Cheese = "cheese",
+  ExtraCheese = "extracheese",
+  Veggies = "veggies",
+  Sauces = "sauces",
+  Extras = "extras",
+}
+
+export const titleMapper: Record<SandwichCategory, string> = {
+  [SandwichCategory.Sandwich]: "Sandwich",
+  [SandwichCategory.Bread]: "Bread",
+  [SandwichCategory.Size]: "Size",
+  [SandwichCategory.Cheese]: "Cheese",
+  [SandwichCategory.ExtraCheese]: "Extra Cheese",
+  [SandwichCategory.Veggies]: "Veggies",
+  [SandwichCategory.Sauces]: "Sauces",
+  [SandwichCategory.Extras]: "Extras",
+};
+
+export const GridCategoryTitleList = Object.values(SandwichCategory);

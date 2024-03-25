@@ -8,21 +8,21 @@ import { handleVeggies } from "./veggies";
 
 export const handleSVGCategory = (category: string, title: string) => {
   switch (category) {
-    case "Sandwich":
+    case "sandwich":
       return handleSandwich(title);
-    case "Size":
+    case "size":
       return handleSize(title);
-    case "Bread":
+    case "bread":
       return handleBread(title);
-    case "Veggies":
+    case "veggies":
       return handleVeggies(title);
-    case "Cheese":
+    case "cheese":
       return handleCheese(title);
-    case "Sauces":
+    case "sauces":
       return handleSauces(title);
-    case "Extras":
+    case "extras":
       return handleExtras(title);
-    case "Extra cheese":
+    case "extracheese":
       return handleCheese(title);
     default:
       return handleBread(title);
