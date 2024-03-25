@@ -9,10 +9,10 @@ import {
 import React from "react";
 import { ArrowDown, ArrowUp } from "../../../public/assets/icons";
 import { isDoubled } from "../../../service/exception.service";
-import { infoType } from "../../../types/const";
+import { InfoType } from "../../../types/const";
 
 interface AddedListAccordionProps {
-  addedItems: infoType[];
+  addedItems: InfoType[];
   index: number;
   handleIndex: (newIndex: number) => void;
 }
@@ -22,20 +22,21 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
   index,
   handleIndex,
 }) => {
-  const handleSpecialCalories = (item: infoType) => {
+  const handleSpecialCalories = (item: InfoType) => {
     // 리팩토링 해야함.
     if (item.title === "Flat Bread") {
       return Number(item.calories.split(" ")[0]) / 2;
     }
     return Number(item.calories.split(" ")[0]);
   };
+
   const handleChange = () => {
     if (index === 0) handleIndex(1);
     if (index === 1) handleIndex(0);
   };
 
   return (
-    <Accordion allowMultiple index={index} onClick={handleChange}>
+    <Accordion allowMultiple index={[index]} onClick={handleChange}>
       <AccordionItem border="none">
         {({ isExpanded }) => (
           <>
@@ -64,7 +65,7 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
               {addedItems.map((item) => {
                 if (item.title !== "30cm" && item.title !== "15cm")
                   return (
-                    <Flex key={item.id} gap={"5px"}>
+                    <Flex key={`${item.category}${item.title}`} gap={"5px"}>
                       <Text textStyle="body">+</Text>
                       <Text textStyle="body">
                         {`${handleSpecialCalories(item)}`}

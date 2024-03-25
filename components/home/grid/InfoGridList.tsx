@@ -1,51 +1,44 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
-import React, { useEffect } from "react";
-import { infoType } from "../../../types/const";
+import React from "react";
+import { InfoType, SandwichCategory, titleMapper } from "../../../types/const";
 import InfoGridItem from "./InfoGridItem";
 
 interface InfoGridListProps {
-  title: string;
-  gridItems: infoType[];
-  addedItems: infoType[];
-  handleItems: (items: infoType) => void;
+  title: SandwichCategory;
+  gridItems: InfoType[];
+  onClickItem: (items: InfoType) => void;
+  checkIsSelected: (items: InfoType) => boolean;
 }
 
 const InfoGridList: React.FC<InfoGridListProps> = ({
   title,
   gridItems,
-  addedItems,
-  handleItems,
+  onClickItem,
+  checkIsSelected,
 }) => {
-  const checkIsSelected = (items: infoType) => {
-    return Boolean(
-      addedItems.find(
-        (addedItem) =>
-          addedItem.id === items.id && addedItem.category === items.category
-      )
-    );
-  };
-
   return (
     <Box display="flex" flexDirection="column" gap={4} mb={10}>
       <Text
-        textStyle={title === "Extra cheese" ? "body" : "title"}
+        textStyle={["extracheese"].includes(title) ? "body" : "title"}
         color="Green.20"
       >
-        {title}
+        {titleMapper[title]}
       </Text>
       <Box>
         <Grid
-          templateColumns={title === "Size" ? `1fr 2fr` : `repeat(3, 1fr)`}
+          templateColumns={
+            title === SandwichCategory.Size ? `1fr 2fr` : `repeat(3, 1fr)`
+          }
           gap={2}
         >
-          {gridItems.map((items) => {
+          {gridItems.map((item) => {
             return (
               <InfoGridItem
-                key={items.id}
+                key={`${item.category}${item.title}`}
                 category={title}
-                gridItems={items}
-                isSelected={checkIsSelected(items)}
-                handleClick={handleItems}
+                item={item}
+                isSelected={checkIsSelected(item)}
+                onClickItem={onClickItem}
               />
             );
           })}

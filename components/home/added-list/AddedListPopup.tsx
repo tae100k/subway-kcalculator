@@ -1,12 +1,12 @@
 import { Container, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { isDoubled } from "../../../service/exception.service";
-import { infoType } from "../../../types/const";
-import { asyncedScrollToTop, scrollToTop } from "../../../utils/scroll";
+import { InfoType } from "../../../types/const";
+import { asyncedScrollToTop } from "../../../utils/scroll";
 import AddedListAccordion from "./AddedListAccordion";
 
 interface AddedListPopupProps {
-  addedItems: infoType[];
+  addedItems: InfoType[];
   index: number;
   resetAddedItems: () => void;
   handleIndex: (newIndex: number) => void;
@@ -18,22 +18,18 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
   handleIndex,
   resetAddedItems,
 }) => {
-  const [currentTotalNumber, setCurrentTotalNumber] = useState<number>(1000);
-
-  useEffect(() => {
-    const itemCaloryList = addedItems.map((item) => {
-      if (item.title === "Flat Bread") {
-        return Number(item.calories.split(" ")[0]) / 2;
-      }
-      return Number(item.calories.split(" ")[0]);
-    });
-    const itemCaloryTotal = itemCaloryList.reduce((a, b) => a + b, 0);
-    {
-      isDoubled(addedItems)
-        ? setCurrentTotalNumber(Number((itemCaloryTotal * 2).toFixed(1)))
-        : setCurrentTotalNumber(Number(itemCaloryTotal.toFixed(1)));
+  const itemCaloriesList = addedItems.map((item) => {
+    if (item.title === "Flat Bread") {
+      return Number(item.calories.split(" ")[0]) / 2;
     }
-  }, [addedItems]);
+    return Number(item.calories.split(" ")[0]);
+  });
+
+  const itemCaloryTotal = itemCaloriesList.reduce((a, b) => a + b, 0);
+
+  const totalCalories = isDoubled(addedItems)
+    ? Number((itemCaloryTotal * 2).toFixed(1))
+    : Number(itemCaloryTotal.toFixed(1));
 
   const onReset = () => {
     handleIndex(1);
@@ -68,11 +64,12 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
         >
           <Flex flexDirection="row" alignItems="baseline" gap={3} pb={"8px"}>
             <Text textStyle="display">
-              {currentTotalNumber.toString().padStart(3, "0")}
+              {totalCalories.toString().padStart(3, "0")}
             </Text>
             <Text textStyle="body">Kcal</Text>
           </Flex>
           <Text
+            cursor="pointer"
             onClick={onReset}
             textStyle="body"
             _hover={{ color: "Yellow.10" }}

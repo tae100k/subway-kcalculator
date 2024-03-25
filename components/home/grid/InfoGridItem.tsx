@@ -1,39 +1,32 @@
 import { Box, GridItem, Icon, Text } from "@chakra-ui/react";
 import React from "react";
 import { handleSVGCategory } from "../../../public/assets/ingredients/SVG";
-import { infoType } from "../../../types/const";
+import { InfoType } from "../../../types/const";
 
 interface InfoGridItemProps {
   category: string;
-  gridItems: infoType;
+  item: InfoType;
   isSelected: boolean;
-  handleClick: (items: infoType) => void;
+  onClickItem: (items: InfoType) => void;
 }
+
 const InfoGridItem: React.FC<InfoGridItemProps> = ({
   category,
-  gridItems,
+  item,
   isSelected,
-  handleClick,
+  onClickItem,
 }) => {
   const handleSVG = (category: string, title: string) => {
     return handleSVGCategory(category, title);
   };
 
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (e.cancelable) {
-      e.preventDefault();
-      onClick();
-    }
-  };
-
   const onClick = () => {
-    handleClick(gridItems);
+    onClickItem(item);
   };
 
   return (
     <GridItem
       gap="12px"
-      onTouchEnd={onTouchEnd}
       display="flex"
       alignItems="center"
       flexDirection="column"
@@ -43,6 +36,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       pb={2}
       bg={isSelected ? "White" : "initial"}
       borderRadius={"20px"}
+      cursor="pointer"
       // _hover={{
       //   bg: "White",
       //   boxShadow: "0px 4px 16px -10px rgba(0, 0, 0, 0.08)",
@@ -50,9 +44,9 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       boxShadow={isSelected ? "0px 4px 16px -10px rgba(0, 0, 0, 0.08)" : "none"}
     >
       <Icon
-        as={handleSVG(category, gridItems.title)}
+        as={handleSVG(category, item.title)}
         h={"50px"}
-        w={gridItems.title === "30cm" ? "100px" : "50px"}
+        w={["30cm"].includes(item.title) ? "100px" : "50px"}
       />
       <Box display="flex" flexGrow="1" alignItems="center">
         <Text
@@ -60,7 +54,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
           textStyle="label"
           color={isSelected ? "Green.10" : "Gray.50"}
         >
-          {gridItems.title}
+          {item.title}
         </Text>
       </Box>
     </GridItem>

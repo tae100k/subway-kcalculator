@@ -1,7 +1,6 @@
 import axios from "axios";
 import cheerio from "cheerio";
 import { SANDWICH_URL, INGREDIENTS_URL } from "./APIURL";
-import { v4 as uuidv4 } from "uuid";
 import { getEmptyExtrasCalories } from "../service/exception.service";
 
 export const WHEAT_BREAD_CALORIES = 192;
@@ -16,8 +15,6 @@ export const OMELET_CALORIES = "120";
 export const AVOCADO_CALORIES = "63";
 export const BACON_CALORIES = "85";
 export const PEPPERONI_CALORIES = "81";
-
-const categories = ["bread", "vegetable", "cheese", "sauce"];
 
 export const getSandwichInfoList = async (category: string) => {
   const SANDWICH_FULL_URL = `${SANDWICH_URL}`;
@@ -40,9 +37,7 @@ export const getSandwichInfoList = async (category: string) => {
       )
         .toFixed(1)
         .toString();
-      const id = uuidv4();
       return {
-        id,
         title,
         calories,
         category,
@@ -65,9 +60,7 @@ export const getExtraToppingInfoList = async (category: string) => {
         $(element).children(".cal").text() === ""
           ? getEmptyExtrasCalories(title)
           : $(element).children(".cal").text();
-      const id = uuidv4();
       return {
-        id,
         title,
         calories,
         category,
@@ -91,9 +84,7 @@ export const getInfo = async (URL: string, category: string) => {
     return $(`.pd_list_wrapper .${query}`, htmlData).map((index, element) => {
       const title = $(element).children(".eng").text();
       const calories = $(element).children(".cal").text();
-      const id = uuidv4();
       return {
-        id,
         title,
         calories,
         category,
