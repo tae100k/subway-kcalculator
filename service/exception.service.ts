@@ -6,18 +6,18 @@ import {
   OMELET_CALORIES,
   PEPPERONI_CALORIES,
 } from "../api/apiRequests";
-import { infoType } from "../types/const";
+import { InfoType } from "../types/const";
 
-export const isDoubled = (addedItems: infoType[]) => {
+export const isDoubled = (addedItems: InfoType[]) => {
   return addedItems.some((items) => items.title === "30cm");
 };
 
-export const filterToppings = (items: infoType[]) => {
+export const filterToppings = (items: InfoType[]) => {
   return items.filter(({ title }) => title !== "Meat" && title !== "Cheese");
 };
 
-export const filterExtraSandwich = (items: infoType[]): infoType[] => {
-  const filteredItems = filterDuplicatedItems(items);
+export const filterExtraSandwich = (items: InfoType[]): InfoType[] => {
+  const filteredItems = filterSUBPICK(filterDuplicatedItems(items));
   return filteredItems.map((item) => {
     if (item.title === "Chicken Bacon Avocado") {
       return {
@@ -30,14 +30,18 @@ export const filterExtraSandwich = (items: infoType[]): infoType[] => {
   });
 };
 
-export const filterDuplicatedItems = (items: infoType[]) => {
+export const filterDuplicatedItems = (items: InfoType[]) => {
   return items.filter(
     ({ title }) =>
       title !== "Egg Mayo" &&
       title !== "Turkey" &&
       title !== "Turkey Bacon Avocado" &&
+      title !== "Egg Slice" &&
       title !== "Veggie Delite"
   );
+};
+export const filterSUBPICK = (items: InfoType[]) => {
+  return items.filter(({ title }) => !title.toUpperCase().includes("SUBPICK"));
 };
 
 export const getEmptyExtrasCalories = (title: string): string => {

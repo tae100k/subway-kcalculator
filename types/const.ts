@@ -1,41 +1,50 @@
-import { v4 as uuidv4 } from "uuid";
-
 // 결국 많은 variation들은 category에 따라 결정된다.
 // single/multi select
 // 글자
 // isSelected 등
 // 그래서 infoType에는 category가 있는 게 맞았다.
 // 일반화 : 도메일 로직에 종속될수록 코드가 구분할 수 있는 flag가 있어야 한다.
-export interface infoType {
-  id: string;
-  title: string;
-  calories: string;
-  category: string;
+
+export enum SandwichCategory {
+  Sandwich = "sandwich",
+  Bread = "bread",
+  Size = "size",
+  Cheese = "cheese",
+  ExtraCheese = "extracheese",
+  Veggies = "veggies",
+  Sauces = "sauces",
+  Extras = "extras",
 }
 
-export const GridCategoryTitleList = [
-  "Sandwich",
-  "Size",
-  "Bread",
-  "Cheese",
-  "Extra cheese",
-  "Veggies",
-  "Sauces",
-  "Extras",
-];
+export const titleMapper: Record<SandwichCategory, string> = {
+  [SandwichCategory.Sandwich]: "Sandwich",
+  [SandwichCategory.Bread]: "Bread",
+  [SandwichCategory.Size]: "Size",
+  [SandwichCategory.Cheese]: "Cheese",
+  [SandwichCategory.ExtraCheese]: "Extra Cheese",
+  [SandwichCategory.Veggies]: "Veggies",
+  [SandwichCategory.Sauces]: "Sauces",
+  [SandwichCategory.Extras]: "Extras",
+};
 
-export const SizeList: infoType[] = [
+export const GridCategoryTitleList = Object.values(SandwichCategory);
+
+export interface InfoType {
+  title: string;
+  calories: string;
+  category: SandwichCategory | string;
+}
+
+export const SizeList: InfoType[] = [
   {
     title: "15cm",
     calories: "0",
-    id: uuidv4(),
-    category: "size",
+    category: SandwichCategory.Size,
   },
   {
     title: "30cm",
     calories: "0",
-    id: uuidv4(),
-    category: "size",
+    category: SandwichCategory.Size,
   },
 ];
 
