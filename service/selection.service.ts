@@ -1,12 +1,14 @@
 import { Dispatch, SetStateAction } from "react";
-import { InfoType } from "../types/const";
+import { InfoType, SandwichCategory } from "../types/const";
 
-export const isSingleSelect = (items: InfoType): boolean => {
+export const isSingleSelect = (
+  category: SandwichCategory | string
+): boolean => {
   return (
-    items.category === "bread" ||
-    items.category === "size" ||
-    items.category === "sandwich" ||
-    items.category === "cheese"
+    category === SandwichCategory.Bread ||
+    category === SandwichCategory.Sandwich ||
+    category === SandwichCategory.Size ||
+    category === SandwichCategory.Cheese
   );
 };
 

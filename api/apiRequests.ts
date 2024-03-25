@@ -16,8 +16,6 @@ export const AVOCADO_CALORIES = "63";
 export const BACON_CALORIES = "85";
 export const PEPPERONI_CALORIES = "81";
 
-const categories = ["bread", "vegetable", "cheese", "sauce"];
-
 export const getSandwichInfoList = async (category: string) => {
   const SANDWICH_FULL_URL = `${SANDWICH_URL}`;
   const infoList = await axios(SANDWICH_FULL_URL).then((res) => {

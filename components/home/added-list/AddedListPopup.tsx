@@ -2,7 +2,7 @@ import { Container, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { isDoubled } from "../../../service/exception.service";
 import { InfoType } from "../../../types/const";
-import { asyncedScrollToTop, scrollToTop } from "../../../utils/scroll";
+import { asyncedScrollToTop } from "../../../utils/scroll";
 import AddedListAccordion from "./AddedListAccordion";
 
 interface AddedListPopupProps {

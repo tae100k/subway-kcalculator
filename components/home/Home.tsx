@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DEFAULT_SANDWICH_INFO_TYPE } from "../../pages";
 import { isSingleSelect } from "../../service/selection.service";
 import { GridCategoryTitleList, InfoType } from "../../types/const";
@@ -11,15 +11,31 @@ interface HomeScreenProps {
 }
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
-  const [selectedWholeItems, setSelectedWholeItems] = useState<InfoType[]>([]);
+  const [selectedItems, setSelectedItems] = useState<InfoType[]>([]);
 
   const [isFirstPopup, setIsFirstPopup] = useState(true);
   const [index, setIndex] = useState<number>(1);
 
-  const handleAddItems = (item: InfoType) => {
-    if (isSingleSelect(item)) {
+  const handleAddItems = (newItem: InfoType) => {
+    const category = newItem.category;
+    const isSelected = checkIsSelected(newItem);
+
+    if (isSingleSelect(category)) {
+      const newSelectedItems = selectedItems.filter(
+        (item) => item.category !== category
+      );
+      setSelectedItems([...newSelectedItems, newItem]);
     } else {
+      if (!isSelected) {
+        setSelectedItems([...selectedItems, newItem]);
+      } else {
+        const newSelectedItems = selectedItems.filter(
+          (item) => item.title !== newItem.title || item.category !== category
+        );
+        setSelectedItems(newSelectedItems);
+      }
     }
+
     handlePopup();
   };
 
@@ -35,12 +51,12 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
   };
 
   const resetAddedItems = () => {
-    setSelectedWholeItems([]);
+    setSelectedItems([]);
   };
 
   const checkIsSelected = (items: InfoType) => {
     return Boolean(
-      selectedWholeItems.find(
+      selectedItems.find(
         (addedItem) =>
           addedItem.title === items.title &&
           addedItem.category === items.category
@@ -68,7 +84,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
       <AddedListPopup
         index={index}
         handleIndex={handleIndex}
-        addedItems={selectedWholeItems}
+        addedItems={selectedItems}
         resetAddedItems={resetAddedItems}
       />
     </>
