@@ -36,6 +36,7 @@ export const filterDuplicatedItems = (items: InfoType[]) => {
       title !== "Egg Mayo" &&
       title !== "Turkey" &&
       title !== "Turkey Bacon Avocado" &&
+      title !== "Egg Slice" &&
       title !== "Veggie Delite"
   );
 };

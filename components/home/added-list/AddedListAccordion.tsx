@@ -36,7 +36,7 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
   };
 
   return (
-    <Accordion allowMultiple index={index} onClick={handleChange}>
+    <Accordion allowMultiple index={[index]} onClick={handleChange}>
       <AccordionItem border="none">
         {({ isExpanded }) => (
           <>
