@@ -5,15 +5,8 @@ export const isSingleSelect = (items: InfoType): boolean => {
   return (
     items.category === "bread" ||
     items.category === "size" ||
-    items.category === "sandwich"
-  );
-};
-
-export const isMultiSelect = (items: InfoType): boolean => {
-  return (
-    items.category !== "bread" &&
-    items.category !== "size" &&
-    items.category !== "sandwich"
+    items.category === "sandwich" ||
+    items.category === "cheese"
   );
 };
 

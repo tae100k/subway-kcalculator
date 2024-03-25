@@ -1,14 +1,10 @@
 import { Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import {
-  isMultiSelect,
-  isSingleSelect,
-  toggleSelect,
-} from "../../service/selection.service";
+import { DEFAULT_SANDWICH_INFO_TYPE } from "../../pages";
+import { isSingleSelect, toggleSelect } from "../../service/selection.service";
 import { GridCategoryTitleList, InfoType } from "../../types/const";
 import AddedListPopup from "./added-list/AddedListPopup";
 import InfoGridList from "./grid/InfoGridList";
-import { DEFAULT_SANDWICH_INFO_TYPE } from "../../pages";
 
 interface HomeScreenProps {
   sandwichInfo: DEFAULT_SANDWICH_INFO_TYPE;
@@ -19,21 +15,18 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
   const [selectedIngredients, setSelectedIngredients] = useState<InfoType[]>(
     []
   );
-
   const [selectedSandwich, setSelectedSandwich] = useState<InfoType | null>(
     null
   );
   const [selectedSize, setSelectedSize] = useState<InfoType | null>(null);
   const [selectedBread, setSelectedBread] = useState<InfoType | null>(null);
-
   const [isFirstPopup, setIsFirstPopup] = useState(true);
   const [index, setIndex] = useState<number>(1);
 
   const handleAddItems = (items: InfoType) => {
     if (isSingleSelect(items)) {
       singleSelect(items);
-    }
-    if (isMultiSelect(items)) {
+    } else {
       multiSelect(items);
     }
     handlePopup();
