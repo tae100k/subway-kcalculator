@@ -26,6 +26,7 @@ export type DEFAULT_SANDWICH_INFO_TYPE = {
   sauces: InfoType[];
   extras: InfoType[];
 };
+
 const DEFAULT_SANDWICH_INFO: DEFAULT_SANDWICH_INFO_TYPE = {
   bread: [],
   sandwich: [],
@@ -37,36 +38,42 @@ const DEFAULT_SANDWICH_INFO: DEFAULT_SANDWICH_INFO_TYPE = {
   extras: [],
 };
 
-export async function getStaticProps() {
-  const sandwich: DEFAULT_SANDWICH_INFO_TYPE = DEFAULT_SANDWICH_INFO;
-  console.log("===sandwich===", sandwich);
+const Home: NextPage = () => {
+  const [api, setApi] = useState(false);
+  setTimeout(() => {
+    setApi(true);
+  }, 1800);
+
+  const [sandwichInfo, setSandwichInfo] = useState(DEFAULT_SANDWICH_INFO);
+
   const divideItemFunc = async (category: string) => {
     if (category === "sandwich") {
       const res = await getSandwichInfoList(category);
-      sandwich.sandwich = res;
+      setSandwichInfo((prev) => ({ ...prev, sandwich: res }));
     }
     if (category === "size") {
-      sandwich.size = SizeList;
+      const res = SizeList;
+      setSandwichInfo((prev) => ({ ...prev, size: res }));
     }
     if (category === "bread") {
       const res = await getInfoList(category);
-      sandwich.bread = res;
+      setSandwichInfo((prev) => ({ ...prev, bread: res }));
     }
     if (category === "veggies") {
       const res = await getInfoList("vegetable");
-      sandwich.veggies = res;
+      setSandwichInfo((prev) => ({ ...prev, veggies: res }));
     }
     if (category === "cheese") {
       const res = await getInfoList(category);
-      sandwich.cheese = res;
+      setSandwichInfo((prev) => ({ ...prev, cheese: res }));
     }
     if (category === "extra cheese") {
       const res = await getInfoList(category);
-      sandwich.extraCheese = res;
+      setSandwichInfo((prev) => ({ ...prev, extraCheese: res }));
     }
     if (category === "sauces") {
       const res = await getInfoList("sauce");
-      sandwich.sauces = res;
+      setSandwichInfo((prev) => ({ ...prev, sauces: res }));
     }
     if (category === "extras") {
       const toppingArray = await getExtraToppingInfoList("extras");
@@ -75,32 +82,19 @@ export async function getStaticProps() {
         ...filterToppings(toppingArray),
         ...filterExtraSandwich(sandwichArray),
       ];
-      sandwich.extras = res;
+      setSandwichInfo((prev) => ({ ...prev, extras: res }));
     }
   };
 
-  await Promise.all(
+  const handleInfo = async () => {
     GridCategoryTitleList.map(async (title) => {
       await divideItemFunc(title.toLowerCase());
-    })
-  );
-
-  return {
-    props: {
-      sandwich,
-    },
+    });
   };
-}
 
-interface HomeProps {
-  sandwich: DEFAULT_SANDWICH_INFO_TYPE;
-}
-
-const Home: NextPage<HomeProps> = ({ sandwich }) => {
-  const [api, setApi] = useState(false);
-  setTimeout(() => {
-    setApi(true);
-  }, 1800);
+  useEffect(() => {
+    handleInfo();
+  }, []);
 
   return (
     <>
@@ -120,11 +114,16 @@ const Home: NextPage<HomeProps> = ({ sandwich }) => {
         <Box id="maxW box" bg="Grayscale.10" h="full" w="100%" maxW={"516px"}>
           <TitleHeader />
           <Box>
-            {api ? <HomeScreen sandwichInfo={sandwich} /> : <SplashScreen />}
+            {api ? (
+              <HomeScreen sandwichInfo={sandwichInfo} />
+            ) : (
+              <SplashScreen />
+            )}
           </Box>
         </Box>
       </Box>
     </>
   );
 };
+
 export default Home;
