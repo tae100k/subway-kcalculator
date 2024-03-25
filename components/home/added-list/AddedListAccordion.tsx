@@ -29,6 +29,7 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
     }
     return Number(item.calories.split(" ")[0]);
   };
+
   const handleChange = () => {
     if (index === 0) handleIndex(1);
     if (index === 1) handleIndex(0);

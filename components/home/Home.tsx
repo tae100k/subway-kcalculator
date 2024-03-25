@@ -12,68 +12,20 @@ interface HomeScreenProps {
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
   const [selectedWholeItems, setSelectedWholeItems] = useState<InfoType[]>([]);
-  const [selectedIngredients, setSelectedIngredients] = useState<InfoType[]>(
-    []
-  );
-  const [selectedSandwich, setSelectedSandwich] = useState<InfoType | null>(
-    null
-  );
-  const [selectedSize, setSelectedSize] = useState<InfoType | null>(null);
-  const [selectedBread, setSelectedBread] = useState<InfoType | null>(null);
+
   const [isFirstPopup, setIsFirstPopup] = useState(true);
   const [index, setIndex] = useState<number>(1);
 
-  const handleAddItems = (items: InfoType) => {
-    if (isSingleSelect(items)) {
-      singleSelect(items);
+  const handleAddItems = (item: InfoType) => {
+    if (isSingleSelect(item)) {
     } else {
-      multiSelect(items);
     }
     handlePopup();
   };
 
-  useEffect(() => {
-    const newSelectedWholeItems: InfoType[] = [...selectedIngredients];
-    if (selectedBread !== null) {
-      newSelectedWholeItems.push(selectedBread);
-    }
-    if (selectedSandwich !== null) {
-      newSelectedWholeItems.push(selectedSandwich);
-    }
-    if (selectedSize !== null) {
-      newSelectedWholeItems.push(selectedSize);
-    }
-    setSelectedWholeItems(newSelectedWholeItems);
-  }, [selectedBread, selectedIngredients, selectedSandwich, selectedSize]);
-
   const handlePopup = () => {
     if (isFirstPopup) handleIndex(0);
     if (isFirstPopup === true) setIsFirstPopup(() => false);
-  };
-
-  // service 로직으로 이동해야 함.
-  const singleSelect = (items: InfoType) => {
-    if (items.category === "bread") {
-      toggleSelect(items, selectedBread, setSelectedBread);
-    }
-    if (items.category === "size") {
-      toggleSelect(items, selectedSize, setSelectedSize);
-    }
-    if (items.category === "sandwich") {
-      toggleSelect(items, selectedSandwich, setSelectedSandwich);
-    }
-  };
-
-  const multiSelect = (items: InfoType) => {
-    if (selectedIngredients.some((addedItem) => addedItem.id === items.id)) {
-      const newItemList = selectedIngredients.filter(
-        (addedItem) => addedItem.id !== items.id
-      );
-      setSelectedIngredients(newItemList);
-    } else {
-      const newItemList = [...selectedIngredients, items];
-      setSelectedIngredients(newItemList);
-    }
   };
 
   const handleIndex = (newIndex: number) => {
@@ -82,50 +34,29 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
 
   const resetAddedItems = () => {
     setSelectedWholeItems([]);
-    setSelectedIngredients([]);
-    setSelectedSandwich(null);
-    setSelectedSize(null);
-    setSelectedBread(null);
   };
 
-  const chooseItems = (category: string) => {
-    if (category === "sandwich") {
-      return sandwichInfo.sandwich;
-    }
-    if (category === "size") {
-      return sandwichInfo.size;
-    }
-    if (category === "bread") {
-      return sandwichInfo.bread;
-    }
-    if (category === "veggies") {
-      return sandwichInfo.veggies;
-    }
-    if (category === "cheese") {
-      return sandwichInfo.cheese;
-    }
-    if (category === "extra cheese") {
-      return sandwichInfo.extraCheese;
-    }
-    if (category === "sauces") {
-      return sandwichInfo.sauces;
-    }
-    if (category === "extras") {
-      return sandwichInfo.extras;
-    }
+  const checkIsSelected = (items: InfoType) => {
+    return Boolean(
+      selectedWholeItems.find(
+        (addedItem) =>
+          addedItem.id === items.id && addedItem.category === items.category
+      )
+    );
   };
 
   return (
     <>
       <Box p={4} pb={"170px"}>
         {GridCategoryTitleList.map((category) => {
+          const categoryKey = category.toLocaleLowerCase();
           return (
             <InfoGridList
               key={category}
-              gridItems={chooseItems(category.toLocaleLowerCase()) ?? []}
-              addedItems={selectedWholeItems}
+              gridItems={sandwichInfo[categoryKey] ?? []}
               title={category}
-              handleItems={handleAddItems}
+              onClickItem={handleAddItems}
+              checkIsSelected={checkIsSelected}
             />
           );
         })}

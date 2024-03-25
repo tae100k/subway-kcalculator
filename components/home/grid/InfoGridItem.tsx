@@ -5,35 +5,27 @@ import { InfoType } from "../../../types/const";
 
 interface InfoGridItemProps {
   category: string;
-  gridItems: InfoType;
+  item: InfoType;
   isSelected: boolean;
-  handleClick: (items: InfoType) => void;
+  onClickItem: (items: InfoType) => void;
 }
 const InfoGridItem: React.FC<InfoGridItemProps> = ({
   category,
-  gridItems,
+  item,
   isSelected,
-  handleClick,
+  onClickItem,
 }) => {
   const handleSVG = (category: string, title: string) => {
     return handleSVGCategory(category, title);
   };
 
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (e.cancelable) {
-      e.preventDefault();
-      onClick();
-    }
-  };
-
   const onClick = () => {
-    handleClick(gridItems);
+    onClickItem(item);
   };
 
   return (
     <GridItem
       gap="12px"
-      onTouchEnd={onTouchEnd}
       display="flex"
       alignItems="center"
       flexDirection="column"
@@ -51,9 +43,9 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       boxShadow={isSelected ? "0px 4px 16px -10px rgba(0, 0, 0, 0.08)" : "none"}
     >
       <Icon
-        as={handleSVG(category, gridItems.title)}
+        as={handleSVG(category, item.title)}
         h={"50px"}
-        w={gridItems.title === "30cm" ? "100px" : "50px"}
+        w={item.title === "30cm" ? "100px" : "50px"}
       />
       <Box display="flex" flexGrow="1" alignItems="center">
         <Text
@@ -61,7 +53,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
           textStyle="label"
           color={isSelected ? "Green.10" : "Gray.50"}
         >
-          {gridItems.title}
+          {item.title}
         </Text>
       </Box>
     </GridItem>

@@ -6,29 +6,20 @@ import InfoGridItem from "./InfoGridItem";
 interface InfoGridListProps {
   title: string;
   gridItems: InfoType[];
-  addedItems: InfoType[];
-  handleItems: (items: InfoType) => void;
+  onClickItem: (items: InfoType) => void;
+  checkIsSelected: (items: InfoType) => boolean;
 }
 
 const InfoGridList: React.FC<InfoGridListProps> = ({
   title,
   gridItems,
-  addedItems,
-  handleItems,
+  onClickItem,
+  checkIsSelected,
 }) => {
-  const checkIsSelected = (items: InfoType) => {
-    return Boolean(
-      addedItems.find(
-        (addedItem) =>
-          addedItem.id === items.id && addedItem.category === items.category
-      )
-    );
-  };
-
   return (
     <Box display="flex" flexDirection="column" gap={4} mb={10}>
       <Text
-        textStyle={title === "Extra cheese" ? "body" : "title"}
+        textStyle={["Extra cheese"].includes(title) ? "body" : "title"}
         color="Green.20"
       >
         {title}
@@ -38,14 +29,14 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
           templateColumns={title === "Size" ? `1fr 2fr` : `repeat(3, 1fr)`}
           gap={2}
         >
-          {gridItems.map((items) => {
+          {gridItems.map((item) => {
             return (
               <InfoGridItem
-                key={items.id}
+                key={item.id}
                 category={title}
-                gridItems={items}
-                isSelected={checkIsSelected(items)}
-                handleClick={handleItems}
+                item={item}
+                isSelected={checkIsSelected(item)}
+                onClickItem={onClickItem}
               />
             );
           })}

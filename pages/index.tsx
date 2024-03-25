@@ -25,6 +25,7 @@ export type DEFAULT_SANDWICH_INFO_TYPE = {
   extraCheese: InfoType[];
   sauces: InfoType[];
   extras: InfoType[];
+  [key: string]: InfoType[];
 };
 
 const DEFAULT_SANDWICH_INFO: DEFAULT_SANDWICH_INFO_TYPE = {
