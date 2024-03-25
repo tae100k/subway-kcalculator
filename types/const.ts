@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 // isSelected 등
 // 그래서 infoType에는 category가 있는 게 맞았다.
 // 일반화 : 도메일 로직에 종속될수록 코드가 구분할 수 있는 flag가 있어야 한다.
-export interface infoType {
+export interface InfoType {
   id: string;
   title: string;
   calories: string;
@@ -24,7 +24,7 @@ export const GridCategoryTitleList = [
   "Extras",
 ];
 
-export const SizeList: infoType[] = [
+export const SizeList: InfoType[] = [
   {
     title: "15cm",
     calories: "0",

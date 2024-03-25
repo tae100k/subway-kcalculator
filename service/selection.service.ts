@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
-import { infoType } from "../types/const";
+import { InfoType } from "../types/const";
 
-export const isSingleSelect = (items: infoType): boolean => {
+export const isSingleSelect = (items: InfoType): boolean => {
   return (
     items.category === "bread" ||
     items.category === "size" ||
@@ -9,7 +9,7 @@ export const isSingleSelect = (items: infoType): boolean => {
   );
 };
 
-export const isMultiSelect = (items: infoType): boolean => {
+export const isMultiSelect = (items: InfoType): boolean => {
   return (
     items.category !== "bread" &&
     items.category !== "size" &&
@@ -18,9 +18,9 @@ export const isMultiSelect = (items: infoType): boolean => {
 };
 
 export const toggleSelect = (
-  items: infoType,
-  state: null | infoType,
-  setState: Dispatch<SetStateAction<infoType | null>>
+  items: InfoType,
+  state: null | InfoType,
+  setState: Dispatch<SetStateAction<InfoType | null>>
 ) => {
   if (state === items) {
     setState(null);

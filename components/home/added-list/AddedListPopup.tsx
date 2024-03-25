@@ -1,12 +1,12 @@
 import { Container, Flex, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { isDoubled } from "../../../service/exception.service";
-import { infoType } from "../../../types/const";
+import { InfoType } from "../../../types/const";
 import { asyncedScrollToTop, scrollToTop } from "../../../utils/scroll";
 import AddedListAccordion from "./AddedListAccordion";
 
 interface AddedListPopupProps {
-  addedItems: infoType[];
+  addedItems: InfoType[];
   index: number;
   resetAddedItems: () => void;
   handleIndex: (newIndex: number) => void;

@@ -9,10 +9,10 @@ import {
 import React from "react";
 import { ArrowDown, ArrowUp } from "../../../public/assets/icons";
 import { isDoubled } from "../../../service/exception.service";
-import { infoType } from "../../../types/const";
+import { InfoType } from "../../../types/const";
 
 interface AddedListAccordionProps {
-  addedItems: infoType[];
+  addedItems: InfoType[];
   index: number;
   handleIndex: (newIndex: number) => void;
 }
@@ -22,7 +22,7 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
   index,
   handleIndex,
 }) => {
-  const handleSpecialCalories = (item: infoType) => {
+  const handleSpecialCalories = (item: InfoType) => {
     // 리팩토링 해야함.
     if (item.title === "Flat Bread") {
       return Number(item.calories.split(" ")[0]) / 2;

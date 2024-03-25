@@ -6,17 +6,17 @@ import {
   OMELET_CALORIES,
   PEPPERONI_CALORIES,
 } from "../api/apiRequests";
-import { infoType } from "../types/const";
+import { InfoType } from "../types/const";
 
-export const isDoubled = (addedItems: infoType[]) => {
+export const isDoubled = (addedItems: InfoType[]) => {
   return addedItems.some((items) => items.title === "30cm");
 };
 
-export const filterToppings = (items: infoType[]) => {
+export const filterToppings = (items: InfoType[]) => {
   return items.filter(({ title }) => title !== "Meat" && title !== "Cheese");
 };
 
-export const filterExtraSandwich = (items: infoType[]): infoType[] => {
+export const filterExtraSandwich = (items: InfoType[]): InfoType[] => {
   const filteredItems = filterDuplicatedItems(items);
   return filteredItems.map((item) => {
     if (item.title === "Chicken Bacon Avocado") {
@@ -30,7 +30,7 @@ export const filterExtraSandwich = (items: infoType[]): infoType[] => {
   });
 };
 
-export const filterDuplicatedItems = (items: infoType[]) => {
+export const filterDuplicatedItems = (items: InfoType[]) => {
   return items.filter(
     ({ title }) =>
       title !== "Egg Mayo" &&

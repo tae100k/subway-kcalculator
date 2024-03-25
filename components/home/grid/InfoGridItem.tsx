@@ -1,13 +1,13 @@
 import { Box, GridItem, Icon, Text } from "@chakra-ui/react";
 import React from "react";
 import { handleSVGCategory } from "../../../public/assets/ingredients/SVG";
-import { infoType } from "../../../types/const";
+import { InfoType } from "../../../types/const";
 
 interface InfoGridItemProps {
   category: string;
-  gridItems: infoType;
+  gridItems: InfoType;
   isSelected: boolean;
-  handleClick: (items: infoType) => void;
+  handleClick: (items: InfoType) => void;
 }
 const InfoGridItem: React.FC<InfoGridItemProps> = ({
   category,
