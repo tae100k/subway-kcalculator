@@ -4,6 +4,7 @@ import HoneyOat from "./Honey Oat.svg";
 import ParmesanOregano from "./Parmesan Oregano.svg";
 import Wheat from "./Wheat.svg";
 import White from "./White.svg";
+import Default from "../../../icons/favicon-xs.svg";
 
 export const handleBread = (title: string) => {
   switch (title) {
@@ -20,6 +21,6 @@ export const handleBread = (title: string) => {
     case "White":
       return White;
     default:
-      return White;
+      return Default;
   }
 };

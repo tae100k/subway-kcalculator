@@ -17,7 +17,7 @@ export const filterToppings = (items: InfoType[]) => {
 };
 
 export const filterExtraSandwich = (items: InfoType[]): InfoType[] => {
-  const filteredItems = filterDuplicatedItems(items);
+  const filteredItems = filterSUBPICK(filterDuplicatedItems(items));
   return filteredItems.map((item) => {
     if (item.title === "Chicken Bacon Avocado") {
       return {
@@ -39,6 +39,9 @@ export const filterDuplicatedItems = (items: InfoType[]) => {
       title !== "Egg Slice" &&
       title !== "Veggie Delite"
   );
+};
+export const filterSUBPICK = (items: InfoType[]) => {
+  return items.filter(({ title }) => !title.toUpperCase().includes("SUBPICK"));
 };
 
 export const getEmptyExtrasCalories = (title: string): string => {

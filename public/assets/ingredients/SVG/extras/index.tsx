@@ -19,6 +19,7 @@ import Shrimp from "./Shrimp.svg";
 import SpicyItalian from "./Spicy Italian.svg";
 import SteakNCheese from "./SteakNCheese.svg";
 import Tuna from "./Tuna.svg";
+import Default from "../../../icons/favicon-xs.svg";
 
 export const handleExtras = (title: string) => {
   switch (title) {
@@ -65,6 +66,6 @@ export const handleExtras = (title: string) => {
     case "Tuna":
       return Tuna;
     default:
-      return Tuna;
+      return Default;
   }
 };

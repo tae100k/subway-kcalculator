@@ -16,9 +16,9 @@ import SteakNCheese from "./SteakNCheese.svg";
 import SubwayClub from "./Subway Club.svg";
 import Tuna from "./Tuna.svg";
 import VeggieDelite from "./Veggie Delite.svg";
-import Default from ".././cheese/American Cheese.svg";
 import TurkeyBaconAvocado from "./Turkey Bacon Avocado.svg";
 import Turkey from "./Turkey.svg";
+import Favicon from "../../../icons/favicon-xs.svg";
 
 export const handleSandwich = (title: string) => {
   switch (title) {
@@ -64,6 +64,6 @@ export const handleSandwich = (title: string) => {
       return Turkey;
 
     default:
-      return Default;
+      return Favicon;
   }
 };

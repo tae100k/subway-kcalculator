@@ -14,6 +14,7 @@ import SouthwestChipotle from "./Southwest Chipotle.svg";
 import SweetChilli from "./Sweet Chilli.svg";
 import SweetOnion from "./Sweet Onion.svg";
 import YellowMustard from "./Yellow Mustard.svg";
+import Default from "../../../icons/favicon-xs.svg";
 
 export const handleSauces = (title: string) => {
   switch (title) {
@@ -48,6 +49,6 @@ export const handleSauces = (title: string) => {
     case "Yellow Mustard":
       return YellowMustard;
     default:
-      return Salt;
+      return Default;
   }
 };

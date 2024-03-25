@@ -7,6 +7,7 @@ import Pickles from "./Pickles.svg";
 import RedOnions from "./Red Onions.svg";
 import Tomatoes from "./Tomatoes.svg";
 import Avocado from "./Avocado.svg";
+import Default from "../../../icons/favicon-xs.svg";
 
 export const handleVeggies = (title: string) => {
   switch (title) {
@@ -29,6 +30,6 @@ export const handleVeggies = (title: string) => {
     case "Avocado":
       return Avocado;
     default:
-      return Tomatoes;
+      return Default;
   }
 };
