@@ -128,8 +128,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
         {GridCategoryTitleList.map((category) => {
           return (
             <InfoGridList
-              gridItems={chooseItems(category.toLocaleLowerCase()) ?? []}
               key={category}
+              gridItems={chooseItems(category.toLocaleLowerCase()) ?? []}
               addedItems={selectedWholeItems}
               title={category}
               handleItems={handleAddItems}
