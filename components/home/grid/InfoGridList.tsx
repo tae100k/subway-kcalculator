@@ -34,7 +34,7 @@ const InfoGridList: React.FC<InfoGridListProps> = ({
           {gridItems.map((item) => {
             return (
               <InfoGridItem
-                key={item.id}
+                key={`${item.category}${item.title}`}
                 category={title}
                 item={item}
                 isSelected={checkIsSelected(item)}

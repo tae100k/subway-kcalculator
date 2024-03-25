@@ -42,7 +42,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
     return Boolean(
       selectedWholeItems.find(
         (addedItem) =>
-          addedItem.id === items.id && addedItem.category === items.category
+          addedItem.title === items.title &&
+          addedItem.category === items.category
       )
     );
   };

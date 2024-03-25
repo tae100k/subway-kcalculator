@@ -115,7 +115,7 @@ const Home: NextPage = () => {
         <Box id="maxW box" bg="Grayscale.10" h="full" w="100%" maxW={"516px"}>
           <TitleHeader />
           <Box>
-            {api ? (
+            {api && sandwichInfo ? (
               <HomeScreen sandwichInfo={sandwichInfo} />
             ) : (
               <SplashScreen />
