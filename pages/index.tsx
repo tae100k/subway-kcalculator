@@ -14,7 +14,12 @@ import {
   filterExtraSandwich,
   filterToppings,
 } from "../service/exception.service";
-import { GridCategoryTitleList, InfoType, SizeList } from "../types/const";
+import {
+  GridCategoryTitleList,
+  InfoType,
+  SandwichCategory,
+  SizeList,
+} from "../types/const";
 import { areAllValuesNonEmptyArray } from "../utils/array";
 
 export type DEFAULT_SANDWICH_INFO_TYPE = {
@@ -66,7 +71,13 @@ const Home: NextPage = () => {
     }
     if (category === "extracheese") {
       const res = await getInfoList("cheese");
-      setSandwichInfo((prev) => ({ ...prev, extracheese: res }));
+      const extraCheeseRes = res.map((item) => {
+        return {
+          ...item,
+          category: SandwichCategory.ExtraCheese,
+        };
+      });
+      setSandwichInfo((prev) => ({ ...prev, extracheese: extraCheeseRes }));
     }
     if (category === "sauces") {
       const res = await getInfoList("sauce");
