@@ -53,7 +53,7 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
           addedItems={addedItems}
           handleIndex={handleIndex}
         />
-        <Text textStyle="body" mt={4} px={"16px"}>
+        <Text textStyle="body" mt={4} px={"17px"}>
           Total
         </Text>
         <Flex
