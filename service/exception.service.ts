@@ -13,7 +13,10 @@ export const isDoubled = (addedItems: InfoType[]) => {
 };
 
 export const filterToppings = (items: InfoType[]) => {
-  return items.filter(({ title }) => title !== "Meat" && title !== "Cheese");
+  return items.filter(
+    ({ title }) =>
+      title !== "Meat" && title !== "Cheese" && title !== "Egg Slice"
+  );
 };
 
 export const filterExtraSandwich = (items: InfoType[]): InfoType[] => {
@@ -36,7 +39,6 @@ export const filterDuplicatedItems = (items: InfoType[]) => {
       title !== "Egg Mayo" &&
       title !== "Turkey" &&
       title !== "Turkey Bacon Avocado" &&
-      title !== "Egg Slice" &&
       title !== "Veggie Delite"
   );
 };
