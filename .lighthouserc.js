@@ -8,7 +8,7 @@ module.exports = {
         numberOfRuns: 3,
       },
       settings: {
-        preset: "desktop",
+        preset: ["desktop", "mobile"],
       },
     },
     assert: {
