@@ -46,6 +46,7 @@ export const DEFAULT_SANDWICH_INFO: DEFAULT_SANDWICH_INFO_TYPE = {
 };
 
 const Home: NextPage = () => {
+  const [showSplashScreen, setShowSplashScreen] = useState(true);
   const [sandwichInfo, setSandwichInfo] = useState(DEFAULT_SANDWICH_INFO);
 
   const divideItemFunc = async (category: string) => {
@@ -104,6 +105,13 @@ const Home: NextPage = () => {
     handleInfo();
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplashScreen(false);
+    }, 1800);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Head>
@@ -135,7 +143,7 @@ const Home: NextPage = () => {
         <Box id="maxW box" bg="Grayscale.10" h="full" w="100%" maxW={"516px"}>
           <TitleHeader />
           <Box>
-            {areAllValuesNonEmptyArray(sandwichInfo) ? (
+            {!showSplashScreen ? (
               <HomeScreen sandwichInfo={sandwichInfo} />
             ) : (
               <SplashScreen />
