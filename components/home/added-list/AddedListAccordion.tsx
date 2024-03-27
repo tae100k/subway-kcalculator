@@ -23,10 +23,6 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
   handleIndex,
 }) => {
   const handleSpecialCalories = (item: InfoType) => {
-    // 리팩토링 해야함.
-    if (item.title === "Flat Bread") {
-      return Number(item.calories.split(" ")[0]) / 2;
-    }
     return Number(item.calories.split(" ")[0]);
   };
 
