@@ -7,14 +7,10 @@ module.exports = {
       collect: {
         numberOfRuns: 3,
       },
-      settings: {
-        preset: ["desktop", "mobile"],
-      },
     },
     assert: {
       assertions: {
         "categories:performance": ["warn", { minScore: 0.1 }],
-
         "categories:performance": ["warn", { minScore: 0.1 }],
         "categories:accessibility": ["warn", { minScore: 0.1 }],
         "categories:best-practices": ["warn", { minScore: 0.1 }],
