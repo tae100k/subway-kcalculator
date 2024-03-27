@@ -12,6 +12,7 @@ import SplashScreen from "../components/splash/SplashScreen";
 import TitleHeader from "../components/TitleHeader";
 import {
   filterExtraSandwich,
+  filterSUBPICK,
   filterToppings,
 } from "../service/exception.service";
 import {
@@ -51,7 +52,8 @@ const Home: NextPage = () => {
 
   const divideItemFunc = async (category: string) => {
     if (category === "sandwich") {
-      const res = await getSandwichInfoList(category);
+      const allSandwich = await getSandwichInfoList(category);
+      const res = [...filterSUBPICK(allSandwich)];
       setSandwichInfo((prev) => ({ ...prev, sandwich: res }));
     }
     if (category === "size") {

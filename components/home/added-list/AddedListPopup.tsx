@@ -19,9 +19,6 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
   resetAddedItems,
 }) => {
   const itemCaloriesList = addedItems.map((item) => {
-    if (item.title === "Flat Bread") {
-      return Number(item.calories.split(" ")[0]) / 2;
-    }
     return Number(item.calories.split(" ")[0]);
   });
 
