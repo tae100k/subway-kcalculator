@@ -5,6 +5,7 @@ import { isSingleSelect } from "../../service/selection.service";
 import { GridCategoryTitleList, InfoType } from "../../types/const";
 import AddedListPopup from "./added-list/AddedListPopup";
 import InfoGridList from "./grid/InfoGridList";
+import { filter } from "cheerio/lib/api/traversing";
 
 interface HomeScreenProps {
   sandwichInfo: DEFAULT_SANDWICH_INFO_TYPE;
@@ -20,20 +21,30 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
     const category = newItem.category;
     const isSelected = checkIsSelected(newItem);
 
+    // single
     if (isSingleSelect(category)) {
-      const newSelectedItems = selectedItems.filter(
-        (item) => item.category !== category
-      );
-      setSelectedItems([...newSelectedItems, newItem]);
-    } else {
-      if (!isSelected) {
-        setSelectedItems([...selectedItems, newItem]);
-      } else {
+      if (isSelected) {
         const newSelectedItems = selectedItems.filter(
           (item) => item.title !== newItem.title || item.category !== category
         );
         setSelectedItems(newSelectedItems);
+      } else {
+        const newSelectedItems = selectedItems.filter(
+          (item) => item.category !== category
+        );
+        setSelectedItems([...newSelectedItems, newItem]);
       }
+      return;
+    }
+
+    // multi
+    if (isSelected) {
+      const newSelectedItems = selectedItems.filter(
+        (item) => item.title !== newItem.title || item.category !== category
+      );
+      setSelectedItems(newSelectedItems);
+    } else {
+      setSelectedItems([...selectedItems, newItem]);
     }
 
     handlePopup();
