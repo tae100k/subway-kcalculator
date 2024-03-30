@@ -1,7 +1,10 @@
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { DEFAULT_SANDWICH_INFO_TYPE } from "../../pages";
-import { isSingleSelect } from "../../service/selection.service";
+import {
+  isDeselectable,
+  isSingleSelect,
+} from "../../service/selection.service";
 import { GridCategoryTitleList, InfoType } from "../../types/const";
 import AddedListPopup from "./added-list/AddedListPopup";
 import InfoGridList from "./grid/InfoGridList";
@@ -19,21 +22,40 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
   const handleAddItems = (newItem: InfoType) => {
     const category = newItem.category;
     const isSelected = checkIsSelected(newItem);
+    const deselctable = isDeselectable(newItem.category);
 
-    if (isSingleSelect(category)) {
+    if (!deselctable) {
       const newSelectedItems = selectedItems.filter(
         (item) => item.category !== category
       );
       setSelectedItems([...newSelectedItems, newItem]);
-    } else {
-      if (!isSelected) {
-        setSelectedItems([...selectedItems, newItem]);
-      } else {
+      return;
+    }
+
+    // single
+    if (isSingleSelect(category)) {
+      if (isSelected) {
         const newSelectedItems = selectedItems.filter(
           (item) => item.title !== newItem.title || item.category !== category
         );
         setSelectedItems(newSelectedItems);
+      } else {
+        const newSelectedItems = selectedItems.filter(
+          (item) => item.category !== category
+        );
+        setSelectedItems([...newSelectedItems, newItem]);
       }
+      return;
+    }
+
+    // multi
+    if (isSelected) {
+      const newSelectedItems = selectedItems.filter(
+        (item) => item.title !== newItem.title || item.category !== category
+      );
+      setSelectedItems(newSelectedItems);
+    } else {
+      setSelectedItems([...selectedItems, newItem]);
     }
 
     handlePopup();
@@ -69,7 +91,6 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ sandwichInfo }) => {
       <Box p={4} pb={"170px"}>
         {GridCategoryTitleList.map((category) => {
           const categoryKey = category.toLocaleLowerCase();
-
           return (
             <InfoGridList
               key={category}
