@@ -63,7 +63,7 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
             <Text textStyle="display">
               {totalCalories.toString().padStart(3, "0")}
             </Text>
-            <Text textStyle="body">Kcal</Text>
+            <Text textStyle="body">kcal</Text>
           </Flex>
           <Text
             cursor="pointer"
