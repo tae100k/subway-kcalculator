@@ -10,3 +10,9 @@ export const isSingleSelect = (
     category === SandwichCategory.Cheese
   );
 };
+
+export const isDeselectable = (
+  category: SandwichCategory | string
+): boolean => {
+  return category !== SandwichCategory.Size;
+};

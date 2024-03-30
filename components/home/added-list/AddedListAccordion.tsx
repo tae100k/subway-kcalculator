@@ -30,6 +30,7 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
     if (index === 0) handleIndex(1);
     if (index === 1) handleIndex(0);
   };
+  const doubledStatus = isDoubled(addedItems);
 
   return (
     <Accordion allowMultiple index={[index]} onClick={handleChange}>
@@ -46,18 +47,21 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
             >
               {isExpanded ? <ArrowDown /> : <ArrowUp />}
             </AccordionButton>
+
             <AccordionPanel
               mx={"24px"}
               mt={"16px"}
               mb={"8px"}
               borderBottom="2px"
               borderBottomColor="Grayscale.10"
+              border={"1px solid red"}
             >
-              {isDoubled(addedItems) && (
+              {doubledStatus && (
                 <Flex>
                   <Text textStyle="body">(</Text>
                 </Flex>
               )}
+
               {addedItems.map((item) => {
                 if (item.title !== "30cm" && item.title !== "15cm")
                   return (
@@ -70,7 +74,8 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
                     </Flex>
                   );
               })}
-              {isDoubled(addedItems) && (
+
+              {doubledStatus && (
                 <Flex>
                   <Text textStyle="body">) x 2 Size</Text>
                 </Flex>
