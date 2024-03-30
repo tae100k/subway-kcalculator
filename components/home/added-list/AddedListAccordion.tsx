@@ -54,7 +54,6 @@ const AddedListAccordion: React.FC<AddedListAccordionProps> = ({
               mb={"8px"}
               borderBottom="2px"
               borderBottomColor="Grayscale.10"
-              border={"1px solid red"}
             >
               {doubledStatus && (
                 <Flex>
