@@ -15,7 +15,7 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiUrl = process.env.REACT_APP_SERVER_URL;
+      const apiUrl = "https://subwaykcalculator.xyz";
       console.log("apiUrl", apiUrl);
       try {
         const res = await fetch(`${apiUrl}/api/menu`, { cache: "no-store" });
