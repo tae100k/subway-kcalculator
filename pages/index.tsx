@@ -8,14 +8,25 @@ import SplashScreen from "../components/splash/SplashScreen";
 import { InfoType } from "../types/const";
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3000/api/menu");
-  const data = await res.json();
-
-  return {
-    props: {
-      data,
-    },
-  };
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  console.log("API URL:", apiUrl);
+  try {
+    const res = await fetch(`${apiUrl}/api/menu`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await res.json();
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export default function HomePage({
