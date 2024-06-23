@@ -109,4 +109,5 @@ export const DEFAULT_SANDWICH_INFO: DEFAULT_SANDWICH_INFO_TYPE = {
   sauces: [],
   extras: [],
 };
+
 const LOADING_TIME_MS = 1200;
