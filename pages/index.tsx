@@ -7,7 +7,7 @@ import HomeScreen from "../components/home/Home";
 import SplashScreen from "../components/splash/SplashScreen";
 import { InfoType } from "../types/const";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   console.log("API URL:", apiUrl);
   try {
