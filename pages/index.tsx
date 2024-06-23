@@ -11,7 +11,7 @@ export async function getStaticProps() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   console.log("API URL:", apiUrl);
   try {
-    const res = await fetch(`${apiUrl}/api/menu`);
+    const res = await fetch(`${apiUrl}/api/menu`, { cache: "no-store" });
     if (!res.ok) {
       throw new Error(`Failed to fetch data. Status: ${res.status}`);
     }
