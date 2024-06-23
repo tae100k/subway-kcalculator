@@ -1,41 +1,37 @@
 import { Box } from "@chakra-ui/react";
 import Head from "next/head";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import TitleHeader from "../components/TitleHeader";
 import HomeScreen from "../components/home/Home";
 import SplashScreen from "../components/splash/SplashScreen";
 import { InfoType } from "../types/const";
 
-export async function getServerSideProps() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  console.log("API URL:", apiUrl);
-  try {
-    const res = await fetch(`${apiUrl}/api/menu`, { cache: "no-store" });
-    if (!res.ok) {
-      throw new Error(`Failed to fetch data. Status: ${res.status}`);
-    }
-    const data = await res.json();
-    console.log("data", data);
-    return {
-      props: {
-        data,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return {
-      notFound: true,
-    };
-  }
-}
-
-export default function HomePage({
-  data,
-}: {
-  data: DEFAULT_SANDWICH_INFO_TYPE;
-}) {
+export default function HomePage() {
   const [showSplashScreen, setShowSplashScreen] = useState(true);
+  const [data, setData] = useState<DEFAULT_SANDWICH_INFO_TYPE>(
+    DEFAULT_SANDWICH_INFO
+  );
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      try {
+        const res = await fetch(`${apiUrl}/api/menu`, { cache: "no-store" });
+        if (!res.ok) {
+          throw new Error(`Failed to fetch data. Status: ${res.status}`);
+        }
+        const data = await res.json();
+        setData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -76,7 +72,11 @@ export default function HomePage({
           <TitleHeader />
           <Box>
             {!showSplashScreen ? (
-              <HomeScreen sandwichInfo={data} />
+              loading ? (
+                <SplashScreen />
+              ) : (
+                <HomeScreen sandwichInfo={data} />
+              )
             ) : (
               <SplashScreen />
             )}
