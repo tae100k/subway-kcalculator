@@ -13,7 +13,7 @@ const SplashScreen = () => {
           height: calc(100vh - 56px);
         }
       `}
-      pt="32px"
+      pt={"32px"}
       pb="16px"
       px="16px"
       flexDirection="column"
