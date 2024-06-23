@@ -1,37 +1,25 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
+import { css } from "@emotion/react";
 import { SplashText } from "../../public/assets/icons";
 
 const SplashScreen = () => {
-  // const splashScreenTitle = [
-  //   "Calculate",
-  //   "the",
-  //   "Calories",
-  //   "In your",
-  //   "own",
-  //   "Sub",
-  // ];
   return (
     <Flex
-      h="calc(100vh - (56px))"
-      pt={"32px"}
-      pb={"16px"}
-      px={"16px"}
+      css={css`
+        @supports (height: 100dvh) {
+          height: calc(100dvh - 56px);
+        }
+        @supports not (height: 100dvh) {
+          height: calc(100vh - 56px);
+        }
+      `}
+      pt="32px"
+      pb="16px"
+      px="16px"
       flexDirection="column"
       justifyContent="space-between"
     >
       <Box>
-        {/* {splashScreenTitle.map((text) => {
-          return (
-            <Box
-              textStyle="display"
-              color="Green.10"
-              key={text}
-              lineHeight={"68px"}
-            >
-              {text}
-            </Box>
-          );
-        })} */}
         <SplashText />
       </Box>
 

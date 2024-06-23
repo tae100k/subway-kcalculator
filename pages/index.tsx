@@ -1,116 +1,42 @@
 import { Box } from "@chakra-ui/react";
-import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import {
-  getExtraToppingInfoList,
-  getInfoList,
-  getSandwichInfoList,
-} from "../api/apiRequests";
+import { useState, useEffect } from "react";
+import TitleHeader from "../components/TitleHeader";
 import HomeScreen from "../components/home/Home";
 import SplashScreen from "../components/splash/SplashScreen";
-import TitleHeader from "../components/TitleHeader";
-import {
-  filterExtraSandwich,
-  filterSUBPICK,
-  filterToppings,
-} from "../service/exception.service";
-import {
-  GridCategoryTitleList,
-  InfoType,
-  SandwichCategory,
-  SizeList,
-} from "../types/const";
-import { areAllValuesNonEmptyArray } from "../utils/array";
+import { InfoType } from "../types/const";
 
-export type DEFAULT_SANDWICH_INFO_TYPE = {
-  bread: InfoType[];
-  sandwich: InfoType[];
-  veggies: InfoType[];
-  size: InfoType[];
-  cheese: InfoType[];
-  extracheese: InfoType[];
-  sauces: InfoType[];
-  extras: InfoType[];
-  [key: string]: InfoType[];
-};
-
-export const DEFAULT_SANDWICH_INFO: DEFAULT_SANDWICH_INFO_TYPE = {
-  bread: [],
-  sandwich: [],
-  veggies: [],
-  size: [],
-  cheese: [],
-  extracheese: [],
-  sauces: [],
-  extras: [],
-};
-
-const Home: NextPage = () => {
+export default function HomePage() {
   const [showSplashScreen, setShowSplashScreen] = useState(true);
-  const [sandwichInfo, setSandwichInfo] = useState(DEFAULT_SANDWICH_INFO);
-
-  const divideItemFunc = async (category: string) => {
-    if (category === "sandwich") {
-      const allSandwich = await getSandwichInfoList(category);
-      const res = [...filterSUBPICK(allSandwich)];
-      setSandwichInfo((prev) => ({ ...prev, sandwich: res }));
-    }
-    if (category === "size") {
-      const res = SizeList;
-      setSandwichInfo((prev) => ({ ...prev, size: res }));
-    }
-    if (category === "bread") {
-      const res = await getInfoList(category);
-      setSandwichInfo((prev) => ({ ...prev, bread: res }));
-    }
-    if (category === "veggies") {
-      const res = await getInfoList("vegetable");
-      setSandwichInfo((prev) => ({ ...prev, veggies: res }));
-    }
-    if (category === "cheese") {
-      const res = await getInfoList(category);
-      setSandwichInfo((prev) => ({ ...prev, cheese: res }));
-    }
-    if (category === "extracheese") {
-      const res = await getInfoList("cheese");
-      const extraCheeseRes = res.map((item) => {
-        return {
-          ...item,
-          category: SandwichCategory.ExtraCheese,
-        };
-      });
-      setSandwichInfo((prev) => ({ ...prev, extracheese: extraCheeseRes }));
-    }
-    if (category === "sauces") {
-      const res = await getInfoList("sauce");
-      setSandwichInfo((prev) => ({ ...prev, sauces: res }));
-    }
-    if (category === "extras") {
-      const toppingArray = await getExtraToppingInfoList("extras");
-      const sandwichArray = await getSandwichInfoList("extras");
-      const res = [
-        ...filterToppings(toppingArray),
-        ...filterExtraSandwich(sandwichArray),
-      ];
-      setSandwichInfo((prev) => ({ ...prev, extras: res }));
-    }
-  };
-
-  const handleInfo = async () => {
-    GridCategoryTitleList.map(async (title) => {
-      await divideItemFunc(title);
-    });
-  };
+  const [data, setData] = useState<DEFAULT_SANDWICH_INFO_TYPE>(
+    DEFAULT_SANDWICH_INFO
+  );
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    handleInfo();
+    const fetchData = async () => {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      try {
+        const res = await fetch(`${apiUrl}/api/menu`, { cache: "no-store" });
+        if (!res.ok) {
+          throw new Error(`Failed to fetch data. Status: ${res.status}`);
+        }
+        const data = await res.json();
+        setData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSplashScreen(false);
-    }, 1800);
+    }, LOADING_TIME_MS);
     return () => clearTimeout(timer);
   }, []);
 
@@ -142,11 +68,15 @@ const Home: NextPage = () => {
         display="flex"
         justifyContent="center"
       >
-        <Box id="maxW box" bg="Grayscale.10" h="full" w="100%" maxW={"516px"}>
+        <Box id="maxW box" bg="Grayscale.10" h="full" w="full" maxW={"516px"}>
           <TitleHeader />
           <Box>
             {!showSplashScreen ? (
-              <HomeScreen sandwichInfo={sandwichInfo} />
+              loading ? (
+                <SplashScreen />
+              ) : (
+                <HomeScreen sandwichInfo={data} />
+              )
             ) : (
               <SplashScreen />
             )}
@@ -155,6 +85,28 @@ const Home: NextPage = () => {
       </Box>
     </>
   );
+}
+
+export type DEFAULT_SANDWICH_INFO_TYPE = {
+  bread: InfoType[];
+  sandwich: InfoType[];
+  veggies: InfoType[];
+  size: InfoType[];
+  cheese: InfoType[];
+  extracheese: InfoType[];
+  sauces: InfoType[];
+  extras: InfoType[];
+  [key: string]: InfoType[];
 };
 
-export default Home;
+export const DEFAULT_SANDWICH_INFO: DEFAULT_SANDWICH_INFO_TYPE = {
+  bread: [],
+  sandwich: [],
+  veggies: [],
+  size: [],
+  cheese: [],
+  extracheese: [],
+  sauces: [],
+  extras: [],
+};
+const LOADING_TIME_MS = 1200;

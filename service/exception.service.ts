@@ -5,7 +5,7 @@ import {
   EGG_MAYO_CALORIES,
   OMELET_CALORIES,
   PEPPERONI_CALORIES,
-} from "../api/apiRequests";
+} from "../components/api/apiRequests";
 import { InfoType } from "../types/const";
 
 export const isDoubled = (addedItems: InfoType[]) => {

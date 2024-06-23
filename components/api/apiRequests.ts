@@ -1,7 +1,7 @@
 import axios from "axios";
 import cheerio from "cheerio";
 import { SANDWICH_URL, INGREDIENTS_URL } from "./APIURL";
-import { getEmptyExtrasCalories } from "../service/exception.service";
+import { getEmptyExtrasCalories } from "../../service/exception.service";
 
 export const WHEAT_BREAD_CALORIES = 192;
 export const LETTUCE_CALORIES = 2.9;

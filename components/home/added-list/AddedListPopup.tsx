@@ -51,7 +51,7 @@ const AddedListPopup: React.FC<AddedListPopupProps> = ({
           handleIndex={handleIndex}
         />
         <Text textStyle="body" mt={4} px={"16px"}>
-          Total
+          Totalll
         </Text>
         <Flex
           px={"16px"}
