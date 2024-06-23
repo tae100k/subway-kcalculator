@@ -16,6 +16,7 @@ export async function getServerSideProps() {
       throw new Error(`Failed to fetch data. Status: ${res.status}`);
     }
     const data = await res.json();
+    console.log("data", data);
     return {
       props: {
         data,
