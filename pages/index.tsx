@@ -13,7 +13,7 @@ export async function getStaticProps() {
   try {
     const res = await fetch(`${apiUrl}/api/menu`);
     if (!res.ok) {
-      throw new Error("Failed to fetch data");
+      throw new Error(`Failed to fetch data. Status: ${res.status}`);
     }
     const data = await res.json();
     return {
