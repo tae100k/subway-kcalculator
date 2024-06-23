@@ -15,20 +15,8 @@ export default function HomePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiUrl = "https://subwaykcalculator.xyz";
-      console.log("apiUrl", apiUrl);
-      try {
-        const res = await fetch(`${apiUrl}/api/menu`, { cache: "no-store" });
-        if (!res.ok) {
-          throw new Error(`Failed to fetch data. Status: ${res.status}`);
-        }
-        const data = await res.json();
-        setData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
+      setData(menu);
+      setLoading(false);
     };
 
     fetchData();
@@ -111,3 +99,135 @@ export const DEFAULT_SANDWICH_INFO: DEFAULT_SANDWICH_INFO_TYPE = {
   extras: [],
 };
 const LOADING_TIME_MS = 1200;
+const menu = {
+  bread: [
+    { title: "Honey Oat", calories: "235 kcal", category: "bread" },
+    { title: "Hearty Italian", calories: "210 kcal", category: "bread" },
+    { title: "Wheat", calories: "192 kcal", category: "bread" },
+    { title: "Parmesan Oregano", calories: "213 kcal", category: "bread" },
+    { title: "White", calories: "202 kcal", category: "bread" },
+    { title: "Flat Bread", calories: "232 kcal", category: "bread" },
+  ],
+  sandwich: [
+    { title: "Egg Slice", calories: "70.7", category: "sandwich" },
+    { title: "Steak & Cheese", calories: "146.7", category: "sandwich" },
+    {
+      title: "Chicken Bacon Avocado",
+      calories: "146.7",
+      category: "sandwich",
+    },
+    { title: "Spicy Shrimp", calories: "36.7", category: "sandwich" },
+    { title: "Shrimp", calories: "32.7", category: "sandwich" },
+    { title: "Roasted Chicken", calories: "91.7", category: "sandwich" },
+    {
+      title: "Rotisserie Barbecue Chicken",
+      calories: "118.7",
+      category: "sandwich",
+    },
+    { title: "K-BBQ", calories: "163.7", category: "sandwich" },
+    {
+      title: "Pulled Pork Barbecue",
+      calories: "118.7",
+      category: "sandwich",
+    },
+    { title: "Subway Club™", calories: "90.7", category: "sandwich" },
+    { title: "Chicken Teriyaki", calories: "105.7", category: "sandwich" },
+    { title: "Spicy Italian", calories: "255.7", category: "sandwich" },
+    { title: "Italian B.M.T.™", calories: "179.7", category: "sandwich" },
+    { title: "B.L.T.", calories: "91.7", category: "sandwich" },
+    { title: "Chicken Slice", calories: "56.7", category: "sandwich" },
+    { title: "Tuna", calories: "107.7", category: "sandwich" },
+    { title: "Ham", calories: "53.7", category: "sandwich" },
+    { title: "Egg Mayo", calories: "207.7", category: "sandwich" },
+    { title: "Veggie Delite", calories: "0.7", category: "sandwich" },
+  ],
+  veggies: [
+    { title: "Lettuce", calories: "2.9 kcal", category: "vegetable" },
+    { title: "Tomatoes", calories: "7.7 kcal", category: "vegetable" },
+    { title: "Cucumbers", calories: "1.5 kcal", category: "vegetable" },
+    { title: "Peppers", calories: "1.4 kcal", category: "vegetable" },
+    { title: "Red Onions", calories: "2.8 kcal", category: "vegetable" },
+    { title: "Pickles", calories: "0.4 kcal", category: "vegetable" },
+    { title: "Olives", calories: "3.9 kcal", category: "vegetable" },
+    { title: "Jalapenos", calories: "0.6 kcal", category: "vegetable" },
+    { title: "Avocado", calories: "56.5 kcal", category: "vegetable" },
+  ],
+  size: [
+    { title: "15cm", calories: "0", category: "size" },
+    { title: "30cm", calories: "0", category: "size" },
+  ],
+  cheese: [
+    { title: "American Cheese", calories: "35.3 kcal", category: "cheese" },
+    { title: "Shredded Cheese", calories: "53.6 kcal", category: "cheese" },
+    { title: "Mozzarella Cheese", calories: "43.8 kcal", category: "cheese" },
+  ],
+  extracheese: [
+    {
+      title: "American Cheese",
+      calories: "35.3 kcal",
+      category: "extracheese",
+    },
+    {
+      title: "Shredded Cheese",
+      calories: "53.6 kcal",
+      category: "extracheese",
+    },
+    {
+      title: "Mozzarella Cheese",
+      calories: "43.8 kcal",
+      category: "extracheese",
+    },
+  ],
+  sauces: [
+    { title: "Ranch", calories: "116 kcal", category: "sauce" },
+    { title: "Sweet Onion", calories: "40.1 kcal", category: "sauce" },
+    { title: "Mayonnaise", calories: "158 kcal", category: "sauce" },
+    { title: "Sweet Chilli", calories: "40 kcal", category: "sauce" },
+    { title: "Smoke BBQ", calories: "32.8 kcal", category: "sauce" },
+    { title: "Hot Chilli", calories: "41.8 kcal", category: "sauce" },
+    { title: "Honey Mustard", calories: "38.4 kcal", category: "sauce" },
+    { title: "Southwest Chipotle", calories: "96.5 kcal", category: "sauce" },
+    { title: "Horseradish", calories: "106 kcal", category: "sauce" },
+    { title: "Yellow Mustard", calories: "15.3 kcal", category: "sauce" },
+    {
+      title: "Extra Virgin Olive Oil",
+      calories: "29 kcal",
+      category: "sauce",
+    },
+    {
+      title: "Red Wine Vinaigrette",
+      calories: "0.7 kcal",
+      category: "sauce",
+    },
+    { title: "Salt", calories: "", category: "sauce" },
+    { title: "Black Pepper", calories: "", category: "sauce" },
+  ],
+  extras: [
+    { title: "Egg Mayo", calories: "205", category: "extras" },
+    { title: "Omelet", calories: "120", category: "extras" },
+    { title: "Avocado", calories: "63", category: "extras" },
+    { title: "Bacon", calories: "85", category: "extras" },
+    { title: "Pepperoni", calories: "81", category: "extras" },
+    { title: "Egg Slice", calories: "70.7", category: "extras" },
+    { title: "Steak & Cheese", calories: "146.7", category: "extras" },
+    { title: "Chicken Bacon", calories: "90.2", category: "extras" },
+    { title: "Spicy Shrimp", calories: "36.7", category: "extras" },
+    { title: "Shrimp", calories: "32.7", category: "extras" },
+    { title: "Roasted Chicken", calories: "91.7", category: "extras" },
+    {
+      title: "Rotisserie Barbecue Chicken",
+      calories: "118.7",
+      category: "extras",
+    },
+    { title: "K-BBQ", calories: "163.7", category: "extras" },
+    { title: "Pulled Pork Barbecue", calories: "118.7", category: "extras" },
+    { title: "Subway Club™", calories: "90.7", category: "extras" },
+    { title: "Chicken Teriyaki", calories: "105.7", category: "extras" },
+    { title: "Spicy Italian", calories: "255.7", category: "extras" },
+    { title: "Italian B.M.T.™", calories: "179.7", category: "extras" },
+    { title: "B.L.T.", calories: "91.7", category: "extras" },
+    { title: "Chicken Slice", calories: "56.7", category: "extras" },
+    { title: "Tuna", calories: "107.7", category: "extras" },
+    { title: "Ham", calories: "53.7", category: "extras" },
+  ],
+};
