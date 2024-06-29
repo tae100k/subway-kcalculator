@@ -30,7 +30,7 @@ export const handleSauces = (title: string) => {
       return ItalianDressing;
     case "Mayonnaise":
       return Mayonnaise;
-    case "Olive Oil":
+    case "Extra Virgin Olive Oil":
       return OliveOil;
     case "Ranch":
       return Ranch;
@@ -40,7 +40,7 @@ export const handleSauces = (title: string) => {
       return Salt;
     case "Smoke BBQ":
       return SmokeBBQ;
-    case "NEW Southwest Chipotle":
+    case "Southwest Chipotle":
       return SouthwestChipotle;
     case "Sweet Chilli":
       return SweetChilli;

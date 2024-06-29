@@ -2,6 +2,7 @@ import { Box, GridItem, Icon, Text } from "@chakra-ui/react";
 import React from "react";
 import { handleSVGCategory } from "../../../public/assets/ingredients/SVG";
 import { InfoType } from "../../../types/const";
+import Image from "next/image";
 
 interface InfoGridItemProps {
   category: string;
@@ -23,6 +24,7 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
   const onClick = () => {
     onClickItem(item);
   };
+  const newImageSrc = "/assets/icons/new-icon.png";
 
   return (
     <GridItem
@@ -43,11 +45,21 @@ const InfoGridItem: React.FC<InfoGridItemProps> = ({
       // }}
       boxShadow={isSelected ? "0px 4px 16px -10px rgba(0, 0, 0, 0.08)" : "none"}
     >
-      <Icon
-        as={handleSVG(category, item.title)}
-        h={"50px"}
-        w={["30cm"].includes(item.title) ? "100px" : "50px"}
-      />
+      {["Egg Slice", "Spicy Shrimp"].includes(item.title) ? (
+        <Image
+          src={newImageSrc}
+          width={50}
+          height={50}
+          objectFit="contain"
+          alt="this is a new menu"
+        />
+      ) : (
+        <Icon
+          as={handleSVG(category, item.title)}
+          h={"50px"}
+          w={["30cm"].includes(item.title) ? "100px" : "50px"}
+        />
+      )}
       <Box display="flex" flexGrow="1" alignItems="center">
         <Text
           align="center"
